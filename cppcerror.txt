@@ -1,0 +1,165 @@
+[Documentation/connector/ucon.c:250]: (error) Resource leak: out
+[arch/alpha/boot/bootp.c:47]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/boot/bootp.c:77]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/boot/bootpz.c:69]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/boot/bootpz.c:125]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/boot/main.c:42]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/boot/main.c:72]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/kernel/core_cia.c:869]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/kernel/core_cia.c:913]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/kernel/core_irongate.c:415]: (error) Shifting 32-bit value by 41 bits is undefined behaviour
+[arch/alpha/kernel/core_lca.c:282]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/kernel/core_lca.c:286]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/kernel/core_marvel.c:319]: (error) Shifting 32-bit value by 61 bits is undefined behaviour
+[arch/alpha/kernel/core_marvel.c:697]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/kernel/core_marvel.c:853]: (error) Shifting 32-bit value by 43 bits is undefined behaviour
+[arch/alpha/kernel/core_marvel.c:854]: (error) Shifting 32-bit value by 35 bits is undefined behaviour
+[arch/alpha/kernel/core_marvel.c:856]: (error) Shifting 32-bit value by 34 bits is undefined behaviour
+[arch/alpha/kernel/core_marvel.c:856]: (error) Shifting 32-bit value by 35 bits is undefined behaviour
+[arch/alpha/kernel/core_marvel.c:873]: (error) Shifting 32-bit value by 34 bits is undefined behaviour
+[arch/alpha/kernel/core_t2.c:531]: (error) Shifting 32-bit value by 33 bits is undefined behaviour
+[arch/alpha/kernel/core_wildfire.c:446]: (error) Shifting 32-bit value by 36 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:827]: (error) Shifting 32-bit value by 63 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:932]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:937]: (error) Shifting 32-bit value by 63 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:290]: (error) Shifting 32-bit value by 63 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:370]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:373]: (error) Shifting 32-bit value by 33 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:381]: (error) Shifting 32-bit value by 56 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:383]: (error) Shifting 32-bit value by 57 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:388]: (error) Shifting 32-bit value by 58 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:391]: (error) Shifting 32-bit value by 59 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:395]: (error) Shifting 32-bit value by 60 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:404]: (error) Shifting 32-bit value by 63 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:415]: (error) Shifting 32-bit value by 34 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:416]: (error) Shifting 32-bit value by 35 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:417]: (error) Shifting 32-bit value by 37 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:418]: (error) Shifting 32-bit value by 38 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:419]: (error) Shifting 32-bit value by 42 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:422]: (error) Shifting 32-bit value by 34 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:424]: (error) Shifting 32-bit value by 35 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:426]: (error) Shifting 32-bit value by 36 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:429]: (error) Shifting 32-bit value by 37 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:432]: (error) Shifting 32-bit value by 38 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:434]: (error) Shifting 32-bit value by 39 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:436]: (error) Shifting 32-bit value by 40 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:439]: (error) Shifting 32-bit value by 41 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:442]: (error) Shifting 32-bit value by 43 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:447]: (error) Shifting 32-bit value by 44 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:450]: (error) Shifting 32-bit value by 45 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:452]: (error) Shifting 32-bit value by 46 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:454]: (error) Shifting 32-bit value by 47 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:461]: (error) Shifting 32-bit value by 42 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:464]: (error) Shifting 32-bit value by 51 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:466]: (error) Shifting 32-bit value by 52 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:469]: (error) Shifting 32-bit value by 53 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:472]: (error) Shifting 32-bit value by 54 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:475]: (error) Shifting 32-bit value by 55 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:479]: (error) Shifting 32-bit value by 62 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:515]: (error) Shifting 32-bit value by 63 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:620]: (error) Shifting 32-bit value by 63 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:633]: (error) Shifting 32-bit value by 50 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:689]: (error) Shifting 32-bit value by 63 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:768]: (error) Shifting 32-bit value by 59 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:963]: (error) Shifting 32-bit value by 63 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:963]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/kernel/err_marvel.c:988]: (error) Shifting 32-bit value by 63 bits is undefined behaviour
+[arch/alpha/kernel/err_titan.c:264]: (error) Shifting 32-bit value by 47 bits is undefined behaviour
+[arch/alpha/kernel/err_titan.c:266]: (error) Shifting 32-bit value by 48 bits is undefined behaviour
+[arch/alpha/kernel/err_titan.c:345]: (error) Shifting 32-bit value by 59 bits is undefined behaviour
+[arch/alpha/kernel/err_titan.c:347]: (error) Shifting 32-bit value by 48 bits is undefined behaviour
+[arch/alpha/kernel/err_titan.c:349]: (error) Shifting 32-bit value by 49 bits is undefined behaviour
+[arch/alpha/kernel/module.c:187]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/kernel/pci-noop.c:147]: (error) Uninitialized variable: i
+[arch/alpha/kernel/pci-noop.c:147]: (error) Uninitialized variable: sg
+[arch/alpha/kernel/pci.c:285]: (error) Uninitialized variable: dev
+[arch/alpha/kernel/perf_event.c:344]: (error) Uninitialized variable: pe
+[arch/alpha/kernel/setup.c:488]: (error) Uninitialized variable: i
+[arch/alpha/kernel/srm_env.c:91]: (error) Shifting 32-bit value by 61 bits is undefined behaviour
+[arch/alpha/kernel/srm_env.c:126]: (error) Shifting 32-bit value by 61 bits is undefined behaviour
+[arch/alpha/kernel/srm_env.c:129]: (error) Shifting 32-bit value by 61 bits is undefined behaviour
+[arch/alpha/kernel/sys_dp264.c:50]: (error) Shifting 32-bit value by 55 bits is undefined behaviour
+[arch/alpha/kernel/sys_noritake.c:76]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/kernel/sys_titan.c:63]: (error) Shifting 32-bit value by 55 bits is undefined behaviour
+[arch/alpha/kernel/time.c:184]: (error) Shifting 32-bit value by 48 bits is undefined behaviour
+[arch/alpha/kernel/time.c:185]: (error) Shifting 32-bit value by 48 bits is undefined behaviour
+[arch/alpha/kernel/time.c:442]: (error) Shifting 32-bit value by 48 bits is undefined behaviour
+[arch/alpha/kernel/traps.c:243]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/kernel/traps.c:706]: (error) Shifting 32-bit value by 63 bits is undefined behaviour
+[arch/alpha/kernel/traps.c:706]: (error) Shifting 32-bit value by 52 bits is undefined behaviour
+[arch/alpha/kernel/traps.c:716]: (error) Shifting 32-bit value by 62 bits is undefined behaviour
+[arch/alpha/kernel/traps.c:716]: (error) Shifting 32-bit value by 34 bits is undefined behaviour
+[arch/alpha/kernel/traps.c:799]: (error) Shifting 32-bit value by 40 bits is undefined behaviour
+[arch/alpha/kernel/traps.c:799]: (error) Shifting 32-bit value by 44 bits is undefined behaviour
+[arch/alpha/kernel/traps.c:799]: (error) Shifting 32-bit value by 41 bits is undefined behaviour
+[arch/alpha/kernel/traps.c:799]: (error) Shifting 32-bit value by 45 bits is undefined behaviour
+[arch/alpha/lib/checksum.c:67]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/lib/checksum.c:69]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/lib/checksum.c:122]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/lib/checksum.c:171]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/lib/stacktrace.c:84]: (error) Shifting 32-bit value by 48 bits is undefined behaviour
+[arch/alpha/lib/udelay.c:43]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/lib/udelay.c:44]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/lib/udelay.c:51]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/lib/udelay.c:52]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/math-emu/math.c:253]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/mm/init.c:111]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/mm/numa.c:306]: (error) Uninitialized variable: nid
+[arch/alpha/mm/numa.c:333]: (error) Uninitialized variable: nid
+[arch/alpha/oprofile/op_model_ev4.c:41]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/alpha/oprofile/op_model_ev5.c:162]: (error) Shifting 32-bit value by 48 bits is undefined behaviour
+[arch/alpha/oprofile/op_model_ev5.c:163]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/arc/kernel/kprobes.c:462]: (error) Uninitialized variable: tmp
+[arch/arc/kernel/smp.c:230]: (error) Uninitialized variable: cpu
+[arch/arc/mm/cache_arc700.c:141]: (error) Uninitialized variable: way_pg_ratio
+[arch/arc/mm/cache_arc700.c:242]: (error) Uninitialized variable: tmp
+[arch/arc/mm/cache_arc700.c:330]: (error) Uninitialized variable: tmp
+[arch/arc/plat-arcfpga/platform.c:64]: (error) Uninitialized variable: i
+[arch/arm/kernel/bios32.c:29]: (error) Uninitialized variable: dev
+[arch/arm/kernel/bios32.c:62]: (error) Uninitialized variable: l
+[arch/arm/kernel/bios32.c:301]: (error) Uninitialized variable: dev
+[arch/arm/kernel/bios32.c:426]: (error) Uninitialized variable: window
+[arch/arm/kernel/bios32.c:514]: (error) Uninitialized variable: sys
+[arch/arm/kernel/irq.c:269]: (error) Uninitialized variable: i
+[arch/arm/kernel/irq.c:269]: (error) Uninitialized variable: desc
+[arch/arm/kernel/irq.c:217]: (error) Uninitialized variable: irq
+[arch/arm/kernel/irq.c:217]: (error) Uninitialized variable: desc
+[arch/arm/kernel/kprobes.c:418]: (error) Uninitialized variable: tmp
+[arch/arm/kernel/machine_kexec.c:88]: (error) Uninitialized variable: i
+[arch/arm/kernel/machine_kexec.c:88]: (error) Uninitialized variable: desc
+[arch/arm/kernel/perf_event.c:290]: (error) Uninitialized variable: sibling
+[arch/arm/kernel/perf_event_cpu.c:138]: (error) Uninitialized variable: cpu
+[arch/arm/kernel/sched_clock.c:123]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[arch/arm/kernel/sched_clock.c:123]: (error) Signed integer overflow for expression '1<<bits'.
+[arch/arm/kernel/sched_clock.c:123]: (error) Signed integer overflow for expression '(1<<bits)-1'.
+[arch/arm/kernel/setup.c:651]: (error) Uninitialized variable: region
+[arch/arm/kernel/setup.c:833]: (error) Uninitialized variable: count
+[arch/arm/kernel/setup.c:893]: (error) Uninitialized variable: cpu
+[arch/arm/kernel/setup.c:944]: (error) Uninitialized variable: i
+[arch/arm/kernel/topology.c:220]: (error) Uninitialized variable: cpu
+[arch/arm/kernel/topology.c:304]: (error) Uninitialized variable: cpu
+[arch/arm/kernel/unwind.c:203]: (error) Uninitialized variable: table
+[arch/arm/kvm/arm.c:862]: (error) Uninitialized variable: cpu
+[arch/arm/kvm/arm.c:980]: (error) Uninitialized variable: cpu
+[arch/arm/kvm/mmu.c:239]: (error) Expression 'addr+=PAGE_SIZE,addr!=end' depends on order of evaluation of side effects
+[arch/arm/kvm/mmu.c:271]: (error) Expression 'addr=next,addr!=end' depends on order of evaluation of side effects
+[arch/arm/kvm/mmu.c:310]: (error) Expression 'addr=next,addr!=end' depends on order of evaluation of side effects
+[arch/arm/kvm/mmu.c:685]: (error) Uninitialized variable: memslot
+[arch/arm/kvm/vgic.c:442]: (error) Uninitialized variable: vcpu
+[arch/arm/kvm/vgic.c:442]: (error) Uninitialized variable: c
+[arch/arm/kvm/vgic.c:472]: (error) Uninitialized variable: vcpu
+[arch/arm/kvm/vgic.c:474]: (error) Uninitialized variable: c
+[arch/arm/kvm/vgic.c:821]: (error) Uninitialized variable: vcpu
+[arch/arm/kvm/vgic.c:821]: (error) Uninitialized variable: c
+[arch/arm/kvm/vgic.c:848]: (error) Uninitialized variable: lr
+[arch/arm/kvm/vgic.c:915]: (error) Uninitialized variable: c
+[arch/arm/kvm/vgic.c:980]: (error) Uninitialized variable: i
+[arch/arm/kvm/vgic.c:1026]: (error) Uninitialized variable: lr
+[arch/arm/kvm/vgic.c:1070]: (error) Uninitialized variable: lr
+[arch/arm/kvm/vgic.c:1133]: (error) Uninitialized variable: vcpu
+[arch/arm/kvm/vgic.c:1133]: (error) Uninitialized variable: c
+[arch/arm/mach-at91/clock.c:927]: (error) Uninitialized variable: clk
+[arch/arm/mach-at91/clock.c:498]: (error) Uninitialized variable: clk
+[arch/arm/mach-at91/irq.c:448]: (error) Uninitialized variable: prop
+[arch/arm/mach-at91/irq.c:448]: (error) Uninitialized variable: p
+[arch/arm/mach-at91/irq.c:448]: (error) Uninitialized variable: val

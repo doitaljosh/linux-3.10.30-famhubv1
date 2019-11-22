@@ -1,0 +1,3 @@
+config HDMA_DEVICE
+       depends on CMA
+       bool "HDMA device"

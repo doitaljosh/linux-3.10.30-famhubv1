@@ -1,0 +1,30 @@
+config SFLIB_TRANSPORT
+	bool "Transport component of the Security Framework"
+	default n
+	depends on SFLIB_CORE
+	help
+		This select the library for communication between kernel and user-space
+		components.
+
+choice
+	prompt "Default transport mechanism"
+	depends on SFLIB_TRANSPORT
+
+	config SFLIB_TRANSPORT_NETLINK
+		bool "Netlink based transport"
+		help
+			Transport based on netlink sockets
+
+	config SFLIB_TRANSPORT_SHMEM
+		bool "Shared memory based transport"
+		help
+			Transport based on shared memory and SF allocator.
+			Temporary unsupported.
+
+	config SFLIB_TRANSPORT_SYSFS
+		bool "SysFS based transport"
+		help
+			Transport based on SysFS mechanisms.
+			Temporary unsupported.
+
+endchoice

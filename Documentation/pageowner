@@ -1,0 +1,51 @@
+Pageowner
+=========
+
+0. Introduction
+===============
+
+Pageowner is a small linux kernel component tracking page-level allocations.
+For each allocation pageowner saves its backtrace, order, GFP mask and PID of
+current process. Using such information it is possible to find out the place
+consuming most of memory or analyze memory consumption of various places in
+the kernel. By postprocessing pageowner's output it is easy to calculate how
+much memory was allocated by kernel modules. There are a number of other
+applications.
+
+1. Operation
+============
+
+During system boot pageowner allocates some memory to store data complimentary
+to 'page' structures. On each page-level allocation pageowner marks the page
+as allocated in its internal data structures and saves necessary information
+about this allocation. On deallocation it marks the page as freed (stores -1
+to order field of corresponding struct pageowner).
+
+1. Usage
+========
+
+To enable this function in linux kernel just use the option CONFIG_PAGE_OWNER.
+
+To read collected information debugfs is used. Just read the file
+/sys/kernel/debug/page_owner.
+
+Collected data can be processed with the utility located in tools/pageowner.
+
+Example of usage:
+
+cat /sys/kernel/debug/page_owner > page_owner_full.txt
+grep -v ^PFN page_owner_full.txt > page_owner.txt
+./process_page_owner page_owner.txt sorted_page_owner.txt
+
+2. Analysis
+===========
+
+After application of the userspace tool "sorted_page_owner.txt" consists of
+records and each of them corresponds to some unique combination of backtrace,
+allocation order and flags. Records are sorted from most memory consuming
+backtraces to lowest ones. Backtraces also include modules' names in square
+brackets in cases when they have entries corresponding to kernel modules.
+
+Extenal tools allow additional analysis of per-module memory consumption and
+so on. A good example is calculation of approximate per-module memory
+consumption.

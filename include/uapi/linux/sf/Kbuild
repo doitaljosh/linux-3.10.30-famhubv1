@@ -1,0 +1,6 @@
+#
+# Security Framework header files export
+#
+header-y += core/
+header-y += protocol/
+header-y += transport/

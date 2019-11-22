@@ -1,0 +1,48 @@
+/*
+ * Copyright (C) 2014 Samsung Electronics Co.Ltd
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+
+/*
+ * Here we define common kernel booting arguments, which can be substituded
+ * in main sdp dts configurations.
+ *                                                   - roman.pen
+ */
+
+#ifndef __STR__
+#define ___STR__(...) #__VA_ARGS__
+#define __STR__(...) ___STR__(__VA_ARGS__)
+#endif
+
+#ifdef QA_IMAGE
+#define RO_PARAM ro
+#else
+#define RO_PARAM rw
+#endif
+
+#ifdef RELEASE_MODE_debug
+#define QUIET_PARAM
+#else
+#define QUIET_PARAM quiet
+#endif
+
+#ifdef BOOT_PARAM_USE_SBB
+#define SBB_PARAM sbb
+#else
+#define SBB_PARAM
+#endif
+
+#ifdef TRACING_MODE
+#define TRACING_PARAM trace_event=early_event,user
+#else
+#define TRACING_PARAM
+#endif
+
+#ifdef ROOT_MODE
+#define ROOT_PARAM rootflags=dncs
+#else
+#define ROOT_PARAM
+#endif

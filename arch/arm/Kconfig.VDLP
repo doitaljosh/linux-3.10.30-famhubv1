@@ -1,0 +1,4 @@
+menu "Samsung"
+
+source "arch/arm/Kconfig.SABSP"
+endmenu # end of "Samsung" menu

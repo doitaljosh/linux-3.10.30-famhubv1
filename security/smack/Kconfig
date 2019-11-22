@@ -1,0 +1,37 @@
+config SECURITY_SMACK
+	bool "Simplified Mandatory Access Control Kernel Support"
+	depends on NET
+	depends on INET
+	depends on SECURITY
+	select NETLABEL
+	select SECURITY_NETWORK
+	default n
+	help
+	  This selects the Simplified Mandatory Access Control Kernel.
+	  Smack is useful for sensitivity, integrity, and a variety
+	  of other mandatory security schemes.
+	  If you are unsure how to answer this question, answer N.
+
+
+config SECURITY_SMACK_SYSTEM_MODE
+	bool "SMACK system mode setting"
+	depends on SECURITY_SMACK
+	default n
+	---help---
+	Using this option we can select system wide mode for SMACK module.
+	If it is set to y in that case there will be SMACK permissive mode
+	and rule list check for different system calls but no permission error.
+	By default this is set to y.
+
+config SECURITY_SMACK_LOG_FOR_REL
+    bool "SMACK remove the limitation of audit log for release version"
+    depends on SECURITY_SMACK
+    depends on AUDIT
+    default n
+	---help---
+	Using this option we can remove limitation of smack error log.
+	If we use this option smack log will not be lost . This option categorise
+	printk log level as given below.
+	log count less than 10 : KERN_ERR
+	log count more than 10 : KERN_INFO
+

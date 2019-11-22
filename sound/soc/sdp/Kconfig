@@ -1,0 +1,10 @@
+
+config SDP_ALSA_AUDIO
+	tristate "SDP  Audio - alsa pcm driver"
+	depends on ARCH_SDP	
+	default y	
+
+config SDP_ALSA_COMPRESS_AUDIO
+	tristate "SDP  Audio - alsa compress driver"
+	depends on ARCH_SDP	
+	default y	

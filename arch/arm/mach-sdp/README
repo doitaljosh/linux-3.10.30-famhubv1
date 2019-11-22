@@ -1,0 +1,17 @@
+	Samsung Custom Consumer Electronics Platfrom (CCEP)
+	---------------------------------------------------
+
+Introduction
+------------
+ SDPxxxx are ARM based SoCs for Samsung visual display products
+ including digital TVs and media players,
+ developed by Samsung Electronics.
+
+History
+-------
+25 Mar 2013: ij.jang add echo-p sdp1106 support.
+ 8 Feb 2013: ij.jang rebase to linux-3.8-rc6, add support sdp1207 fox-b
+ 		for preparation of sdp13xx, golf-xxx
+
+Copyright 2013 Samsung Electronics
+

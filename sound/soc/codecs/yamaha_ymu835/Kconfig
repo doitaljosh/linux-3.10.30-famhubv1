@@ -1,0 +1,14 @@
+config SND_SOC_YAMAHA_YMU831
+	tristate "Build Yamaha CODEC YMU835 drivers"
+	default y if SND_SOC_I2C_AND_SPI
+	depends on SND_SOC && I2C
+	select SND_HWDEP
+
+config SND_SOC_YAMAHA_YMU831_DEBUG
+	bool "YAMAHA_YMU831 verbose debug messages while core driver call"
+	select SND_DEBUG
+	depends on SND_SOC_YAMAHA_YMU831
+
+config SND_SOC_YAMAHA_YMU831_SPI
+	tristate "Build Yamaha CODEC YMU835 SPI driver"
+	depends on SND_SOC

@@ -1,0 +1,182 @@
+[kernel/bios32.c:29]: (error) Uninitialized variable: dev
+[kernel/bios32.c:62]: (error) Uninitialized variable: l
+[kernel/bios32.c:301]: (error) Uninitialized variable: dev
+[kernel/bios32.c:426]: (error) Uninitialized variable: window
+[kernel/bios32.c:514]: (error) Uninitialized variable: sys
+[kernel/irq.c:269]: (error) Uninitialized variable: i
+[kernel/irq.c:269]: (error) Uninitialized variable: desc
+[kernel/irq.c:217]: (error) Uninitialized variable: irq
+[kernel/irq.c:217]: (error) Uninitialized variable: desc
+[kernel/kprobes.c:418]: (error) Uninitialized variable: tmp
+[kernel/machine_kexec.c:88]: (error) Uninitialized variable: i
+[kernel/machine_kexec.c:88]: (error) Uninitialized variable: desc
+[kernel/perf_event.c:290]: (error) Uninitialized variable: sibling
+[kernel/perf_event_cpu.c:138]: (error) Uninitialized variable: cpu
+[kernel/sched_clock.c:123]: (error) Shifting 32-bit value by 32 bits is undefined behaviour
+[kernel/sched_clock.c:123]: (error) Signed integer overflow for expression '1<<bits'.
+[kernel/sched_clock.c:123]: (error) Signed integer overflow for expression '(1<<bits)-1'.
+[kernel/setup.c:651]: (error) Uninitialized variable: region
+[kernel/setup.c:833]: (error) Uninitialized variable: count
+[kernel/setup.c:893]: (error) Uninitialized variable: cpu
+[kernel/setup.c:944]: (error) Uninitialized variable: i
+[kernel/topology.c:220]: (error) Uninitialized variable: cpu
+[kernel/topology.c:304]: (error) Uninitialized variable: cpu
+[kernel/traps.c:155]: (error) Uninitialized variable: g
+[kernel/traps.c:155]: (error) Uninitialized variable: p
+[kernel/unwind.c:203]: (error) Uninitialized variable: table
+[kvm/arm.c:862]: (error) Uninitialized variable: cpu
+[kvm/arm.c:980]: (error) Uninitialized variable: cpu
+[kvm/mmu.c:239]: (error) Expression 'addr+=PAGE_SIZE,addr!=end' depends on order of evaluation of side effects
+[kvm/mmu.c:271]: (error) Expression 'addr=next,addr!=end' depends on order of evaluation of side effects
+[kvm/mmu.c:310]: (error) Expression 'addr=next,addr!=end' depends on order of evaluation of side effects
+[kvm/mmu.c:685]: (error) Uninitialized variable: memslot
+[kvm/vgic.c:442]: (error) Uninitialized variable: vcpu
+[kvm/vgic.c:442]: (error) Uninitialized variable: c
+[kvm/vgic.c:472]: (error) Uninitialized variable: vcpu
+[kvm/vgic.c:474]: (error) Uninitialized variable: c
+[kvm/vgic.c:821]: (error) Uninitialized variable: vcpu
+[kvm/vgic.c:821]: (error) Uninitialized variable: c
+[kvm/vgic.c:848]: (error) Uninitialized variable: lr
+[kvm/vgic.c:915]: (error) Uninitialized variable: c
+[kvm/vgic.c:980]: (error) Uninitialized variable: i
+[kvm/vgic.c:1026]: (error) Uninitialized variable: lr
+[kvm/vgic.c:1070]: (error) Uninitialized variable: lr
+[kvm/vgic.c:1133]: (error) Uninitialized variable: vcpu
+[kvm/vgic.c:1133]: (error) Uninitialized variable: c
+[mach-at91/clock.c:927]: (error) Uninitialized variable: clk
+[mach-at91/clock.c:498]: (error) Uninitialized variable: clk
+[mach-at91/irq.c:448]: (error) Uninitialized variable: prop
+[mach-at91/irq.c:448]: (error) Uninitialized variable: p
+[mach-at91/irq.c:448]: (error) Uninitialized variable: val
+[mach-davinci/clock.c:150]: (error) Uninitialized variable: clk
+[mach-davinci/clock.c:262]: (error) Uninitialized variable: ck
+[mach-davinci/clock.c:672]: (error) Uninitialized variable: clk
+[mach-exynos/common.c:886]: (error) Uninitialized variable: pctrl_np
+[mach-exynos/cpuidle.c:208]: (error) Uninitialized variable: cpu_id
+[mach-exynos/mach-exynos5-dt.c:45]: (error) Uninitialized variable: i2c_np
+[mach-exynos/pm_domains.c:165]: (error) Uninitialized variable: np
+[mach-imx/clk-imx25.c:320]: (error) Uninitialized variable: np
+[mach-imx/clk-imx27.c:306]: (error) Uninitialized variable: np
+[mach-imx/clk-imx31.c:200]: (error) Uninitialized variable: np
+[mach-imx/clk-imx51-imx53.c:552]: (error) Uninitialized variable: np
+[mach-imx/clk-imx6q.c:282]: (error) Uninitialized variable: np
+[mach-imx/devices/platform-mxc-mmc.c:39]: (error) Analysis failed. If the code is valid then please report this failure.
+[mach-mmp/irq.c:157]: (error) Uninitialized variable: n
+[mach-msm/clock.c:167]: (error) Uninitialized variable: clk
+[mach-msm/smd.c:338]: (error) Uninitialized variable: ch
+[mach-msm/smd.c:411]: (error) Uninitialized variable: ch
+[mach-msm/smd.c:656]: (error) Uninitialized variable: ch
+[mach-omap1/clock.c:776]: (error) Uninitialized variable: clkp
+[mach-omap1/clock.c:796]: (error) Uninitialized variable: clkp
+[mach-omap1/clock.c:877]: (error) Uninitialized variable: c
+[mach-omap1/clock.c:1000]: (error) Uninitialized variable: c
+[mach-omap1/clock.c:1086]: (error) Uninitialized variable: c
+[mach-omap1/clock.c:964]: (error) Uninitialized variable: ck
+[mach-omap2/clockdomain.c:54]: (error) Uninitialized variable: temp_clkdm
+[mach-omap2/clockdomain.c:467]: (error) Uninitialized variable: clkdm
+[mach-omap2/clockdomain.c:499]: (error) Uninitialized variable: temp_clkdm
+[mach-omap2/clockdomain.c:532]: (error) Uninitialized variable: clkdm
+[mach-omap2/gpmc.c:1523]: (error) Uninitialized variable: child
+[mach-omap2/mux.c:62]: (error) Uninitialized variable: partition
+[mach-omap2/mux.c:975]: (error) Uninitialized variable: e
+[mach-omap2/mux.c:992]: (error) Uninitialized variable: partition
+[mach-omap2/mux.c:1010]: (error) Uninitialized variable: partition
+[mach-omap2/mux.c:117]: (error) Uninitialized variable: e
+[mach-omap2/mux.c:151]: (error) Uninitialized variable: partition
+[mach-omap2/mux.c:178]: (error) Uninitialized variable: e
+[mach-omap2/mux.c:225]: (error) Uninitialized variable: partition
+[mach-omap2/mux.c:576]: (error) Uninitialized variable: e
+[mach-omap2/mux.c:627]: (error) Uninitialized variable: partition
+[mach-omap2/mux.c:631]: (error) Uninitialized variable: e
+[mach-omap2/mux.c:741]: (error) Uninitialized variable: e
+[mach-omap2/mux.c:763]: (error) Uninitialized variable: partition
+[mach-omap2/mux.c:797]: (error) Uninitialized variable: partition
+[mach-omap2/mux.c:799]: (error) Uninitialized variable: e
+[mach-omap2/mux.c:799]: (error) Uninitialized variable: tmp
+[mach-omap2/omap_hwmod.c:1546]: (error) Uninitialized variable: temp_oh
+[mach-omap2/omap_hwmod.c:3240]: (error) Uninitialized variable: temp_oh
+[mach-omap2/omap_hwmod.c:3979]: (error) Uninitialized variable: temp_oh
+[mach-omap2/pm34xx.c:567]: (error) Uninitialized variable: pwrst
+[mach-omap2/pm34xx.c:585]: (error) Uninitialized variable: pwrst
+[mach-omap2/pm34xx.c:596]: (error) Uninitialized variable: pwrst
+[mach-omap2/pm44xx.c:47]: (error) Uninitialized variable: pwrst
+[mach-omap2/powerdomain.c:69]: (error) Uninitialized variable: temp_pwrdm
+[mach-omap2/powerdomain.c:422]: (error) Uninitialized variable: temp_pwrdm
+[mach-omap2/serial.c:325]: (error) Uninitialized variable: uart
+[mach-omap2/voltage.c:274]: (error) Uninitialized variable: voltdm
+[mach-omap2/voltage.c:309]: (error) Uninitialized variable: temp_voltdm
+[mach-omap2/voltage.c:388]: (error) Uninitialized variable: temp_voltdm
+[mach-sdp/board-sdp-dt.c:228]: (error) Uninitialized variable: i
+[mach-sdp/cpuidle.c:115]: (error) Uninitialized variable: cpu_id
+[mach-sdp/sdp_dma330.c:304]: (error) Uninitialized variable: desc
+[mach-sdp/sdp_dma330.c:1145]: (error) Uninitialized variable: sg
+[mach-sdp/sdp_dma330.c:1145]: (error) Uninitialized variable: sg_i
+[mach-sdp/sdp_dma330.c:1458]: (error) Uninitialized variable: pch
+[mach-sdp/sdp_dma330.c:1458]: (error) Uninitialized variable: _p
+[mach-sdp/sdp_dmadev.c:1634]: (error) Uninitialized variable: dmadev
+[mach-sdp/sdp_dmadev.c:1634]: (error) Uninitialized variable: t
+[mach-sdp/sdp_dmatest.c:758]: (error) Uninitialized variable: thread
+[mach-sdp/sdp_dmatest.c:758]: (error) Uninitialized variable: _thread
+[mach-sdp/sdp_dmatest.c:900]: (error) Uninitialized variable: dtc
+[mach-sdp/sdp_dmatest.c:900]: (error) Uninitialized variable: _dtc
+[mach-sdp/sdp_gadma.c:359]: (error) Uninitialized variable: desc
+[mach-sdp/sdp_gadma.c:359]: (error) Uninitialized variable: _desc
+[mach-sdp/sdp_gadma.c:830]: (error) Uninitialized variable: dchan
+[mach-sdp/sdp_gadma.c:830]: (error) Uninitialized variable: _dchan
+[mach-sdp/sdp_gdma.c:280]: (error) Uninitialized variable: desc
+[mach-sdp/sdp_gdma.c:280]: (error) Uninitialized variable: _desc
+[mach-sdp/sdp_gdma.c:610]: (error) Uninitialized variable: dchan
+[mach-sdp/sdp_gdma.c:610]: (error) Uninitialized variable: _dchan
+[mach-sdp/sdp_mac.c:1775]: (error) Uninitialized variable: pred
+[mach-sdp/sdp_spi.c:604]: (error) Uninitialized variable: t
+[mach-sdp/sdp_spi.c:1016]: (error) Uninitialized variable: t
+[mach-sdp/sdp_spidev.c:554]: (error) Uninitialized variable: spidev
+[mach-sdp/sdpbl_cpuidle.c:177]: (error) Uninitialized variable: cpu_id
+[mach-sdp/sdpbl_pm.c:88]: (error) Uninitialized variable: clustern
+[mach-tegra/sleep.h:76]: (error) Invalid number of character '(' when these macros are defined: 'CONFIG_CACHE_L2X0;__ASSEMBLY__'.
+[mach-tegra/sleep.h:76]: (error) Invalid number of character '(' when these macros are defined: '__ASSEMBLY__'.
+[mach-tegra/tegra2_emc.c:185]: (error) Uninitialized variable: iter
+[mm/context.c:158]: (error) Uninitialized variable: i
+[mm/context.c:63]: (error) Uninitialized variable: cpu
+[mm/dma-mapping.c:977]: (error) Uninitialized variable: s
+[mm/dma-mapping.c:977]: (error) Uninitialized variable: i
+[mm/dma-mapping.c:1628]: (error) Uninitialized variable: s
+[mm/dma-mapping.c:1628]: (error) Uninitialized variable: i
+[mm/fault-armv.c:149]: (error) Uninitialized variable: mpnt
+[mm/flush.c:213]: (error) Uninitialized variable: mpnt
+[mm/idmap.c:68]: (error) Expression 'pud++,addr=next,addr!=end' depends on order of evaluation of side effects
+[mm/idmap.c:89]: (error) Expression 'pgd++,addr=next,addr!=end' depends on order of evaluation of side effects
+[mm/idmap.c:43]: (error) Expression 'pmd++,addr=next,addr!=end' depends on order of evaluation of side effects
+[mm/init.c:107]: (error) Uninitialized variable: i
+[mm/init.c:222]: (error) Uninitialized variable: reg
+[mm/init.c:430]: (error) Uninitialized variable: i
+[mm/init.c:574]: (error) Uninitialized variable: i
+[mm/init.c:501]: (error) Uninitialized variable: mem
+[mm/ioremap.c:51]: (error) Uninitialized variable: svm
+[mm/ioremap.c:73]: (error) Uninitialized variable: svm
+[mm/ioremap.c:97]: (error) Uninitialized variable: curr_svm
+[mm/mmu.c:1107]: (error) Invalid number of character '{' when no macros are defined.
+[mm/mmu.c:1107]: (error) Invalid number of character '{' when these macros are defined: 'CONFIG_ARM_DMA_MEM_BUFFERABLE'.
+[mm/mmu.c:1107]: (error) Invalid number of character '{' when these macros are defined: 'CONFIG_ARM_LPAE'.
+[mm/mmu.c:1107]: (error) Invalid number of character '{' when these macros are defined: 'CONFIG_CPU_CP15'.
+[mm/mmu.c:1107]: (error) Invalid number of character '{' when these macros are defined: 'CONFIG_CPU_DCACHE_DISABLE'.
+[mm/mmu.c:1107]: (error) Invalid number of character '{' when these macros are defined: 'CONFIG_CPU_DCACHE_WRITETHROUGH'.
+[mm/mmu.c:1107]: (error) Invalid number of character '{' when these macros are defined: 'CONFIG_DEBUG_LL'.
+[mm/mmu.c:1107]: (error) Invalid number of character '{' when these macros are defined: 'CONFIG_HAVE_TCM'.
+[mm/mmu.c:626]: (error) Expression 'pte++,addr+=PAGE_SIZE,addr!=end' depends on order of evaluation of side effects
+[mm/mmu.c:651]: (error) Expression 'pmd++,addr+=SECTION_SIZE,addr!=end' depends on order of evaluation of side effects
+[mm/mmu.c:684]: (error) Expression 'pmd++,addr=next,addr!=end' depends on order of evaluation of side effects
+[mm/mmu.c:698]: (error) Expression 'pud++,addr=next,addr!=end' depends on order of evaluation of side effects
+[mm/mmu.c:898]: (error) Uninitialized variable: svm
+[mm/mmu.c:1286]: (error) Uninitialized variable: reg
+[mm/mmu.c:1107]: (error) Invalid number of character '{' when these macros are defined: 'CONFIG_KUSER_HELPERS'.
+[mm/mmu.c:1107]: (error) Invalid number of character '{' when these macros are defined: 'CONFIG_MMU'.
+[mm/mmu.c:1107]: (error) Invalid number of character '{' when these macros are defined: 'CONFIG_NEED_MACH_IO_H;CONFIG_PCI'.
+[mm/mmu.c:1107]: (error) Invalid number of character '{' when these macros are defined: 'CONFIG_SA1111'.
+[mm/mmu.c:1107]: (error) Invalid number of character '{' when these macros are defined: 'CONFIG_XIP_KERNEL'.
+[mm/mmu.c:1107]: (error) Invalid number of character '{' when these macros are defined: 'CONFIG_ZONE_DMA'.
+[plat-omap/dmtimer.c:772]: (error) Uninitialized variable: timer
+[plat-samsung/adc.c:271]: (error) Uninitialized variable: p
+[plat-samsung/adc.c:271]: (error) Uninitialized variable: n
+[plat-samsung/clock.c:527]: (error) Uninitialized variable: c
+[plat-samsung/s5p-irq-gpioint.c:122]: (error) Uninitialized variable: b

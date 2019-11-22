@@ -1,0 +1,6 @@
+menu "Samsung drivers"
+
+source drivers/samsung/orsay/Kconfig
+source drivers/samsung/bptime/Kconfig
+
+endmenu

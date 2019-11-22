@@ -1,0 +1,9 @@
+To compile the Bluetooth SBC Encoder Driver (BTSBC) you have to:
+> cd /3rdparty/embedded/brcm/linux/btsbc
+> make
+
+This Encoder is based on the SBC Encoder of the BlueZ stack.
+
+This driver must be loaded (insmod) before btusb driver.
+This driver must be unloaded (rmmod) after btusb driver.
+

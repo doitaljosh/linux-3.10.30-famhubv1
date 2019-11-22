@@ -1,0 +1,72 @@
+config HAVE_ARCH_KASAN
+	bool
+
+if HAVE_ARCH_KASAN
+
+config KASAN
+	bool "AddressSanitizer: dynamic memory error detector"
+	depends on SLUB
+	depends on !DEBUG_PAGEALLOC
+	depends on !KMEMCHECK
+	select STACKTRACE
+	default n
+	help
+	  Enables AddressSanitizer - dynamic memory error detector,
+	  that finds out-of-bounds and use-after-free bugs.
+
+config KASAN_SANITIZE_ALL
+	bool "Sanitize entire kernel"
+	depends on KASAN
+	default y
+	help
+	  This option activates instrumentation for the entire kernel.
+
+config KASAN_SLAB
+	bool "Address sanitizer for low memory"
+	depends on KASAN
+	depends on SLUB
+	default y
+	help
+	  Enables address sanitzier for slub and buddy allocators.
+
+config KASAN_STACK
+	bool "Address sanitizer for stack area"
+	depends on KASAN && KASAN_SLAB
+	default n
+	help
+	  Enable address sanitizer to detect out-of-bounds accesses
+	  on stack variables
+
+config KASAN_VMALLOC
+	bool "Address sanitizer for vmalloc"
+	depends on KASAN
+	default y
+	help
+	  Enable address sanitzier for vmalloc allocator.
+
+config KASAN_GLOBALS
+	bool "Address sanitzier for global variables"
+	depends on KASAN && KASAN_SLAB
+	select CONSTRUCTORS
+	default y
+	help
+	  Address sanitizer for global variables.
+
+config KASAN_UAR
+	bool "Address sanitzier use after return detection"
+	depends on KASAN && KASAN_STACK
+	default y
+	help
+	  This option enables use after return detector.
+
+config KASAN_TESTS
+	tristate "Build address sanitizer self-tests"
+	depends on KASAN
+	default n
+	help
+	  This option provides a kernel module that can be used to
+	  test kernel address sanitzer. Tests allocate memeory via
+	  kmalloc/kmem_cache_alloc and do various nasty things like
+	  out of bounds access, use after free...
+
+endif

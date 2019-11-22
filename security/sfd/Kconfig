@@ -1,0 +1,101 @@
+#
+# Security Filter Driver
+#
+
+menu "Security Filter Driver (Smart Security)"
+
+config SECURITY_SFD
+	bool "Security Filter Driver support"
+	default n
+	select SFLIB
+	help
+		This selects SFD, which filter system events. SFD working
+		in two modes:
+			1. Enforce
+			2. Permissive
+
+		TODO: To add more information later.
+
+		If you unsure how to answer this question, answer N.
+
+choice
+	prompt "Working mode"
+	depends on SECURITY_SFD
+	help
+		Select the Security Filter Driver working mode.
+
+	config SECURITY_SFD_MODE_PERMISSIVE
+		bool "Permissive mode"
+		help
+			Do not perform any blocking for the system routines.
+
+	config SECURITY_SFD_MODE_ENFORCE
+		bool "Enforce mode"
+		help
+			Blocks system routines that can not meet Security Filter Driver policy.
+
+endchoice
+
+choice
+	prompt "Platform policy"
+	depends on SECURITY_SFD
+	help
+		Select the platform configuration. Current version suport Tizen, Orsay, x86 generic kernel.
+
+	config SECURITY_SFD_PLATFORM_TIZEN
+		bool "Tizen platform Security Framework policy"
+		help
+			This selects default configuration based on Tizen platform which will be used by
+			Security Framework.
+			Tizen platform policy:
+				1. /opt
+				2. /var
+				3. /mtd_rwarea
+
+	config SECURITY_SFD_PLATFORM_ORSAY
+		bool "Orsay platform Security Framework policy"
+		help
+			This selects default configuration based on Orsay platform which will be used by
+			Security Framework.
+			Orsay platform policy:
+				1. /mtd_uniro
+				2. /mtd_exe
+				3. /mtd_rwarea
+				4. /mtd_drmregion_a
+				5. /mtd_drmregion_b
+				6. /sys/kernel/debug
+				7. /mtd_rocommon
+				8. /mtd_unirw
+				9. /tmp
+				10. /dtv
+
+endchoice
+
+choice
+	prompt "Working level"
+	depends on SECURITY_SFD
+	help
+		Select the working level for Security Filter Driver components.
+		The following work levels are possible:
+			1. Debug level
+			2. Release mode
+
+	config SECURITY_SFD_LEVEL_DEBUG
+		bool "Debug level"
+		help
+			This selects debug working level for Security Filter Driver and
+			all components.
+
+	config SECURITY_SFD_LEVEL_RELEASE
+		bool "Release level"
+		help
+			This selects release working level for Security Filter Driver and
+			all components.
+
+endchoice
+
+source security/sfd/dispatcher/Kconfig
+source security/sfd/notifier/Kconfig
+source security/sfd/uep/Kconfig
+
+endmenu

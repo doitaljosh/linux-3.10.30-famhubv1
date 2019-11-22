@@ -1,0 +1,414 @@
+Kernel address sanitizer
+================
+
+0. Introduction
+===========
+
+Kernel address sanitizer (KASAN) is a dynamic memory error detector. It provides
+fast and comprehensive solution for finding use-after-free and out-of-bounds bugs.
+It also possible to find unitialized memory accesses, but it's not implemented yet.
+
+KASAN is better than all of CONFIG_DEBUG_PAGEALLOC/CONFIG_KMEMCHECK, because it:
+ - is based on compiler instrumentation (fast),
+ - detects OOB for both writes and reads,
+ - provides strong UAF detection,
+ - does prompt detection of bad memory accesses,
+ - prints informative reports.
+
+KASAN can be enabled with CONFIG_KASAN=y (the kernel should be built with a
+specific compiler, see the web page below), currently works only on x86/x86_64/arm,
+supports only SLUB and buddy allocators.
+
+1. Usage
+=========
+
+Currently KASAN works only with SLUB. It is highly recommended to run KASAN with
+CONFIG_SLUB_DEBUG=y to increase probability of finding bugs and to get more info them,
+though it should work without it.
+If SLUB_DEBUG is enabled it's recommended to boot kernel with 'slub_debug=U',
+which enables user tracking (free and alloc). There is no need to enable redzoning
+since KASAN detects access to user tracking information making them act like redzones.
+
+1. Reports
+==========
+
+A typical buffer overflow report looks like this:
+
+AddressSanitizer: buffer overflow in kasan_memset+0x24/0x50 at addr c6b46521
+=============================================================================
+BUG kmalloc-64 (Tainted: G    B       ): kasan error
+-----------------------------------------------------------------------------
+
+INFO: Allocated in kasan_do_bo_memset+0x34/0x7c age=0 cpu=0 pid=1
+	__slab_alloc.constprop.71+0x2b4/0x2ec
+	kmem_cache_alloc+0xe8/0x114
+	kasan_do_bo_memset+0x34/0x7c
+	kasan_tests_init+0x2c/0x44
+	do_one_initcall+0x168/0x1b4
+	kernel_init_freeable+0x2d0/0x3a8
+	kernel_init+0x20/0x12c
+	ret_from_fork+0x14/0x3c
+INFO: Freed in kasan_tests_init+0x24/0x44 age=0 cpu=0 pid=1
+	__slab_free+0x38/0x2f8
+	kasan_tests_init+0x24/0x44
+	do_one_initcall+0x168/0x1b4
+	kernel_init_freeable+0x2d0/0x3a8
+	kernel_init+0x20/0x12c
+	ret_from_fork+0x14/0x3c
+INFO: Slab 0xc6fd18c0 objects=16 used=5 fp=0xc6b46600 flags=0x0080
+INFO: Object 0xc6b46500 @offset=1280 fp=0xc6b46200
+
+Bytes b4 c6b464f0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+Object c6b46500: 00 62 b4 c6 00 00 00 00 00 00 00 00 00 00 00 00  .b..............
+Object c6b46510: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+Object c6b46520: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+Object c6b46530: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+Padding c6b465e0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+Padding c6b465f0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+CPU: 0 PID: 1 Comm: swapper/0 Tainted: G    B        3.14.0+ #75
+[<c001951c>] (unwind_backtrace) from [<c0014b68>] (show_stack+0x14/0x20)
+[<c0014b68>] (show_stack) from [<c06f0bf0>] (dump_stack+0x8c/0xac)
+[<c06f0bf0>] (dump_stack) from [<c0135970>] (kasan_report_error+0x23c/0x2a4)
+[<c0135970>] (kasan_report_error) from [<c0134adc>] (check_memory_region+0x11c/0x1ec)
+[<c0134adc>] (check_memory_region) from [<c0134c28>] (kasan_memset+0x24/0x50)
+[<c0134c28>] (kasan_memset) from [<c0135f1c>] (kasan_do_bo_memset+0x60/0x7c)
+[<c0135f1c>] (kasan_do_bo_memset) from [<c0869e38>] (kasan_tests_init+0x2c/0x44)
+[<c0869e38>] (kasan_tests_init) from [<c0008b44>] (do_one_initcall+0x168/0x1b4)
+[<c0008b44>] (do_one_initcall) from [<c0854fe4>] (kernel_init_freeable+0x2d0/0x3a8)
+[<c0854fe4>] (kernel_init_freeable) from [<c06eaaa8>] (kernel_init+0x20/0x12c)
+[<c06eaaa8>] (kernel_init) from [<c000ffb8>] (ret_from_fork+0x14/0x3c)
+Write of size 40 by thread T1:
+Memory state around the buggy address:
+ c6b46000: ........ RRRRRRRR RRRRRRRR RRRRRRRR
+ c6b46100: ........ RRRRRRRR RRRRRRRR RRRRRRRR
+ c6b46200: ffffffff ffffffff ffffffff ffffffff
+ c6b46300: ........ RRRRRRRR RRRRRRRR RRRRRRRR
+ c6b46400: ffffffff ffffffff ffffffff ffffffff
+>c6b46500: ....1RRR RRRRRRRR RRRRRRRR RRRRRRRR
+               ^
+ c6b46600: rrrrrrrr rrrrrrrr rrrrrrrr rrrrrrrr
+ c6b46700: rrrrrrrr rrrrrrrr rrrrrrrr rrrrrrrr
+ c6b46800: rrrrrrrr rrrrrrrr rrrrrrrr rrrrrrrr
+ c6b46900: rrrrrrrr rrrrrrrr rrrrrrrr rrrrrrrr
+ c6b46a00: rrrrrrrr rrrrrrrr rrrrrrrr rrrrrrrr
+Legend:
+ f - 8 freed bytes
+ r - 8 redzone bytes
+ . - 8 allocated bytes
+ x=1..7 - x allocated bytes + (8-x) redzone bytes
+==================================================================
+
+
+Finally, the report shows memory state around the accessed address:
+
+Memory state around the buggy address:
+ c6b46000: ........ RRRRRRRR RRRRRRRR RRRRRRRR
+ c6b46100: ........ RRRRRRRR RRRRRRRR RRRRRRRR
+ c6b46200: ffffffff ffffffff ffffffff ffffffff
+ c6b46300: ........ RRRRRRRR RRRRRRRR RRRRRRRR
+ c6b46400: ffffffff ffffffff ffffffff ffffffff
+>c6b46500: ....1RRR RRRRRRRR RRRRRRRR RRRRRRRR
+               ^
+ c6b46600: rrrrrrrr rrrrrrrr rrrrrrrr rrrrrrrr
+ c6b46700: rrrrrrrr rrrrrrrr rrrrrrrr rrrrrrrr
+ c6b46800: rrrrrrrr rrrrrrrr rrrrrrrr rrrrrrrr
+ c6b46900: rrrrrrrr rrrrrrrr rrrrrrrr rrrrrrrr
+ c6b46a00: rrrrrrrr rrrrrrrr rrrrrrrr rrrrrrrr
+Legend:
+ f - 8 freed bytes
+ r - 8 redzone bytes
+ . - 8 allocated bytes
+ x=1..7 - x allocated bytes + (8-x) redzone bytes
+
+Reading this part requires some more undestanding of how KASAN works.
+
+Each 8 bytes of memory can be marked as addressable, partially addressable,
+freed or they can be part of a redzone.
+If 8 bytes are marked as addressable that means that they belong to some
+allocated memory block and it is possible to read or modify any of these
+8 bytes. Addressable 8 bytes are indicated by '.' in the report.
+When only the first N bytes out of 8 belong to an allocated memory block,
+the 8 bytes are partially addressable. These 8 bytes are indicated by 'N'.
+8 freed bytes are indicated by 'f' and 8 redzone bytes - by 'r'.
+
+In the report above the arrows point to the letter 'f', which means that the
+accessed address is marked as freed.
+
+
+2. Technical description
+========================
+
+From a high level, our approach to memory error detection is similar to that
+of kmemcheck: use shadow memory to record whether each byte of memory is safe
+to access, and use instrumentation to check the shadow memory on each memory
+access. However, KASAN uses a more efficient shadow mapping, a more compact
+shadow encoding and is faster than kmemcheck.
+
+KASAN consists of two parts: a compiler part (instrumentation module)
+and a kernel part.
+
+Compiler modifies the code to check the address state for
+each memory access. The current implementation is based on the GCC compiler.
+
+Kernel part add replaces kmem_cache_alloc, kmem_cache_free and related
+functions, creates redzones around allocated memory regions, delays the reuse
+of freed memory regions, and does error reporting.
+
+2.1. Shadow memory
+==================
+
+AddressSanitizer dedicates one-eighth of the low memory to its shadow
+memory and uses direct mapping with a scale and offset to translate a memory
+address to its corresponding shadow address.
+
+Given the memory address Addr, the address of the shadow byte is computed
+as ((Addr - PAGE_OFFSET) >> 3) + shadow_start.
+
+The figure below shows the address space layout. The memory is split
+into two parts (low and high) which map to the corresponding shadow regions.
+Applying the shadow mapping to addresses in the shadow region gives us
+addresses in the Bad region.
+
+|--------|        |--------|
+| Memory |----    | Memory |
+|--------|    \   |--------|
+| Shadow |--   -->| Shadow |
+|--------|  \     |--------|
+|   Bad  |   ---->|  Bad   |
+|--------|  /     |--------|
+| Shadow |--   -->| Shadow |
+|--------|    /   |--------|
+| Memory |----    | Memory |
+|--------|        |--------|
+
+Each shadow byte corresponds to 8 bytes of the main memory. We use the
+following encoding for each shadow byte: 0 means that all 8 bytes of the
+corresponding memory region are addressable; k (1 <= k <= 7) means that
+the first k bytes are addressable, and other (8 - k) bytes are not;
+any negative value indicates that the entire 8-byte word is unaddressable.
+We use different negative values to distinguish between different kinds of
+unaddressable memory (redzones, freed memory).
+
+Poisoning or unpoisoning a byte in the main memory means writing some special
+value into the corresponding shadow memory. This value indicates whether the
+byte is addressable or not.
+
+
+2.2. Instrumentation
+====================
+
+KASAN requires the kernel to be built with a specific compiler. This compiler
+adds memory address checking instructions before every memory access. These
+instructions include checking if the accessed memory region is poisoned and
+printing a report if yes.
+
+When instrumenting an 8-byte memory access, ASAN computes the address of the
+corresponding shadow byte, loads that byte, and checks whether it is zero:
+
+0 ShadowAddr = ((Addr - PAGE_OFFSET) >> 3) + shadow_start;
+1 if (*ShadowAddr != 0)
+2         ReportError(Addr);
+
+When instrumenting 1-, 2-, or 4- byte accesses, the instrumentation is slightly
+more complex: if the shadow value is positive (i.e., only the first k bytes in
+the 8-byte word are addressable) we need to compare the 3 last bits of the
+address with k.
+
+0 ShadowAddr = ((Addr - PAGE_OFFSET) >> 3) + shadow_start;
+1 k = *ShadowAddr;
+2 if (k != 0 && ((Addr & 7) + AccessSize > k))
+3         ReportError(Addr);
+
+
+2.3. Run-time library
+=====================
+
+The main purpose of the run-time library is to manage the shadow memory. At
+kernel startup the entire shadow region is reserved so that no other part of
+the kernel can use it.
+
+In kmem_cache_alloc/kmalloc and kmem_cache_free/kfree functions special hooks
+were added. The kmem_cache_alloc function
+allocates extra memory, the redzone, around the returned region. The redzones
+are marked as unaddressable, or poisoned. The larger the redzone, the larger
+the overflows or underflows that will be detected. The redzone is used to
+store some internal data (such as the allocation size, thread ID, etc.).
+
+The kmem_cache_free function poisons the entire memory region and puts it into
+quarantine, such that this region will not be allocated by kmem_cache_alloc any
+time soon. Currently, the quarantine is implemented as a FIFO queue which holds
+a fixed amount of memory at any time.
+
+kmem_cache_alloc and kmem_cache_free record the current call stack in order to
+provide more informative bug reports. The kmem_cache_alloc and kmem_cache_free
+call stacks are stored in the redzone (the larger the redzone, the larger the
+number of frames that can be stored).
+
+
+3. Implementation details
+=========================
+
+In this section you will find some details of how the instrumentation module
+and the run-time library are implemented.
+
+
+3.1. Shadow memory
+==================
+
+For now KASAN is tracking accesses only for lowmem.
+
+During the kernel boot part of the physical memory is reserved for the shadow
+memory. The shadow memory size depends on the lowmem size and is calculated as
+(high_memory - PAGE_OFFSET) >> KASAN_SHADOW_SCALE_SHIFT, where
+KASAN_SHADOW_SCALE_SIZE is 3.
+
+The shadow memory is initially filled with 0 to indicate that the physical memory
+is unpoisoned.
+
+When the shadow memory is reserved and zeroed, kasan_enabled flag is set to 1.
+Each time memory access happens the checking instructions first check kasan_enabled
+to ensure that the shadow memory is initialized.
+
+The shadow memory region itself is also poisoned and accesses to this region
+are detected and reported as wild-memory-access'es.
+
+
+3.2. Instrumentation
+====================
+
+Instrumentation is implemented as a part of the GCC compiler. Before each of
+the memory accesses of size 1, 2, 4, 8 or 16 a specific function is called,
+which checks addressability of the accessed address range.
+
+There is a separate function for each access size and type:
+__kasan_read1, _kasan_write1, ..., __kasan_read16, __kasan_write16.
+Each of these functions except for the last two checks only one shadow bytes,
+the last two check two shadow bytes.
+
+The address checking is performed as follows:
+1. Check that kasan_enabled flag is 1 (see above).
+2. Check that the address lies within the lowmem.
+3. Check the according shadow byte(s) (see above).
+
+Since some of the functions (memset, memcpy and memmove) are
+written in assembly, the compiler can't instrument memory accesses inside them.
+To solve this issue we replace these functions with our own instrumented
+functions using #define macros (see arch/x86/include/asm/string_64.h).
+
+Some of the kernel code may define and use it's own memset, mempy or memmove
+(e.g. arch/x86/boot/compressed/misc.h). In that case we may not want to
+intercept these functions. For that KASAN provides KASAN_HOOKS macro
+which should be undefined before the calls to these functions. Another way to
+disable interception of one particular function is put the function name in
+brackets, like: (memset)(&value, 0, sizeof(value)).
+
+
+3.3. Run-time library
+=====================
+
+3.3.1. Redzones
+===============
+
+Each time a new slab cache is created with kmem_cache_create the size of this
+cache (the size of the objects that can be allocated from this cache) is
+increased by ASAN_REDZONE_SIZE. When an object is allocated from this cache,
+the last ASAN_REDZONE_SIZE bytes are considered to be the redzone and poisoned
+appropriately.
+
+As a result, slabs with on-slab descriptor look like:
+
+|---------------------------------------------------------------------------|
+| Descriptor | Object | Redzone | Object | Redzone | ... | Object | Redzone |
+|---------------------------------------------------------------------------|
+
+And slabs with off-slab descriptor look like:
+
+|--------------------------------------------------------------|
+| Object | Redzone | Object | Redzone | ... | Object | Redzone |
+|--------------------------------------------------------------|
+
+As you can see the first object in each slab doesn't have a redzone to the left
+(unless the slab descriptor is on-slab or another slab lies to the left).
+Therefore out-of-bounds to the left of the first objects may not be detected.
+
+Currently, the redzones have the following format:
+
+struct redzone {
+        unsigned int alloc_stack[16];
+        unsigned int free_stack[16];
+
+        int alloc_thread_id;
+        int free_thread_id;
+
+        struct list_head quarantine_list;
+
+	unsigned long kmalloc_size;
+};
+
+The redzone format is mostly self-explanatory: alloc_stack and free_stack are
+the allocation and deallocations stack frames' addresses compressed to 32 bits
+(the first 32 bits of a frame are always 0xffffffff, so we just drop them),
+alloc_thread_id and free_thread_id are the identifiers of the threads in which
+the allocation and deallocation happened, quarantine_list is the list_head for
+the quarantine queue, kmalloc_size is used when an object was allocated via
+kmalloc (or krealloc) and it holds the actual size that was passed to kmalloc.
+
+The size of each redzone equals to the size of the redzone struct.
+
+When a bad access happend we should print approprate meta information stored
+in the redzone, and for that we need to find the redzone itself, as when a
+bad access happens we know only the accessed address. We assume that the
+accessed address is not far away from the memory block it was meant to be in.
+
+The accessed memory address can be in one of the following states:
+1) in a redzone, 2) in a kmalloc redzone, 3) freed or 4) in the Bad region.
+In the 4th case we don't want to search for the redzone as there is none.
+In the 3rd case the redzone should be to the right of the freed memory block.
+In the 2nd case the redzone should be to the right of the kmalloc redzone.
+In the 1st case we may have underflowed or overflowed the memory region.
+We calculate the distance to the object to the left and the distance to
+the object to the right and depending on which one is closer we select the
+according redzone.
+
+Currently the objects in the caches larger than 4 mb don't have redzones.
+
+3.3.2. Poisoning / unpoisoning
+==============================
+
+A shadow byte can be equal to a few values besides 0, 1, ..., 7:
+
+|----------------------------------------------------------------------|
+| Name                      | Value | Meaning (for all 8 bytes)        |
+|----------------------------------------------------------------------|
+| ASAN_HEAP_REDZONE         | 0xfa  | in a redzone                     |
+| ASAN_HEAP_KMALLOC_REDZONE | 0xfb  | in a kmalloc redzone (see below) |
+| ASAN_HEAP_FREE            | 0xfd  | in a freed region                |
+| ASAN_SHADOW_GAP           | 0xfe  | in the Bad region                |
+|----------------------------------------------------------------------|
+
+When a new slab is created the pages allocated for this slab are poisoned as
+ASAN_HEAP_REDZONE. This includes the slab descriptor (in case it is on-slab),
+the objects in the slab, the redzones around the objects. Each time a slab is
+destroyed the allocated pages are unpoisoned.
+
+When a new object is allocated from a cache the object is unpoisoned and
+allocation metainfo is stored in the redzone (the redzone is still poisoned).
+Each time a user tries to free an object from a cache the object is poisoned
+as ASAN_HEAP_FREE and deallocation metainfo is stored in the redzone. The
+object is not actually freed at this stage.
+
+The objects allocated via kmalloc (or krealloc) are poisoned more accurately.
+When a user asks for an N bytes object and the kmalloc cache of size K is used
+for the allocation the object is allocated and unpoisoned as described above.
+Then the last K - N bytes are poisoned as ASAN_HEAP_KMALLOC_REDZONE again.
+When a user tries to free an object allocated via kmalloc the whole slab object
+as poisoned including the last K - N bytes.
+
+Since kmalloc may internally round up allocations and return more memory than
+requested and the caller may use this additional memory, accesses to this
+memory will be reported by ASAN, even if they are not actual bugs.
+To supress some of the false positives caused by kmalloc we replace ksize
+implementation with our own, which returns the size that was requested by
+kmalloc (or krealloc) in case the memory was allocated via these functions.
+
+The whole Bad region is poisoned as ASAN_SHADOW_GAP.

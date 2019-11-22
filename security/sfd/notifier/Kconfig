@@ -1,0 +1,14 @@
+#
+# Notification service module configuration
+#
+
+config SECURITY_SFD_NOTIFIER
+	tristate "Notifier (Notification service)"
+	depends on SECURITY_SFD_DISPATCHER
+	default n
+	help
+		Notifier is reponsible for sending packets about system events to the user-space
+		applications. It uses BUS created by Dispatcher. This module may be compiled in built-in
+		mode as well as loadable.
+
+		If you unsure how to answer this question, answer N.

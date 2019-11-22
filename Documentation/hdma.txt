@@ -1,0 +1,68 @@
+HDMA device
+===========
+
+Provides the ability to create and manage CMA regions
+
+Initialization
+==============
+
+Parses kernel command line looking for hdma=<size>@<start> and
+registers regions created based on this information with
+dma-contiguous.
+
+User access
+===========
+
+Two interfaces:
+
+a) Character device
+
+   foreach r in regions:
+           create_char_dev (major=182, minor = r.index)
+
+   devices respond to following ioctls:
+           IOCTL_HDMA_NOTIFY
+                argument is an unsigned long
+                         0 - release region's memory from CMA
+                         1 - allocate region's memory
+                         2 - allocate region's memory
+                             (never fail, i.e. repeatedly call
+                              dma_alloc_from_contiguous until it succeeds)
+
+           IOCTL_HDMA_NOTIFY_ALL
+                argument is an unsigned long
+                         0 - release all regions memory from CMA
+                         1 - allocate memory for all regions
+                             (never fail, i.e. repeatedly call
+                              dma_alloc_from_contiguous until it succeeds)
+
+b) SysFS
+   foreach r in regions:
+       d = create_sysfs_directory ("/sys/class/hdma/hdma%d", r.index)
+       create_sysfs_ro_file (d, "start", on_read_return (r.start))
+       create_sysfs_ro_file (d, "size", on_read_return (r.size))
+       create_sysfs_rw_file (d, "ctl",
+                             on_read_return (is_allocated (r) ? "allocated"
+                                                              : "free"),
+                             on_write (buf ->
+                              if (strlen (buf) != 1) return -EINVAL;
+                              switch (*buf) {
+                                case '0':
+                                     release region's memory from CMA;
+                                     break;
+                                case '1':
+                                     allocate region's memory;
+                                     break;
+                                default:
+                                     return -EINVAL;
+                              }
+                             )
+
+Peculiarities
+=============
+
+dma_declare_contiguous's first argument is a struct device which can
+not be created this early in the boot process, but the structure is
+only used for it's `cma' field, hence, dummy dev2 field inside struct
+hdmaregion is used solely to satisfy dma_declare_contiguous's
+interface.

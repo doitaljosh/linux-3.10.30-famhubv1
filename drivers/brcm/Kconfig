@@ -1,0 +1,46 @@
+menu "Broadcom Bluetooth device drivers"
+
+menuconfig BLUEDROID
+	tristate "Bluedroid Bluetooth stack drivers"
+	help
+	  Bluetooth is low-cost, low-power, short-range wireless technology.
+	  It was designed as a replacement for cables and other short-range
+	  technologies like IrDA.  Bluetooth operates in personal area range
+	  that typically extends up to 10 meters.  More information about
+	  Bluetooth can be found at <http://www.bluetooth.com/>.
+
+	  Bluedroid subsystem consists of user space stack and Kernel drivers:
+	    User space stack which includes implementation of:
+	     HCI
+	     RFCOMM
+	     L2CAP
+	     Other protocols and profiles
+
+	  Say Y here to compile Bluedroid driver support into the kernel or say M to
+	  compile it as module (btusb).
+
+	  These drivers are required in order to use Bluedroid stack in user space.
+
+config BT_BCMBTUSB
+	tristate "BCM BT USB driver"
+	depends on USB && BLUEDROID
+	help
+	  Broadcom Bluetooth HCI USB driver.
+	  This driver is required if you want to use Bluetooth devices with
+	  USB interface and a stack entirely running in user space. This driver
+	  provides device node interface to user space for interaction.
+
+	  Say Y here to compile support for Bluetooth USB devices into the
+	  kernel or say M to compile it as module (btusb).
+
+config BT_AUDIOLITE
+	tristate "BT USB Lite driver"
+	depends on BT_BCMBTUSB
+	help
+	  Broadcom Bluetooth HCI Lite driver.
+	  This driver is required if you want to use Kernel implementation of
+	  SBC encoder and AVDTP.
+
+	  Say Y here to compile support for BT USB Lite into the
+	  kernel or say M to compile it as module (btsbc & btpcm).
+endmenu

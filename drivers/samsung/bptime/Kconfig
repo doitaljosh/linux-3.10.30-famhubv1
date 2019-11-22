@@ -1,0 +1,32 @@
+menu "Broadcast Time Support"
+
+config BPTIME
+	bool "Broadcast Time Framwork Support"
+	default y
+	help
+	  This configuration support broadcast time
+	  to can share all of process between multi device.
+	  This time driver will work with user process demon.
+	  If the demon process dose not registered , It will be
+	  shared time only one device included this kernel.
+
+config BPTIME_DEMON
+	bool "Enable the Functionality to can share time between multi device"
+	default n
+	help
+	  This configration support broadcast time
+	  to can share all of process between multi device.
+	  For using this configuration , you have to develop
+	  demon binary to can send the time information to
+	  other device. And than please register this demon
+	  full path in BPTIME_DEMON_NAME configration.
+
+config BPTIME_DEMON_NAME
+	string "Binary Location of Time Demon Process"
+	default path/to/demon_binary
+	depends on BPTIME_DEMON
+	help
+	  demon binary have to be registered that we assing.
+	  this demon process to be request register will be
+	  judged by this configuration.
+endmenu

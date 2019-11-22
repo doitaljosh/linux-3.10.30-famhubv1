@@ -1,0 +1,167 @@
+config VDFS_FS
+	tristate "Samsung VDFS file system support (EXPERIMENTAL)"
+	depends on BLOCK
+	select NLS
+	select CRC32
+	default n
+	help
+	  If you say Y here, you will be able to mount format
+	  VDFS-formatted hard drive partitions with full read-write access.
+
+	  To compile this code as a module, choose M here: the module will be
+	  called emmcfs.
+
+	  If unsure, say N.
+
+config VDFS_POSIX_ACL
+	bool "Support of Posix ACL"
+	depends on VDFS_FS
+	select FS_POSIX_ACL
+	help
+	  POSIX Access Control Lists (ACLs) support permissions for users and
+	  groups beyond the owner/group/world scheme. See man 5 acl for details.
+
+config VDFS_DEBUG
+	bool "Debug VDFS"
+	depends on VDFS_FS
+	help
+	  If you say Y here, you can use the 'debug' mount option to enable
+	  debugging output from the driver.
+
+	  If unsure, say N.
+
+config VDFS_PANIC_ON_ERROR
+	bool "Force kernel panic after fatal errors"
+	depends on VDFS_FS
+	default y
+	help
+	  If you say Y here first disk error or metadata corruption will cause
+	  kernel panic. This mode should be used in release builds.
+
+	  Otherwise filesystem will be automatically remounted into read-only
+	  mode for preventing further corruption, after that it hopefully can
+	  be unmounted without crashing whole kernel. All unwritten data will
+	  be lost. This mode is useful for testing.
+
+config VDFS_NOOPTIMIZE
+	bool "Disable build optimization for VDFS"
+	depends on VDFS_FS
+	help
+	  If you say Y here, VDFS will be built with -O0 opt. Useful for
+	  gdb debug;
+
+	  If unsure, say N.
+
+config VDFS_STATISTIC
+	bool "Umount statistic"
+	depends on VDFS_FS
+	help
+	  This feature allows to count amount of data writen to block
+	  device during umount operation. At the end of umount, it
+	  displays a message with appropriate value.
+
+	  If unsure, say N.
+
+	
+config VDFS_EXPERIMENTAL
+	bool "VDFS Experimental Features (EXPERIMENTAL)"
+	depends on VDFS_FS && EXPERIMENTAL
+
+	help
+	  Enables VDFS features under testing. These features are
+	  experimental.
+
+	  If unsure, say N.
+
+config VDFS_OLDEST_LAYOUT_VERSION
+	int "The oldest supported version of on-disk layout"
+	default 441
+	range 441 9999
+	depends on VDFS_FS
+	help
+	  
+	  VDFS volume should be formated by mkfs.vdfs utility not older
+	  than specified version.
+	  Older versions will be rejected by driver at mount time.
+
+	  Cann't be less then 331
+	  
+	  If unsure, leave default value
+
+config VDFS_CRC_CHECK
+	bool "VDFS CRC check"
+	depends on VDFS_FS
+	help
+		Enables CRC check for VDFS metadata
+
+		If unsure, say N.
+
+config VDFS_META_SANITY_CHECK
+        bool "VDFS metadata sanity check"
+        depends on VDFS_FS
+        help
+                This feature adds additional checks for VDFS metadata,
+		to find metadata corruption on early stage, and prevent
+		writing incorrect data to flash.
+
+                If unsure, say N.
+
+config VDFS_QUOTA
+	bool "VDFS quotas feature"
+	depends on VDFS_FS
+	help
+		Enables quotas feature. This feature allows the vdfs image
+		creator to allocate a maximum amount of disk space a user or
+		group may use. Quota can be set only during image
+		creation, changes at runtime not permitted.
+
+		If unsure, say N.
+
+config VDFS_HW2_SUPPORT
+	bool "Use HW2 API to decompress user data from installed SMART package"
+	depends on ARCH_SDP
+	depends on VDFS_FS
+	depends on MMC
+	depends on HW_DECOMP_BLK_MMC_SUBSYSTEM
+	select SDP_UNZIP
+	select SDP_UNZIP_TEST_DRIVER
+	help
+	  Utilize hardware decompressor to decompress packed user data from
+	  installed Squashfs imgages;
+
+config VDFS_RETRY
+	bool "Enable/disable retry decompression and authentication"
+	depends on VDFS_FS
+	help
+		In case of unsuccessfull decompresssion/authentication retry to
+		decompress/authenticate	data 3 times till successfull result;
+
+		If unsure, say N.
+
+config VDFS_DATA_AUTHENTICATION
+	bool "User data and vdfs meta authentication"
+	depends on VDFS_FS
+	depends on (RSA2048 && CRYPTO_SHA1)
+	help
+		Protect the vdfs superblock, file-based meta data and compressed chunks
+		by digital signature. The VDFS uses SHA1+RSA2048 algorithms to
+		calculate the digital signatures;
+
+config VDFS_EXEC_ONLY_AUTHENTICATED
+	bool "Execute and read only signed binaries and files"
+	depends on VDFS_FS
+	depends on VDFS_DATA_AUTHENTICATION
+	help
+		If the option is set only authenticated binary can be run. The vdfs
+		checks for inode flag, if the flag is set it allows to do mmap with
+		VM_EXEC bit set and do not clear VM_MAYEXEC on vma
+
+config VDFS_DEBUG_AUTHENTICAION
+	depends on VDFS_DATA_AUTHENTICATION
+	bool "if enable - do not return an error if authenticaion is failed."
+	help
+		if enable - if authentication is enabled do not return an error
+		and print error message
+		if diable - if return an error if authenticaion is failed
+	default n
+

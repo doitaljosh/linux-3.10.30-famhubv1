@@ -1,0 +1,7 @@
+config VDTIME_SUPPORT
+	bool "VD-Time support device"
+	default y
+	help
+	  This option provides a aupport for VD kernel time feature.
+	  VD time contains absolute time shift from UTC, time zone
+	  and daylight saving time.

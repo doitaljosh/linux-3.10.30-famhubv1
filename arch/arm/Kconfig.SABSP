@@ -1,0 +1,249 @@
+menu "Samsung SP/BSP options"
+comment "VDLinux 4.x SA/BSP patch"
+
+config SAVELOGD
+	bool "save error log deamon"
+	default y
+	help
+	 It support save error log deamon
+
+config EMRG_SAVE_KLOG
+	bool "Save dmesg to raw partition on OOPs"
+	default y
+	help
+	 Preform dmesg saving in raw-data format to specified partition.
+	 Special low-level function are used to write the data, which are
+	 supposed to be independent from kernel, and supposed to work at
+	 any conditions.
+
+config EMRG_SAVE_KLOG_PARTITION_N
+	int "Which partition should be used for saving emrg dmesg"
+	default 25
+	depends on EMRG_SAVE_KLOG
+	help
+	 Partition /dev/mmcblk0p<this number> will be used to save the dmesg
+
+
+config MINIMAL_CORE
+	bool "Enable Small core dumps"
+	default y
+	depends on (COREDUMP=y && BINFMT_ELF=y)
+	select RSA_API
+	select ZLIB_DEFLATE
+	help
+	 coredump only current task for tracing crashes in Market with security
+	 Will dump only crashed thread info, register context,
+	 File info, stack of crashed thread,
+	 and the areas in heap pointed by registers from r0-r12
+
+config MINIMAL_CORE_RETAIN
+	bool "Retain first 10 mincore files"
+	default y
+	depends on (MINIMAL_CORE=y)
+	help
+	  When this configuration is enabled, mincore will retain the first
+	  10 files. If 10 files are already created, then this will print
+	  an info to kernel log. This can be turned off, when latest
+	  crash mincore are required
+
+config MINCORE_RLIMIT_NOFILE
+	bool "Enable creating mincore when RLIMIT_NOFILE is exceeded"
+	default n
+	depends on (MINIMAL_CORE=y && OPEN_FILE_CHECKER=y && FD_PID=y)
+	help
+	 create a mincore when a process crosses RLIMIT_NOFILE
+	 This will create a mincore file which includes context & stack of
+	 all owners (threads) of all file opened,
+	 This will create a mincore with all threads which have a file open.
+
+config USBEN_GPIO
+	bool "gpio control support for usb power handling"
+	default y
+	help
+	 It support gpio control for usb power 
+
+config BLOCK_STOP_TTY
+       bool "block stop_tty (Ctrl + S)"
+       default y
+       help
+        Noise from UART can make stop signal. This option blocks stop_tty.
+
+config MOUNT_SECURITY
+       bool "security on mount command"
+       default y
+       help
+        In case of release kernel build mode, This option will disable BIND option and apply NOEXEC option to all devices on mount command
+
+config PROHIBIT_SIGNAL_HOOKING
+		bool "coredump when user try signal_hooking"
+		default n
+		help
+		In case of user app trying signal hooking, This option can stop user app and create coredump.
+
+config PROHIBIT_USLEEP_0
+		bool "coredump when user try usleep(0)"
+		default n
+		help
+		In case of user app using usleep(0), This option can stop user app and create coredump.
+
+config PREVENT_MIN_FREE_BYTES
+		bool "prevent min_free_kbytes setting"
+		default y
+		help
+			prevent min_free_kbytes setting from user (sysctl)
+
+config MODULE_VER_CHECK_SKIP
+		bool "Module version check skip"
+		default n
+		depends on MODVERSIONS=n
+		help
+		  'PRINT_MODULE_ADDR' option change VERMAGIC_STRING value. (e.g. 1003_192 DEBUG)
+		  so, If you are using different version name, insmod will be failed
+		  even while 'MODVERSION' option is off.
+		  This option skip the checking the VERMAGIC_STRING.
+
+config SQUASHFS_DEBUGGER
+		bool "squashfs debugger v2.1"
+		default y
+		help
+		  Tool for debugging squashfs error.
+		  It is useful even to debug Flash I/O and memory un-safe problem.
+
+config SQUASHFS_DEBUGGER_AUTO_DIAGNOSE
+		bool "squashfs debugger auto diagnose"
+		default y
+		depends on SQUASHFS_DEBUGGER
+		help
+		  Diagnose the cause of squashfs error.
+
+config MMC_BOOTING_SYNC
+		bool "Wait rootfs mount try till mmc scan is done"
+		default y
+		help
+		  If you use mmc device as rootfs, It could prevent mount fail issue.
+
+config BUSYLOOP_WHILE_OOPS
+		bool "busyloop while oops"
+		default y
+		help
+			In case of oops, This option is useful for attach JTAG device.
+
+config MMC_TIMEOUT
+		bool "MMC_TIMEOUT"
+		default n
+		help
+		  This config stops current mmc request.
+
+config CA9_SYSTEM_HANG
+		bool "CA9 SYSTEM HANG"
+		default n
+		help
+		  This config decides whether it uses flush BTAC/BTB( Branch Target Buffer ) when context switch
+
+config KPI_SYSTEM_SUPPORT
+		bool "KPI (BP error check) system support"
+		default n
+		depends on SHOW_FAULT_TRACE_INFO
+		help
+	      It write error information(Tick, thread name, PC) when user fault is occured
+
+config SWU_SUPPORT
+		bool "SWU mode support for updating single exeDSP"
+		default n
+		help
+		  For single exeDSP case, new update method/execution sequence are needed
+
+config WRITE_PROTECT 
+		bool "Flash write protection"
+		default n
+		help
+		    Flash write protection
+
+config MMC_POWER_ON_WRITE_PROTECTION
+		bool "Use power on write protection"
+		default n
+		help
+		  This will attemp to power on write protection for eMMC boot partition when eMMC init.
+
+config USE_MESSAGEBOX_FOR_MICOM
+		bool "Use MessageBox For Micom instead Uart"
+		default n
+		help
+			It use MessageBox for send&receive data with Micom instead of UART.
+
+config FUTEX_DLA
+	bool "Futex deadlock analyzer"
+	default y
+	help
+	 Enable to create dumps on futex deadlocks
+	 It checks for owner of futex and tries to
+	 get the thread which is respondible
+	 for deadlock.
+
+config FUTEX_DLA_TA
+	bool "Enable time based analysis for wait time"
+	default y
+	depends on FUTEX_DLA
+	help
+	 Checks for wait time and reports dump
+	 if greater than specified
+	 its an optional configuration as
+	 BP already checks for sleep time.
+
+config FUTEX_DLA_TS
+	int "max wait time considered as deadlock(in msec)"
+	default 10000
+	depends on FUTEX_DLA_TA
+	help
+	 If futex wait time is more than this
+	 It will be considered as deadlock.
+	 default value is 10000 msec.
+	 Please choose it as per system configuration.
+
+config MMC_CACHE_ON
+	bool "Enable mmc cache"
+	default n
+	help
+	 In 3.10 kernel, if mmc has cache, set use mmc cache as default.
+	 Therefore, this config can help to turn on/off mmc cache.
+	 If this config has set, mmc use cache which is located inside.
+
+config SDP_MMC_RDQS_FIXUP
+	bool "sdp mmc needs to be set rdqs value in driver code, differently"
+	default n
+	help
+	 In sdp_mmc driver code, host cannot detect the card.
+	 Hence, this config make the host can detect mmc card in driver code.
+
+config SDP_MMC_EXECUTE_HS400_RDQS_TUNING
+	bool "If sdp mmc uses HS400 mode, it needs to be tuned rdqs value after mmc reset"
+	default n
+	help
+	 In sdp_mmc driver code, if host uses HS400 mode, execute rdqs tuning after the mmc reset.
+	 Hence, this one should be skipped in first boot.
+
+config NOTIFY_FILE_WRITE
+	bool "Enable notify file write"
+	default n
+	help
+	 To verify vdfs authentication feature, we have to know which process really write in rootfs(Read-Only) partition.
+
+config MMC_DEBUG_IOCTL
+	bool "Enable mmc debug ioctl"
+	default n
+	help
+	 This feature depended on VD_RELEASE config.
+	 Because of this reason(dependency), this feature only support in debug version, only.
+	 However, we need update onboot binary file via ioctl in perf version.
+	 Hence, create this config and remove the dependency between VD_RELESE and this feature. (VD_RELEASE -> MMC_DEBUG_IOCTL)
+	 This config should be enalbed only in debug/perf version.
+
+config MMC_CHECK_ENDURANCE
+	bool "Check endurance of mmc by ext_csd[267~269]"
+	default n
+	help
+	 Enable to read ext_csd[267~269] and check endurance.
+	 If it is approached limitation, it will show warn message and make Panic.
+
+
+endmenu # end of "Samsung SA/BSP options" menu

@@ -1,0 +1,364 @@
+/*
+ * Copyright (C) 2014 Samsung Electronics Co.Ltd
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+
+/dts-v1/;
+/include/ "sdp1106.dtsi"
+
+/ {
+	model = "Samsung DTV based on SDP1106 SoC";
+	compatible = "samsung,sdp1106";
+
+	memory {
+		device_type = "memory";
+		reg =  <0x40000000 0x16800000>, <0x80000000 0x8800000>, <0xA0000000 0xF000000>;
+	};
+
+	chosen {
+		bootargs = "root=/dev/mmcblk0p13 rootfstype=vdfs rw rootwait earlyprintk console=ttyS0,115200n8 SELP_ENABLE=20102011 onboot=0054-FTK-0015 maintv";
+//		bootargs = "console=ttyS1,115200N8 root=/dev/mmcblk0p10 rootwait earlyprintk user_debug=31 debug";
+//		bootargs = "console=ttyS1,115200N8 root=/dev/ram0 initrd=0x40800000,8M rootwait earlyprintk";
+	};
+
+	fixed-rate-clocks {
+		fin {
+			compatible = "samsung,sdp-clock-fin";
+			clock-frequency = <24000000>;
+		};
+	};
+
+
+	serial@30090A00 {
+		compatible = "samsung,sdp1304-uart-micom";
+		status = "okay";
+	};
+	serial@30090A40 {
+		status = "okay";
+	};
+	serial@30090A80 {			
+		status = "okay";
+	};
+
+	pinctrl {
+		compatible = "samsung,sdp-pinctrl";
+		reg = <0x30090C00 0x294>;
+		start-offset = <0x100>;
+		nr-banks = <16> ;
+		model-sel = <1>;	
+	};
+	
+	ehci@30070000 {
+		status = "okay";
+	};
+
+	ehci@30080000 {
+		status = "okay";
+	};
+
+	ohci@30078000 {
+		status = "okay";
+	};
+
+	ohci@30088000 {
+		status = "okay";
+	};
+
+	sdp_mmap {
+		compatible = "samsung,sdp-mmap";
+
+		samsung,mfc-a = <0x0 0x57400000 0x1600000>;
+		samsung,avd = <0x0 0x58A00000 0x600000>;
+		samsung,dsp-enc = <0x0 0x59000000 0xF00000>;
+		samsung,dp-enc = <0x0 0x59F00000 0x580000>;
+		samsung,pvr = <0x0 0x5A480000 0x800000>;
+		samsung,dp0 = <0x0 0x5AC80000 0x3100000>;
+		samsung,dp1 = <0x0 0x5DD80000 0x1E80000>;
+		samsung,se = <0x0 0x5FC00000 0x200000>;
+		samsung,mhp-scaler = <0x0 0x5FE00000 0x100000>;
+		samsung,ae0 = <0x0 0x88800000 0x1000000>;
+		samsung,tsd = <0x0 0x89800000 0x200000>;
+		samsung,mfc-b = <0x0 0x89A00000 0x4200000>;
+		samsung,capture = <0x0 0x8DC00000 0x200000>;
+		samsung,dp2 = <0x0 0x8DE00000 0x1A00000>;
+		samsung,png = <0x0 0x8F800000 0x100000>;
+		samsung,remote = <0x0 0xAF000000 0x1000000>;
+	};
+
+	i2c@30090100 {
+		status = "okay";
+		samsung,i2c-sda-delay = <1>;
+		samsung,i2c-max-bus-freq = <400000>;
+		samsung,i2c-irq-status-reg = <0x300901F4>;
+		samsung,i2c-cpu-affinity = <0>;
+		s24c512c@50 {
+			compatible = "sii,s24c512c";
+			reg = <0x50>;
+			samsung,eeprom-wp = <&gpio3 6 0>;
+          };
+	};
+
+	i2c@30090120 {
+		status = "okay";
+		samsung,i2c-sda-delay = <1>;
+		samsung,i2c-max-bus-freq = <400000>;
+		samsung,i2c-irq-status-reg = <0x300901F4>;
+		samsung,i2c-cpu-affinity = <0>;
+	};
+
+	i2c@30090140 { 
+		status = "okay";
+		samsung,i2c-sda-delay = <1>;
+		samsung,i2c-max-bus-freq = <400000>;
+		samsung,i2c-irq-status-reg = <0x300901F4>;
+		samsung,i2c-cpu-affinity = <0>;
+	};
+
+	i2c@30090160 {
+		status = "okay";
+		samsung,i2c-sda-delay = <1>;
+		samsung,i2c-max-bus-freq = <400000>;
+		samsung,i2c-irq-status-reg = <0x300901F4>;
+		samsung,i2c-cpu-affinity = <0>;
+		
+			/* panel C2 SUB */
+			panel@61 {
+				compatible = "samsung,tztv-tcon13";
+				 reg = <0x61>;
+			};
+			/* panel 0xA0 */
+			panel@50 {
+				compatible = "samsung,tztv-tcon14"; 
+				reg = <0x50>;
+			};
+			
+			/* panel 0x90 */
+			panel@48 {
+				compatible = "samsung,tztv-tcon15";
+				reg = <0x48>;
+			};
+			
+			/* panel 0x7C */
+			panel@3E {
+				compatible = "samsung,tztv-tcon16";
+				reg = <0x3E>;
+			};
+			
+			/* panel 0xAE */
+			panel@57 {
+				compatible = "samsung,tztv-tcon17";
+				reg = <0x57>;
+			};
+			
+			/* panel 0xE8 */
+			panel@74 {
+				compatible = "samsung,tztv-tcon18";
+				reg = <0x74>;
+			};
+			
+			tas5747@22 {
+				compatible = "tas,tas5747";              
+				reg = <0x22>;
+		    };
+	};
+
+	i2c@30090180 {
+		status = "okay";
+		samsung,i2c-sda-delay = <1>;
+		samsung,i2c-max-bus-freq = <400000>;
+		samsung,i2c-irq-status-reg = <0x300901F4>;
+		samsung,i2c-cpu-affinity = <0>;
+
+			/* panel C8 */
+			panel@64 {
+				compatible = "samsung,tztv-frc-sdp-main";
+				samsung,sw-pvcc = <&gpio0 3 1>;
+				reg = <0x64>;
+			};
+			
+			/* panel C0 SUB */
+			panel@60 {
+				compatible = "samsung,tztv-frc-sdp-sub1";
+				samsung,sw-pvcc = <&gpio0 3 1>;
+				reg = <0x60>;
+			};
+
+			/* panel C2 SUB */
+			panel@61 {
+				compatible = "samsung,tztv-frc-sdp-sub2";
+				samsung,sw-pvcc = <&gpio0 3 1>;
+				 reg = <0x61>;
+			};
+			
+			/* panel CA SUB */
+			panel@65 {
+				compatible = "samsung,tztv-frc-sdp-sub3";
+				samsung,sw-pvcc = <&gpio0 3 1>;
+				reg = <0x65>;
+			};
+
+			/* panel CE SUB */
+			panel@67 {
+				compatible = "samsung,tztv-frc-sdp-sub4";
+				samsung,sw-pvcc = <&gpio0 3 1>;
+				reg = <0x67>;
+			};
+			
+
+			/* panel FA SUB */ 
+			panel@7D {
+				compatible = "samsung,tztv-frc-sdp-sub5";
+				samsung,sw-pvcc = <&gpio0 3 1>;
+				reg = <0x7D>;
+			};
+			
+			/* panel F8 SUB */ 
+			panel@7C {
+				compatible = "samsung,tztv-frc-sdp-sub6";
+				samsung,sw-pvcc = <&gpio0 3 1>;
+				reg = <0x7C>;
+			};
+			
+			/* panel 0x90 */
+			panel@48 {
+				compatible = "samsung,tztv-tcon1";
+				reg = <0x48>;
+			};
+			
+			/* panel 0xAC */
+			panel@56 {
+				compatible = "samsung,tztv-tcon2";
+				reg = <0x56>;
+			};
+		};
+
+	i2c@300901A0 {
+		status = "okay";
+		samsung,i2c-sda-delay = <1>;
+		samsung,i2c-max-bus-freq = <400000>;
+		samsung,i2c-irq-status-reg = <0x300901F4>;
+		samsung,i2c-cpu-affinity = <0>;
+		
+			/* panel 0xEC */ 
+			panel@76 {
+				compatible = "samsung,tztv-tcon3";
+				reg = <0x76>;
+			};
+
+			/* panel 0xC0 */
+			panel@60 {
+				compatible = "samsung,tztv-tcon4";
+				reg = <0x60>;
+			};
+			
+			/* panel 0xE6 */
+			panel@73 {
+				compatible = "samsung,tztv-tcon5";
+				reg = <0x73>;
+			};
+			
+
+			/* panel 0xC2 */
+			panel@61 {
+				compatible = "samsung,tztv-tcon6";
+				reg = <0x61>;
+			};
+
+			/* panel 0xC4 */
+			panel@62 {
+				compatible = "samsung,tztv-tcon7";
+				reg = <0x62>;
+			};
+
+		
+			/* panel 0x7C */
+			panel@3E {
+				compatible = "samsung,tztv-tcon8";
+				reg = <0x3E>;
+			};
+
+
+			/* panel 0xE8 */
+			panel@74 {
+				compatible = "samsung,tztv-tcon9";
+				reg = <0x74>;
+			};
+
+			/* panel 0xA0 */
+			panel@50 {
+				compatible = "samsung,tztv-tcon10"; 
+				reg = <0x50>;
+			};
+			
+			/* panel 0xA2 */
+			panel@51 {
+				compatible = "samsung,tztv-tcon11"; 
+				reg = <0x51>;
+			};
+
+			/* panel 0xAE */
+			panel@57 {
+				compatible = "samsung,tztv-tcon12";
+				reg = <0x57>;
+			};
+
+	};
+	
+	ehci@0x100e0000 {
+		status = "okay";
+		samsung,sw-reset = <0x10090000 0x8f4 0x1000>;
+		samsung,ehci-gpr_reg = <0x100a0000 0x10 0x2020>;
+		samsung,ehci-gpr_reg1 = <0x100a0000 0x3c 0x0>;
+		samsung,ehci-link-set =  <0x100a0000 0x14 0x803800>;
+		samsung,vbus-enable = <0x10090000 0xcb4 0x00000030 0x02>;
+	};
+
+	ehci@0x100f0000 {
+		status = "okay";
+		samsung,sw-reset = <0x10090000 0x8f4 0x2000>;
+		samsung,ehci-gpr_reg = <0x100a0000 0x18 0x2020>;
+		samsung,ehci-link-set =  <0x100a0000 0x1c 0x803800>;
+		samsung,vbus-enable = <0x10090000 0xcb4 0x00000300 0x04>;
+	};
+
+	usben {
+		status = "okay";
+		samsung,usb-enable = <&gpio0 1 0>;
+	};
+
+	tztv_kfactory {
+		compatible = "samsung,tztv-kfactory";
+		samsung,sbb-connected = <&gpio12 1 0>;
+		samsung,lvds-sw = <&gpio3 7 0>;
+		samsung,panel_type = <&gpio15 4 0>;
+    };
+	
+	tztv_jackident {
+		compatible = "samsung,tztv-jackident";
+		samsung,hp-jackident = <&gpio5 7 0>;
+		samsung,av1-jackident = <&gpio2 3 0>;
+		samsung,comp1-jackident = <&gpio2 4 0>;
+		samsung,sbb-jackident = <&gpio12 1 0>;
+	};
+	
+	tztv_sbb-interface {
+		samsung,sbb-detect = <&gpio12 1 0>;
+	};
+	
+	tztv_tuner {
+		compatible = "samsung,tztv-tuner";
+		samsung,tuner_nreset_out = <&gpio1 7 0>;
+		samsung,tuner_reset = <&gpio1 2 0>;
+		samsung,tv4_0_sel = <&gpio2 1 0>;
+		samsung,nreset_out_tuner = <&gpio3 7 0>;
+	};
+	
+	tztv_ksocket {
+		compatible = "samsung,ksocket";
+	};
+
+		
+};

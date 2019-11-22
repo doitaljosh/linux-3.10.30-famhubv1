@@ -1,0 +1,16 @@
+#
+# Core component header files exported to user-space file system
+#
+header-y += SfArch.h
+header-y += SfBuild.h
+header-y += SfConfig.h
+header-y += SfCore.h
+header-y += SfDebug.h
+header-y += SfLevel.h
+header-y += SfMemory.h
+header-y += SfStatus.h
+header-y += SfSystem.h
+header-y += SfTime.h
+header-y += SfTypes.h
+header-y += SfValidator.h
+header-y += SfVersion.h

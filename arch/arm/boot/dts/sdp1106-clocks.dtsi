@@ -1,0 +1,31 @@
+/*
+ * Copyright (C) 2013 Samsung Electronics Co.Ltd
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+
+/ {
+	clock: clock-controller@30090800 {
+		apb_pclk: apb_pclk {
+			sdp,clock;
+			#clock-cells = <0>;
+		};
+		
+		emmc_clk: emmc_clk {
+			sdp,clock;
+			#clock-cells = <0>;
+		};
+
+		twd_clk: twd_clk {
+			sdp,clock;
+			#clock-cells = <0>;
+		};
+
+		rstn_i2c: rstn_i2c {
+			sdp,clock;
+			#clock-cells = <0>;
+		};
+	};
+};

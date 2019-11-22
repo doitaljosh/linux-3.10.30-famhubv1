@@ -1,0 +1,115 @@
+/*
+ * Copyright (C) 2014 Samsung Electronics Co.Ltd
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+
+/ {
+	clock: clock-controller@005c0000 {
+		apb_pclk: apb_pclk {
+			sdp,clock;
+			#clock-cells = <0>;
+		};
+		emmc_clk: emmc_clk {
+			sdp,clock;
+			#clock-cells = <0>;
+		};
+		gzip_rst: gzip_rst {
+			sdp,clock;
+			#clock-cells = <0>;
+		};			
+		gzip_clk: gzip_clk {
+			sdp,clock;
+			#clock-cells = <0>;
+		};			
+
+		tfc_clk: tfc_clk {
+			sdp,clock;
+			#clock-cells = <0>;
+		};			
+		hevc_hclk: hevc_hclk {
+			sdp,clock;
+			#clock-cells = <0>;
+		};			
+		jpeg0_clk: jpeg0_clk {
+			sdp,clock;
+			#clock-cells = <0>;
+		};			
+		jpeg1_clk: jpeg1_clk {
+			sdp,clock;
+			#clock-cells = <0>;
+		};			
+		uddec_clk: uddec_clk {
+			sdp,clock;
+			#clock-cells = <0>;
+		};
+		mfd_pclk: mfd_pclk {
+			sdp,clock;
+			#clock-cells = <0>;
+		};
+		hen0_clk: hen0_clk {
+			sdp,clock;
+			#clock-cells = <0>;
+		};
+		hdmi_pclk: hdmi_pclk {
+				sdp,clock;
+				#clock-cells = <0>;
+				};
+		hdmi_sysclk: hdmi_sysclk {
+				sdp,clock;
+				#clock-cells = <0>;
+				};
+		hdmi_modclk: hdmi_modclk {
+				sdp,clock;
+				#clock-cells = <0>;
+		};
+
+		ga2d_clk: ga2d_clk {
+			sdp,clock;
+			#clock-cells = <0>;
+		};			
+		
+		osdp_clk_c: osdp_clk_c {
+			sdp,clock;
+			#clock-cells = <0>;
+		};
+
+		osdp_clk_vo: osdp_clk_vo {
+			sdp,clock;
+			#clock-cells = <0>;
+		};
+
+		gp_clk_c: gp_clk_c {
+			sdp,clock;
+			#clock-cells = <0>;
+		};
+
+		gp_clk_vo: gp_clk_vo {
+			sdp,clock;
+			#clock-cells = <0>;
+		};
+
+		sgp_clk_c: sgp_clk_c {
+			sdp,clock;
+			#clock-cells = <0>;
+		};
+
+		sgp_clk_vo: sgp_clk_vo {
+			sdp,clock;
+			#clock-cells = <0>;
+		};
+
+		gfxp_clk_c: gfxp_clk_c {
+			sdp,clock;
+			#clock-cells = <0>;
+		};
+
+		gfxp_clk_vo: gfxp_clk_vo {
+			sdp,clock;
+			#clock-cells = <0>;
+		};
+	};
+};
+

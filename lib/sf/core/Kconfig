@@ -1,0 +1,7 @@
+
+config SFLIB_CORE
+	bool "Core component of the Security Framework"
+	default n
+	depends on SFLIB
+	help
+		To write information later

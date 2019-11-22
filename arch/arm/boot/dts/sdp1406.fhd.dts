@@ -1,0 +1,289 @@
+/*
+ * Copyright (C) 2014 Samsung Electronics Co.Ltd
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+
+/dts-v1/;
+/include/ "sdp1406.dtsi"
+
+/ {
+	model = "Samsung DTV based on SDP1406 SoC";
+	compatible = "samsung,dtv", "samsung,sdp1406fhd";
+
+	memory {
+		device_type = "memory";
+		reg =  <0x01000000 0x1F000000>,<0x26000000 0x0E000000>, <0x40000000 0x06800000>;
+	};
+	 /*in the below chosen, between mmcblk0p8 and SELP_ENABLE must more than 1 space.because 2nd booting will change mmcblk0p8 to mmcblk0p11 */
+	chosen {
+		bootargs = "console=ttyS0,115200N8 root=/dev/mmcblk0p10  SELP_ENABLE=00000000 rootfstype=squashfs no_console_suspend rootwait earlyprintk sdp_sparsemem vmalloc=550M";
+	};
+
+	fixed-rate-clocks {
+		fin {
+			compatible = "samsung,sdp-clock-fin";
+			clock-frequency = <24576000>;
+		};
+	};
+
+	mmc {
+		tuning_sam_hs400_default = <0x001000A8 0x000000CF 0x00000041>,
+					<0x00100188 0x000003FF 0x000000B0>;/* fhd read dqs delay(44step) */
+
+//		hs200;
+//		hs200-tuning;
+		hs400;
+	};
+
+	serial@00190A00 {
+		status = "okay";
+	};
+
+	serial@00190A40 {
+		status = "okay";
+	};
+
+	serial@00190A80 {
+		status = "okay";
+	};
+
+	serial@00190AC0 {
+		status = "okay";
+	};
+
+	pinctrl{
+		compatible = "samsung,sdp-pinctrl";
+		reg = <0x005C1000 0x230>;
+		start-offset = <0x118>;
+		nr-banks = <23>;	
+		model-sel = <1>;	
+	};
+
+	i2c@00190100 {
+		status = "okay";
+		samsung,i2c-sda-delay = <1>;
+		samsung,i2c-max-bus-freq = <400000>;
+		samsung,i2c-irq-status-reg = <0x001901f4>;
+		samsung,i2c-cpu-affinity = <3>;
+	};
+
+	i2c@00190120 {
+		status = "okay";
+		samsung,i2c-sda-delay = <1>;
+		samsung,i2c-max-bus-freq = <400000>;
+		samsung,i2c-irq-status-reg = <0x001901f4>;
+		samsung,i2c-cpu-affinity = <3>;
+	};
+
+	i2c@00190140 { 
+		status = "okay";
+		samsung,i2c-sda-delay = <1>;
+		samsung,i2c-max-bus-freq = <400000>;
+		samsung,i2c-irq-status-reg = <0x001901f4>;
+		samsung,i2c-cpu-affinity = <3>;
+	};
+
+	i2c@00190160 {
+		status = "okay";
+		samsung,i2c-sda-delay = <1>;
+		samsung,i2c-max-bus-freq = <400000>;
+		samsung,i2c-irq-status-reg = <0x001901f4>;
+		samsung,i2c-cpu-affinity = <3>;
+	};
+
+	i2c@00190180 {
+		status = "okay";
+		samsung,i2c-sda-delay = <1>;
+		samsung,i2c-max-bus-freq = <400000>;
+		samsung,i2c-irq-status-reg = <0x001901f4>;
+		samsung,i2c-cpu-affinity = <3>;
+	};
+
+	i2c@001901a0 {
+		status = "okay";
+		samsung,i2c-sda-delay = <1>;
+		samsung,i2c-max-bus-freq = <400000>;
+		samsung,i2c-irq-status-reg = <0x001901f4>;
+		samsung,i2c-cpu-affinity = <3>;
+	};
+
+	i2c@001901c0 {
+		status = "okay";
+		samsung,i2c-sda-delay = <1>;
+		samsung,i2c-max-bus-freq = <400000>;
+		samsung,i2c-irq-status-reg = <0x001901f4>;
+		samsung,i2c-cpu-affinity = <3>;
+	};
+
+	i2c@001901e0 {
+		status = "okay";
+		samsung,i2c-sda-delay = <1>;
+		samsung,i2c-max-bus-freq = <400000>;
+		samsung,i2c-irq-status-reg = <0x001901f4>;
+		samsung,i2c-cpu-affinity = <3>;
+	};
+
+	i2c@00191000 {
+		status = "okay";
+		samsung,i2c-sda-delay = <1>;
+		samsung,i2c-max-bus-freq = <400000>;
+		samsung,i2c-irq-status-reg = <0x001910f4>;
+		samsung,i2c-cpu-affinity = <3>;
+	};
+
+	i2c@00191020 {
+		status = "okay";
+		samsung,i2c-sda-delay = <1>;
+		samsung,i2c-max-bus-freq = <400000>;
+		samsung,i2c-irq-status-reg = <0x001910f4>;
+		samsung,i2c-pad-enable = <0x005C1040 0x800000>;
+		samsung,i2c-cpu-affinity = <3>;
+	};
+
+	i2c@00191040 { 
+		status = "okay";
+		samsung,i2c-sda-delay = <1>;
+		samsung,i2c-max-bus-freq = <400000>;
+		samsung,i2c-irq-status-reg = <0x001910f4>;
+	//	samsung,i2c-pad-enable = <0x10030000 0x80000000>;// Mux HS
+		samsung,i2c-cpu-affinity = <3>;
+	};
+
+	i2c@00191060 {
+		status = "okay";
+		samsung,i2c-sda-delay = <1>;
+		samsung,i2c-max-bus-freq = <400000>;
+		samsung,i2c-irq-status-reg = <0x001910f4>;
+		samsung,i2c-pad-enable = <0x005C1040 0x1000000>;
+		samsung,i2c-cpu-affinity = <3>;
+	};
+
+	i2c@00191080 {
+		status = "okay";
+		samsung,i2c-sda-delay = <1>;
+		samsung,i2c-max-bus-freq = <400000>;
+		samsung,i2c-irq-status-reg = <0x001910f4>;
+		samsung,i2c-pad-enable = <0x005C1040 0x2000000>;
+		samsung,i2c-cpu-affinity = <3>;
+	};
+
+	i2c@001910a0 {
+		status = "okay";
+		samsung,i2c-sda-delay = <1>;
+		samsung,i2c-max-bus-freq = <400000>;
+		samsung,i2c-irq-status-reg = <0x001910f4>;
+		samsung,i2c-cpu-affinity = <3>;
+	};
+
+	i2c@001910c0 {
+		status = "okay";
+		samsung,i2c-sda-delay = <1>;
+		samsung,i2c-max-bus-freq = <400000>;
+		samsung,i2c-irq-status-reg = <0x001910f4>;
+		samsung,i2c-pad-enable = <0x005C1044 0x8000000>;
+		samsung,i2c-cpu-affinity = <3>;
+	};
+
+	i2c@001910e0 {
+		status = "okay";
+		samsung,i2c-sda-delay = <1>;
+		samsung,i2c-max-bus-freq = <400000>;
+		samsung,i2c-irq-status-reg = <0x001910f4>;
+		samsung,i2c-pad-enable = <0x005C1044 0x10000000>;
+		samsung,i2c-cpu-affinity = <3>;
+
+	};
+
+	ehci@00500000 {
+		status = "okay";
+	/*	samsung,sw-reset = <0x005C0000 0xE4 0x1000>;
+		samsung,ehci-gpr_reg = <0x00540000 0x04 0x7000>;
+		samsung,ehci-gpr_reg1 = <0x00540000 0x0C 0x100C0>;
+		samsung,sw-reset-release = <0x005C0000 0xE4 0x1000>;*/
+	};
+
+        ehci@00510000 {
+		status = "okay";
+	/*	samsung,sw-reset = <0x005C0000 0xE4 0x2000>;
+		samsung,ehci-gpr_reg = <0x00540000 0x18 0x7000>;
+		samsung,ehci-gpr_reg1 = <0x00540000 0x20 0x100C0>;
+		samsung,sw-reset-release = <0x005C0000 0xE4 0x2000>;*/
+	};
+	
+	ehci@00520000 {
+		status = "okay";
+	/*	samsung,sw-reset = <0x005C0000 0xE4 0x4000>;
+		samsung,ehci-gpr_reg = <0x00540000 0x2c 0x7000>;
+		samsung,ehci-gpr_reg1 = <0x00540000 0x34 0x100C0>;
+		samsung,sw-reset-release = <0x005C0000 0xE4 0x4000>;*/
+	};
+
+	ehci@00530000 {
+		status = "okay";
+	/*	samsung,sw-reset = <0x005C0000 0xE4 0x8000>;
+		samsung,ehci-gpr_reg = <0x00540000 0x40 0x7000>;
+		samsung,ehci-gpr_reg1 = <0x00540000 0x48 0x100C0>;
+		samsung,sw-reset-release = <0x005C0000 0xE4 0x8000>;*/
+	};
+
+	
+	xhci@00400000 {
+		status = "okay";
+	};
+
+
+	ohci@00508000 {
+		status = "okay";
+	};
+
+	ohci@00518000 {
+		status = "okay";
+	};
+
+	ohci@00528000 {
+		status = "okay";
+	};
+
+	ohci@00538000 {
+		status = "okay";
+	};
+
+	tps54527@7b {
+		compatible = "regulator-sdpmicom";
+
+		regulator-name = "CPU_PW";
+		regulator-min-microvolt = <850000>;
+		regulator-max-microvolt = <1000000>;
+		regulator-always-on;
+		regulator-boot-on;
+
+		nr-gpios = <2>;
+		default-state = <0>;
+		cmd-addr = <0x7b>;
+		states = <850000 3
+			900000 2
+			950000 1
+			1000000 0>;	
+	};
+
+	tps54627@7a {
+		compatible = "regulator-sdpmicom";
+
+		regulator-name = "CORE_PW";
+		regulator-min-microvolt = <850000>;
+		regulator-max-microvolt = <1000000>;
+		regulator-always-on;
+		regulator-boot-on;
+
+		nr-gpios = <2>;
+		default-state = <0>;
+		cmd-addr = <0x7a>;
+		states = <850000 3
+			900000 2
+			950000 1
+			1000000 0>;	
+	};
+};

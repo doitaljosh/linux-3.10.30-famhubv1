@@ -1,0 +1,1887 @@
+/*
+ * Copyright (C) 2013 Samsung Electronics Co.Ltd
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+
+#ifndef _UAPI_SDP_FRC_H_
+#define _UAPI_SDP_FRC_H_
+
+enum e_blur {
+	E_BLUR_1X_B1 = 0, /* BLUR 1X, 2X, 4X should be set in B1 reg. */
+	E_BLUR_2X_B1,     /* 50 TO 60 should be set in B2 reg. B2, 24 TO 60 should be set in B3 reg. */
+	E_BLUR_4X_B1,
+	E_BLUR_50_TO_60_B2,
+	E_BLUR_24_TO_60_B3,
+	E_BLUR_30_TO_60_B3,
+	E_BLUR_25_TO_60_B4,
+	E_NUM_OF_SET_BLUR
+};
+
+enum e_film_mode {
+	E_FILM_OFF   = 0,
+	E_FILM_AUTO1,
+	E_FILM_AUTO2,
+	E_FILM_CINEMA_SMOOTH = 4,
+	E_NUM_OF_FILM_MODE
+};
+
+
+enum view_type_3d_k {
+	TD_3D_VIEW_TYPE_OFF,
+	TD_3D_VIEW_TYPE_SINGLE_1,
+	TD_3D_VIEW_TYPE_SINGLE_2,
+	TD_3D_VIEW_TYPE_DUAL,
+	TD_3D_VIEW_TYPE_QUAD,
+	TD_3D_VIEW_TYPE_MAX
+};
+
+enum e_3d_sync {
+	E_3D_SYNC_OFF = 0,
+	E_3D_SYNC_ON,
+	E_NUM_OF_3D_SYNC
+};
+
+enum e_video_sync_mode_t {
+	E_VIDEO_SYNC_MODE_STANDALONE,
+	E_VIDEO_SYNC_MODE_MASTER,
+	E_VIDEO_SYNC_MODE_SLAVE,
+	E_NUM_OF_VIDEO_SYNC_MODE,
+};
+
+enum e_backend_count_t {
+	E_BACKEND_SINGLE = 0,
+	E_BACKEND_DUAL,
+	NUM_OF_BACKEND_COUNT
+};
+
+enum effect_type_3d_k {
+	TD_3D_TYPE_OFF = 0,
+	TD_3D_TYPE_ON,
+	TD_3D_TYPE_NULL = -1,
+};
+
+enum e_3d_lr_correction {
+	E_3D_L_TO_R = 0x00,
+	E_3D_R_TO_L,
+};
+
+enum e_backend_model {
+	E_MODEL_NONE = 0,
+	E_MODEL_120HZ,
+	E_MODEL_240HZ,
+	E_MODEL_NTV,
+};
+
+enum e_3d_res {
+	E_3D_1080X60_SS = 0,
+	E_3D_1080X50_SS,
+	E_3D_1080X24_SS,
+	E_3D_1080X60_TB,
+	E_3D_1080X50_TB,
+	E_3D_1080X24_TB,
+	E_3D_2160X24_FP,
+	E_3D_2160X25_FP,
+	E_3D_2160X60_FPI,
+	E_3D_2160X50_FPI,
+	E_3D_2160X30_FP,
+	E_3D_2160X60_FP,
+	E_3D_2160X50_FP,
+	E_3D_1440X50_FP,
+	E_3D_1440X60_FP,
+	E_2DC_60,
+	E_2DC_50,
+	E_2DC_24,
+	E_2D_60,
+	E_2D_50,
+	E_2D_24,
+};
+
+enum e_panel_freq {
+	E_PANEL_FREQ_NONE = 0,
+	E_PANEL_FREQ_120HZ,
+	E_PANEL_FREQ_240HZ,
+};
+
+#define FRC_IOCTL_BASE			'f'
+#define FRC_IO(nr)			_IO(FRC_IOCTL_BASE, nr)
+#define FRC_IOR(nr, type)		_IOR(FRC_IOCTL_BASE, nr, type)
+#define FRC_IOW(nr, type)		_IOW(FRC_IOCTL_BASE, nr, type)
+#define FRC_IOWR(nr, type)		_IOWR(FRC_IOCTL_BASE, nr, type)
+
+#define FOXFT1_DCC_MODE_LLRR		0
+#define FOXFT1_DCC_MODE_LBRB		1
+
+#define BACKEND_CMD_INDEX_00		0xF100
+#define BACKEND_CMD_INDEX_01		0xF101
+#define BACKEND_CMD_INDEX_02		0xF102
+#define BACKEND_CMD_INDEX_03		0xF103
+#define BACKEND_CMD_INDEX_04		0xF104
+#define BACKEND_CMD_INDEX_05		0xF105
+#define BACKEND_CMD_INDEX_06		0xF106
+#define BACKEND_CMD_INDEX_07		0xF107
+#define BACKEND_CMD_INDEX_08		0xF108
+#define BACKEND_CMD_INDEX_10		0xF110
+#define BACKEND_CMD_INDEX_11		0xF111
+
+#define BACKEND_CMD_TCON_INDEX_00	0xF300
+#define BACKEND_CMD_TCON_INDEX_01	0xF301
+#define BACKEND_CMD_TCON_INDEX_02	0xF302
+#define BACKEND_CMD_TCON_INDEX_03	0xF303
+
+/* PWM Control */
+#define FOXFT1_BLT1_PULSE1_WIDTH	0xD2F8
+#define FOXFT1_BLT1_PULSE2_WIDTH	0xD2FC
+#define FOXFT1_BLT1_PULSE3_WIDTH	0xD300
+#define FOXFT1_BLT1_PULSE4_WIDTH	0xD304
+#define FOXFT1_BLT2_PULSE1_WIDTH	0xD318
+#define FOXFT1_BLT2_PULSE2_WIDTH	0xD31C
+#define FOXFT1_BLT2_PULSE3_WIDTH	0xD320
+#define FOXFT1_BLT2_PULSE4_WIDTH	0xD324
+#define FOXFT1_BLT3_PULSE1_WIDTH	0xD338
+#define FOXFT1_BLT3_PULSE2_WIDTH	0xD33C
+#define FOXFT1_BLT3_PULSE3_WIDTH	0xD340
+#define FOXFT1_BLT3_PULSE4_WIDTH	0xD344
+#define FOXFT1_BLT4_PULSE1_WIDTH	0xD358
+#define FOXFT1_BLT4_PULSE2_WIDTH	0xD35C
+#define FOXFT1_BLT4_PULSE3_WIDTH	0xD360
+#define FOXFT1_BLT4_PULSE4_WIDTH	0xD364
+
+#define FOXFT1_ORI1_WIDTH		0xD2F0
+#define FOXFT1_ORI2_WIDTH		0xD310
+#define FOXFT1_ORI3_WIDTH		0xD330
+#define FOXFT1_ORI4_WIDTH		0xD350
+
+#define FOXFT1_COMMON_BLOCK		0xD388
+#define FOXFT1_COMMON_FRAME		0xD3BC
+
+#define FOXFT1_PWM_ANA_MUX		0xD3CC
+
+#define FOXFT1_BOUND_BOTTOM		0x1458
+#define FOXFT1_BOUND_TOP		0x1454
+
+#define FOXFT1_POFF4_WIDTH		0xDA30
+#define FOXFT1_POFF1_WIDTH		0xD88C
+
+
+/* SubMCU Control Address */
+#define FOXFT1_SUBMCU_GPO_EEPROM_WP_ADDR            0xF01F
+#define FOXFT1_SUBMCU_GPO_3D_ENABLE_ADDR            0xF01E
+#define FOXFT1_SUBMCU_GPO_SW_PVCC_ADDR              0xF01D
+#define FOXFT1_SUBMCU_GPO_TCON_NRESET_ADDR          0xF01C
+#define FOXFT1_SUBMCU_GPO_FRC_NRESET_ADDR           0xF01B
+#define FOXFT1_SUBMCU_GPO_TCON_I2C_SW_ADDR          0xF01A
+#define FOXFT1_SUBMCU_GPO_TCON_READY_CTRL_ADDR      0xF019
+#define FOXFT1_SUBMCU_GPO_SPI_FLASH_WP_ADDR         0xF016
+
+#define MOTION_OFF_JUDDER		0
+#define MOTION_WEAK_JUDDER		1
+#define MOTION_MEDIUM_JUDDER		10
+#define MOTION_STRONG_JUDDER		10
+#define MOTION_DEMO_JUDDER		10
+
+#define MOTION_OFF_BLUR			0
+#define MOTION_WEAK_BLUR		10
+#define MOTION_MEDIUM_BLUR		10
+#define MOTION_STRONG_BLUR		10
+#define MOTION_DEMO_BLUR		10
+
+#define MOTION_FP_50I60I_WEAK_JUDDER	10
+#define MOTION_FP_50I60I_WEAK_BLUR	1
+
+#define FOXFT1_RED_PATTERN		2
+#define FOXFT1_GREEN_PATTERN		3
+#define FOXFT1_BLUE_PATTERN		4
+#define FOXFT1_WHITE_PATTERN		25
+#define FOXFT1_PATTERN_OFF		0
+
+#define FOXFT1_RGB_PATTERN		11
+#define FOXFT1_RGB_PATTERN_OFF		0
+
+/* L/R Toggle */
+#define FOXFT1_LR_TOGGLE_ADDR		0x0000D0B4
+#define FOXFT1_LR_TOGGLE_MASK		0x00000001
+
+#define LOWBYTE(w)			((w) & 0x00ff)
+#define HIGHBYTE(w)			(((w) >> 8) & 0x00ff)
+
+/* Autoview Pattern Check */
+#define SAM_AUTOVIEW_PATTERN_LEVEL_ADDR		0x18AD05F4
+#define SAM_AUTOVIEW_PATTERN_LEVEL_MASK		0x000000
+#define SAM_AUTOVIEW_HIST0_OUT_ADDR		0x18200600
+#define SAM_AUTOVIEW_THRESHOLD_ADDR		0x18910594
+
+/* LVDS CRC Check */
+#define SAM_PTP_TPGN_SEL_ADDR			0x18200D70
+#define SAM_PTP_TPGN_SEL_VALUE			0x00000104
+
+#define SAM_PTP_PATT_SEL_ADDR			0x18200D48
+#define SAM_PTP_PATT_SEL_VALUE			0x0003FF05
+
+
+/* AutoView */
+#define FOXFT1_AUTOVIEW_OSD_DETECT_LEVEL_ADDR	0x000011C8
+#define FOXFT1_AUTOVIEW_OSD_DETECT_LEVEL_MASK   0x00000001
+
+#define FOXFT1_AUTOVIEW_DETECT_END_FLAG		0x1ED8
+#define FOXFT1_AUTOVIEW_DETECTED_RESULT		0x1F68
+
+#define FOXFT1_EXT_SCREEN_ADDR			0x1CEC
+#define FOXFT1_EXT_SCREEN_ADDR_MASK		0x00000007
+
+/* Firmware Upgrade */
+#define FOXFT1_WRITE_FLASH		0xFEA0
+#define FOXFT1_WRITE_DDR		0xFEA1
+#define FOXFT1_READ_VERSION		0xFEA3
+
+#define FOXFT1_READ_DATA_VERSION	0xFE43
+
+/* 3DLightControl */
+#define STARPOSI_BLT4_3D_START_POS	0xD34C
+#define DIMPOSI2_BLT3_3D_START_POS	0xD32C
+#define DIMPOSI3_BLT2_3D_START_POS	0xD30C
+#define DIMPOSI4_BLT1_3D_START_POS	0xD2EC
+
+/* Cinema Black Mode */
+#define FOXFT1_UNI_BHIST_GSLP_MASK      0x00FF
+#define FOXFT1_UNI_CINEMA_MASK          0x03FF
+#define FOXFT1_UNI_BHIST_GSLP		0x19A0
+#define FOXFT1_UNI_DIM_INI              0x19C4
+#define FOXFT1_UNI_DIM_API_INI          0x19D0
+#define FOXFT1_UNI_V1                   0xC26C
+#define FOXFT1_UNI_V2                   0xC270
+#define FOXFT1_UNI_V3                   0xC274
+#define FOXFT1_UNI_V4                   0xC278
+#define FOXFT1_UNI_T1                   0xC27C
+#define FOXFT1_UNI_T2                   0xC280
+#define FOXFT1_UNI_T3                   0xC284
+#define FOXFT1_UNI_T4                   0xC288
+
+#define FOXFT1_UNI_IIR_APL_TH           0x19B0
+#define FOXFT1_UNI_IIR_APL_TH_MASK      0x1FFF
+#define FOXFT1_UNI_IIR_APLSLP		0x19B4
+#define FOXFT1_UNI_IIR_APLSLP_MASK      0x00FF
+#define FOXFT1_UNI_IIR_RATIOMIN         0x19BC
+#define FOXFT1_UNI_IIR_RATIOMIN_MASK    0x01FF
+#define FOXFT1_UNI_IIR_RATIOMAX         0x19C0
+#define FOXFT1_UNI_IIR_RATIOMAX_MASK    0x03FF
+
+#define FOXFT1_UNI_BYPASS               0xC268
+#define FOXFT1_UNI_BYPASS_MASK          0x0003
+#define FOXFT1_TOTALG                   0x197C
+#define FOXFT1_TOTALG_MASK              0x07FF
+
+#define FOXFT1_REG_POST_DM_SIZE1	0xC0C8
+#define FOXFT1_REG_POST_DM_SIZE2	0xC0D4
+#define FOXFT1_REG_POST_DM_HPOS1	0xC0CC
+#define FOXFT1_REG_POST_DM_VPOS1	0xC0D0
+#define FOXFT1_REG_POST_DM_HPOS2	0xC0D8
+#define FOXFT1_REG_POST_DM_VPOS2	0xC0DC
+
+#define FOXFT1_MASK_POST_DM_SIZE	0x0070
+#define FOXFT1_MASK_POST_POS		0x0FFF
+
+#define FOXFT1_REG_POST_DM_MEAN_GYY1	0xC0E0
+#define FOXFT1_REG_POST_DM_MEAN_BCB1	0xC0E4
+#define FOXFT1_REG_POST_DM_MEAN_RCR1	0xC0E8
+#define FOXFT1_REG_POST_DM_MEAN_GYY2	0xC11C
+#define FOXFT1_REG_POST_DM_MEAN_BCB2	0xC120
+#define FOXFT1_REG_POST_DM_MEAN_RCR2	0xC124
+
+/* Micro Dimming Processing */
+#define FOXFT1_REG_POST_WB_RED_B_COEFF  0xC078
+#define FOXFT1_REG_POST_WB_GRN_B_COEFF  0xC07C
+#define FOXFT1_REG_POST_WB_BLU_B_COEFF  0xC080
+
+#define FOXFT1_2D3D_PICTURE_SETTING_NUM	92
+#define FOXFT1_LVDS_CRC_REF_NUM		6
+#define FOXFT1_CRC_EN_ADDR		0x116C
+#define FOXFT1_CRC_EN_MASK		0x0001
+#define FOXFT1_PRE_CRC_R_L		0x1174
+
+#define FOXFT1_FW_VERSION          6
+#define FOXFT1_FW_HEADER           7
+
+#define FOXFT1_PICTURE_TEST_PATTERN	24
+#define FOXFT1_PICTURE_TEST_PATTERN_OFF	0
+
+enum cd_3d_effect_mode_k {
+	CD_3D_MODE_OFF = 0,
+	CD_3D_MODE_SIDE_BY_SIDE,
+	CD_3D_MODE_TOP_BOTTOM,
+	CD_3D_MODE_FRAME_PACKING,
+	CD_3D_MODE_2D_3D_CONVERSION,
+	CD_3D_MODE_CHECKER_BOARD,
+	CD_3D_MODE_LINE_BY_LINE,
+	CD_3D_MODE_VERTICAL_STRIPE,
+	CD_3D_MODE_FRAME_SEQUENTIAL,
+	CD_3D_MODE_FRAME_DUAL,
+	CD_3D_MODE_INIT,
+	CD_3D_MODE_UNDECIDABLE
+};
+
+#define TD_3D_MODE_OFF			CD_3D_MODE_OFF
+#define TD_3D_MODE_SIDE_BY_SIDE		CD_3D_MODE_SIDE_BY_SIDE
+#define TD_3D_MODE_TOP_BOTTOM		CD_3D_MODE_TOP_BOTTOM
+#define TD_3D_MODE_FRAME_PACKING	CD_3D_MODE_FRAME_PACKING
+#define TD_3D_MODE_2D_3D_CONVERSION	CD_3D_MODE_2D_3D_CONVERSION
+#define TD_3D_MODE_CHECKER_BOARD	CD_3D_MODE_CHECKER_BOARD
+#define TD_3D_MODE_LINE_BY_LINE		CD_3D_MODE_LINE_BY_LINE
+#define TD_3D_MODE_VERTICAL_STRIPE	CD_3D_MODE_VERTICAL_STRIPE
+#define TD_3D_MODE_FRAME_SEQUENTIAL	CD_3D_MODE_FRAME_SEQUENTIAL
+#define TD_3D_MODE_FRAME_DUAL		CD_3D_MODE_FRAME_DUAL
+#define TD_3D_MODE_INIT			CD_3D_MODE_INIT
+
+#define TD_SOURCE_UNIPLAYER		CD_SOURCE_UNIPLAYER
+#define TD_SOURCE_IPLAYER		CD_SOURCE_IPLAYER
+#define TD_SOURCE_MEDIA_MOVIE		CD_SOURCE_MEDIA_MOVIE
+#define TD_SOURCE_VOD			CD_SOURCE_VOD
+#define TD_SOURCE_OD			CD_SOURCE_OD
+#define TD_SOURCE_PC			CD_SOURCE_PC
+#define TD_SOURCE_HDMI			CD_SOURCE_HDMI
+#define TD_RESOLUTION_PC_START		CD_RESOLUTION_PC_START
+#define TD_RESOLUTION_PC_END		CD_RESOLUTION_PC_END
+
+
+#define SOURCE_TYPE_MASK		0xff00
+#define	IS_TD_SOURCE_UNIPLAYER(src)	((src&SOURCE_TYPE_MASK) == TD_SOURCE_UNIPLAYER)
+#define	IS_TD_SOURCE_IPLAYER(src)	((src&SOURCE_TYPE_MASK) == TD_SOURCE_IPLAYER)
+#define	IS_TD_SOURCE_MOVIE(src)		((src&SOURCE_TYPE_MASK) == TD_SOURCE_MEDIA_MOVIE)
+#define	IS_TD_SOURCE_VOD(src)		((src&SOURCE_TYPE_MASK) == TD_SOURCE_VOD)
+#define	IS_TD_SOURCE_BD(src)		((src&SOURCE_TYPE_MASK) == TD_SOURCE_OD)
+#define	IS_SOURCE_COMP(src)		((src&SOURCE_TYPE_MASK) == CD_SOURCE_COMP)
+
+#define	IS_TD_SOURCE_CONTENTS(src) (IS_TD_SOURCE_UNIPLAYER(src) || \
+				IS_TD_SOURCE_IPLAYER(src) ||\
+				IS_TD_SOURCE_MOVIE(src) ||\
+				IS_TD_SOURCE_VOD(src) ||\
+				IS_TD_SOURCE_BD(src))
+
+#define	IS_TD_SOURCE_VGA(src)		(((src) & SOURCE_TYPE_MASK) == TD_SOURCE_PC)
+#define IS_TDRES_HDMIPC(src, res)	((((src) & (SOURCE_TYPE_MASK)) == (TD_SOURCE_HDMI)) &&	\
+					((res) >= (TD_RESOLUTION_PC_START)) && ((res) <= (TD_RESOLUTION_PC_END)))
+
+
+/* could not find it in TD code, declared it myself */
+
+#define DEPTH_MIN		15
+#define DEPTH_MAX		150
+
+#define VIEWPOINTMIN		108
+#define VIEWPOINTMIN2D3D	78
+
+#define IS_RES_24HZ(res)		((res >= 2300) && (res <= 2440))
+#define IS_RES_25HZ(res)		((res >= 2450) && (res <  2600))
+#define IS_RES_30HZ(res)		((res >= 2800) && (res <= 3200))
+#define IS_RES_50HZ(res)		((res >= 4800) && (res <= 5200))
+#define IS_RES_60HZ(res)		((res >= 5800) && (res <= 6400))
+
+#define IS_2D_RES_720P(res)		((res == TD_RESOLUTION_720P) || (res == TD_RESOLUTION_720P_50Hz))
+#define IS_2D_RES_1080I(res)		((res == TD_RESOLUTION_1080I) || (res == TD_RESOLUTION_1080I_50Hz))
+#define IS_3D_RES_720P(res)		((res == TD_RESOLUTION_720P_3D) || (res == TD_RESOLUTION_720P_50Hz_3D))
+#define IS_3D_RES_1080_50HZ(res)	((res == TD_RESOLUTION_1080I_50Hz_3D) || (res == TD_RESOLUTION_1080P_50Hz_3D))
+#define IS_3D_RES_1080_60HZ(res)	((res == TD_RESOLUTION_1080I_60Hz_3D) || (res == TD_RESOLUTION_1080P_60Hz_3D))
+#define IS_3D_RES_1080I_50HZ60HZ(res)	((res == TD_RESOLUTION_1080I_50Hz_3D) || (res == TD_RESOLUTION_1080I_60Hz_3D))
+
+
+enum cd_source_k {
+	/* normal TV mode */
+	CD_SOURCE_NONE	= 0x0000,
+
+	/* ATV */
+	CD_SOURCE_ATV	= 0x0100,
+	CD_SOURCE_ATV1	= 0x0101,
+	CD_SOURCE_ATV2	= 0x0102,
+
+	/* DTV */
+	CD_SOURCE_DTV	= 0x0200,
+	CD_SOURCE_DTV1	= 0x0201,
+	CD_SOURCE_DTV2	= 0x0202,
+	CD_SOURCE_DTV1_AD	= 0x0211,
+	CD_SOURCE_DTV2_AD	= 0x0212,
+
+	/* AV */
+	CD_SOURCE_AV	= 0x0300,
+	CD_SOURCE_AV1	= 0x0301,
+	CD_SOURCE_AV2	= 0x0302,
+	CD_SOURCE_AV3	= 0x0303,
+
+	/* S-Video */
+	CD_SOURCE_SVIDEO	= 0x0400,
+	CD_SOURCE_SVIDEO1	= 0x0401,
+	CD_SOURCE_SVIDEO2	= 0x0402,
+	CD_SOURCE_SVIDEO3	= 0x0403,
+
+	/* Component */
+	CD_SOURCE_COMP	= 0x0500,
+	CD_SOURCE_COMP1	= 0x0501,
+	CD_SOURCE_COMP2	= 0x0502,
+	CD_SOURCE_COMP3	= 0x0503,
+
+	/* PC */
+	CD_SOURCE_PC	= 0x0600,
+	CD_SOURCE_PC1	= 0x0601,
+	CD_SOURCE_PC2	= 0x0602,
+	CD_SOURCE_PC3	= 0x0603,
+
+	/* DVI */
+	CD_SOURCE_DVI	= 0x0700,
+	CD_SOURCE_DVI1	= 0x0701,
+	CD_SOURCE_DVI2	= 0x0702,
+	CD_SOURCE_DVI3	= 0x0703,
+
+	/* HDMI */
+	CD_SOURCE_HDMI	= 0x0800,
+	CD_SOURCE_HDMI1	= 0x0801,
+	CD_SOURCE_HDMI2	= 0x0802,
+	CD_SOURCE_HDMI3	= 0x0803,
+	CD_SOURCE_HDMI4	= 0x0804,
+
+	/* HDMI */
+	CD_SOURCE_SCART		= 0x0900,
+	CD_SOURCE_SCART1	= 0x0901,
+	CD_SOURCE_SCART2	= 0x0902,
+	CD_SOURCE_SCART3	= 0x0903,
+
+	/* DP(Display Port) */
+	CD_SOURCE_DP	= 0x1000,
+	CD_SOURCE_DP1	= 0x1001,
+
+	/* Multi Media Source */
+	CD_SOURCE_UNIPLAYER		= 0x2000,
+	CD_SOURCE_UNIPLAYER_MAIN	= 0x2001,
+	CD_SOURCE_UNIPLAYER_SUB		= 0x2002,
+	CD_SOURCE_UNIPLAYER_SW		= 0x2003,
+
+	/* iPLAYER */
+	CD_SOURCE_IPLAYER	= 0x2100,
+
+	/* PVR */
+	CD_SOURCE_PVR		= 0x2200,
+
+	/* VOD */
+	CD_SOURCE_VOD		= 0x2300,
+
+	/*  DVR(HDD Play) */
+	CD_SOURCE_DVR		= 0x2400,
+
+	/* DNET, IEEE1394 */
+	CD_SOURCE_DLINK		= 0x2500,
+
+	/* PCM(Software Decoder) */
+	CD_SOURCE_PCM		= 0x2600,
+
+	/* OD */
+	CD_SOURCE_OD		= 0x2800,
+	CD_SOURCE_OD_BDMAIN	= 0x2801,
+	CD_SOURCE_OD_BDSUB	= 0x2802,
+	CD_SOURCE_OD_BDRE	= 0x2803,
+	CD_SOURCE_OD_DVD	= 0x2804,
+	CD_SOURCE_OD_CDD	= 0x2805,
+	CD_SOURCE_OD_VCD	= 0x2806,
+
+	/* SW Upgrade */
+	CD_SOURCE_USBUPGRADE = 0x2900,
+
+	/* Record */
+	CD_SOURCE_RECORD	= 0x3000,
+	CD_SOURCE_RECORD1	= 0x3001,
+	CD_SOURCE_RECORD2	= 0x3002,
+
+	/* Radio */
+	CD_SOURCE_FM_RADIO	= 0x3100,
+
+	/* MEDIA Picture */
+	CD_SOURCE_MEDIA_MOVIE	= 0x3200,
+
+	/* IPTV */
+	CD_SOURCE_IPTV		= 0x3300,
+	CD_SOURCE_IPTV_VOD	= 0x3301,
+	CD_SOURCE_IPTV_LIVE	= 0x3302,
+	CD_SOURCE_IPTV_CIP	= 0x3303,
+
+	/* RVU */
+	CD_SOURCE_RVU		= 0x3400,
+
+	/* MAGIC INOF */
+	CD_SOURCE_MAGIC_INFO	= 0x3500,
+
+	/* DIIVA */
+	CD_SOURCE_DIIVA		= 0x3600,
+
+	/* 3D */
+	CD_SOURCE_3DTV		= 0x3700,
+	CD_SOURCE_3DPVR		= 0x3800,
+
+	/* RUI */
+	CD_SOURCE_RUI		= 0x3900,
+
+	/* NETWORK STREAM */
+	CD_SOURCE_NETWORK_STREAM	= 0x4000,
+
+	CD_SOURCE_MAX		= 0xffff,
+
+	/* delete until 9/13 */
+	CD_SOURCE_AV4		= 0x0304,
+	CD_SOURCE_SVIDEO4	= 0x0404,
+	CD_SOURCE_COMP4		= 0x0504,
+	CD_SOURCE_PC4		= 0x0604,
+	CD_SOURCE_SCART4	= 0x0904,
+	CD_SOURCE_DVI4		= 0x0704,
+};
+
+enum format_3d_k {
+	CD_3D_FORMAT_MPO,		/* MPO(Photo) 형식 3D Auto Detection 을 위한 포맷 구분 Enum */
+	CD_3D_FORMAT_SVAF,		/* SVAF(Movie) 형식 3D Auto Detection 을 위한 포맷 구분 Enum */
+	CD_3D_FORMAT_M2TS,		/* M2TS(Photo) 형식 3D Auto Detection 을 위한 포맷 구분 Enum */
+	CD_3D_FORMAT_FILENAME,		/* File Name 기준 3D Auto Detection 을 위한 포맷 구분 Enum */
+	CD_3D_FORMAT_MVC,		/* Multi Video Codec */
+	CD_3D_FORMAT_MVC_SEAMLESS,	/* Multi Video Codec - for seamless */
+	CD_3D_FORMAT_DUAL3DCH,		/* KR3D/Dual stream */
+	CD_3D_FORMAT_GRAPHIC,		/* 3D Graphic 지원. SmartHub 등에서 3D Game 지원 포맷. */
+#if 1 /* SUPPORT_NTV  */
+	CD_3D_FORMAT_DUAL_FRAME,	/* Dual Watch ( NTV ) - 2개 Source를 3D 영상으로 만들어 각각 보는 방식. */
+	CD_3D_FORMAT_DUAL_PLAY,		/* Enjoy Game ( NTV) - 1개 Source의 3D 영상을 L/R 로 분리하여 각각 보는 방식. */
+#endif
+	CD_3D_FORMAT_SCREEN_4DIVISION,	/* UDTV - 4분할 화면 대응 */
+	CD_3D_FORMAT_MAX,
+};
+
+
+#define TD_3D_FORMAT_MPO		CD_3D_FORMAT_MPO
+#define TD_3D_FORMAT_SVAF		CD_3D_FORMAT_SVAF
+#define TD_3D_FORMAT_M2TS		CD_3D_FORMAT_M2TS
+#define TD_3D_FORMAT_FILENAME		CD_3D_FORMAT_FILENAME
+#define TD_3D_FORMAT_MAX		CD_3D_FORMAT_MAX
+#define TD_3D_FORMAT_MVC		CD_3D_FORMAT_MVC
+#define TD_3D_FORMAT_DUAL3DCH		CD_3D_FORMAT_DUAL3DCH
+#define TD_3D_FORMAT_GRAPHIC		CD_3D_FORMAT_GRAPHIC
+#define TD_3D_FORMAT_DUAL_FRAME		CD_3D_FORMAT_DUAL_FRAME
+#define TD_3D_FORMAT_MVC_SEAMLESS	CD_3D_FORMAT_MVC_SEAMLESS
+#define TD_3D_FORMAT_DUAL_PLAY		CD_3D_FORMAT_DUAL_PLAY
+
+enum cd_video_format_k {
+	CD_VIDEO_FORMAT_MPEG1,
+	CD_VIDEO_FORMAT_MPEG2,
+	CD_VIDEO_FORMAT_MPEG4,
+	CD_VIDEO_FORMAT_H264,
+	CD_VIDEO_FORMAT_MSMPEG4,
+	CD_VIDEO_FORMAT_WMV,
+	CD_VIDEO_FORMAT_MJPEG,
+	CD_VIDEO_FORMAT_H263,
+	CD_VIDEO_FORMAT_SVC,
+	CD_VIDEO_FORMAT_ON2,
+	CD_VIDEO_FORMAT_AVS,
+	CD_VIDEO_FORMAT_REALVIDEO,
+	CD_VIDEO_FORMAT_MVC_B,
+	CD_VIDEO_FORMAT_MVC_D,
+	CD_VIDEO_FORMAT_JPEG,
+	CD_VIDEO_FORMAT_GIF,
+	CD_VIDEO_FORMAT_PNG,
+	CD_VIDEO_FORMAT_K3D_MPEG,
+	CD_VIDEO_FORMAT_K3D_H264,
+	CD_VIDEO_FORMAT_MAX,
+	CD_VIDEO_FORMAT_NONE = -1,
+	CD_VIDEO_FORMAT_VC1 = -2,
+	CD_VIDEO_FORMAT_DIVX = -3,
+	CD_VIDEO_FORMAT_XVID = -4,
+	CD_VIDEO_FORMAT_VP6 = -5,
+	CD_VIDEO_FORMAT_RMVB = -6,
+	CD_VIDEO_FORMAT_MVC = -7,
+};
+
+enum panel_3d_brightness_type {
+	PANEL_3D_BRIGHTNESS_NORMAL,
+	PANEL_3D_BRIGHTNESS_HIGH,
+};
+
+enum picture_mode_k {
+	PICTURE_MODE_DYNAMIC,
+	PICTURE_MODE_STANDARD,
+	PICTURE_MODE_MOVIE,
+	PICTURE_MODE_CAL_NIGHT,
+	PICTURE_MODE_CAL_DAY,
+	PICTURE_MODE_GAME,
+	PICTURE_MODE_NATURAL,
+	PICTURE_MODE_HP,
+	PICTURE_MODE_HP_WEB,
+	PICTURE_MODE_RELAX,
+	/* 3D */
+	PICTURE_MODE_3D_DYNAMIC,
+	PICTURE_MODE_3D_STANDARD,
+	PICTURE_MODE_3D_NATURAL,
+	PICTURE_MODE_3D_MOVIE,
+	PICTURE_MODE_3D_RELAX,
+	PICTURE_MODE_3D_CAL_NIGHT,
+	PICTURE_MODE_3D_CAL_DAY,
+	/* MFM */
+	PICTURE_MODE_MAGICBRIGHT_ENTERTAIN,
+	PICTURE_MODE_MAGICBRIGHT_INTERNET,
+	PICTURE_MODE_MAGICBRIGHT_TEXT,
+	PICTURE_MODE_MAGICBRIGHT_DYNAMIC_CONTRAST,
+	PICTURE_MODE_MAGICBRIGHT_CUSTOM,
+	/* LFD */
+	PICTURE_MODE_CUSTOM_LFD,
+	PICTURE_MODE_INFORMATION_LFD,
+	PICTURE_MODE_ADVERTISEMENT_LFD,
+	PICTURE_MODE_CALIBRATION_LFD,
+	PICTURE_MODE_3D_CUSTOM_LFD,
+	PICTURE_MODE_3D_INFORMATION_LFD,
+	PICTURE_MODE_3D_ADVERTISEMENT_LFD,
+	PICTURE_MODE_3D_CALIBRATION_LFD,
+	/* PJT */
+	PICTURE_MODE_VIVID,
+	PICTURE_MODE_MOVIE1,
+	PICTURE_MODE_MOVIE2,
+	PICTURE_MODE_USER1,
+	PICTURE_MODE_USER2,
+	PICTURE_MODE_USER3,
+	PICTURE_MODE_LAST,
+	PICTURE_MODE_INVALID = -1,
+};
+
+enum region_kind_k {
+	DUMMY_REGION
+};
+
+#define BT_PULSE_DEFAULT_WIDTH		30
+#define BT_PULSE_REF_WIDTH		BT_PULSE_DEFAULT_WIDTH
+
+enum resolution_k {
+	CD_RESOLUTION_NT,
+	CD_RESOLUTION_1080I,
+	CD_RESOLUTION_1080P,
+	CD_RESOLUTION_720P,
+	CD_RESOLUTION_480P,
+	CD_RESOLUTION_480I,
+	CD_RESOLUTION_480P_861B,
+	CD_RESOLUTION_480P_SMPTE,
+	CD_RESOLUTION_1080P_24Hz,
+	CD_RESOLUTION_1080P_30Hz,
+	CD_RESOLUTION_640X480P,
+	CD_RESOLUTION_1440X480I,
+	CD_RESOLUTION_1440X240P,
+	CD_RESOLUTION_240P,
+	CD_RESOLUTION_540P,
+
+	/* for DVB/PAL */
+	CD_RESOLUTION_PAL,
+	CD_RESOLUTION_PAL_M,
+	CD_RESOLUTION_PAL_N,
+	CD_RESOLUTION_SECAM,
+	CD_RESOLUTION_NT_443,
+	CD_RESOLUTION_576P,
+	CD_RESOLUTION_576I,
+	CD_RESOLUTION_1440X576I,
+	CD_RESOLUTION_1440X288P,
+	CD_RESOLUTION_1080I_50Hz,
+	CD_RESOLUTION_1080P_25Hz,
+	CD_RESOLUTION_1080P_50Hz,
+	CD_RESOLUTION_720P_50Hz,
+	CD_RESOLUTION_288I,
+
+	/* for 3D */
+	CD_RESOLUTION_720P_3D,
+	CD_RESOLUTION_720P_50Hz_3D,
+	CD_RESOLUTION_1080I_50Hz_3D,
+	CD_RESOLUTION_1080I_60Hz_3D,
+	CD_RESOLUTION_1080P_24Hz_3D,
+	CD_RESOLUTION_1080P_25Hz_3D,
+	CD_RESOLUTION_1080P_30Hz_3D,
+	CD_RESOLUTION_1080P_48Hz_3D,
+	CD_RESOLUTION_1080P_50Hz_3D,
+	CD_RESOLUTION_1080P_60Hz_3D,
+
+	/* ADD PC INPUT RESOLUTION BY YCSONG */
+	CD_RESOLUTION_PC_START,
+	CD_RESOLUTION_640X240_60HZ = CD_RESOLUTION_PC_START,
+	CD_RESOLUTION_640X350_70HZ,
+	CD_RESOLUTION_640X350_85HZ,
+	CD_RESOLUTION_VGA_60HZ,
+	CD_RESOLUTION_656X496_60HZ,
+	CD_RESOLUTION_VGA_67HZ,
+	CD_RESOLUTION_VGA_70HZ,
+	CD_RESOLUTION_VGA_72HZ,
+	CD_RESOLUTION_656X496_72HZ,
+	CD_RESOLUTION_VGA_75HZ,
+	CD_RESOLUTION_VGA_85HZ,
+	CD_RESOLUTION_720X400_70HZ,
+	CD_RESOLUTION_720X400_85HZ,
+	CD_RESOLUTION_720X480I_60HZ,
+	CD_RESOLUTION_720X576I_50HZ,
+	CD_RESOLUTION_720X576_50HZ,
+	CD_RESOLUTION_720X576_60HZ,
+	/* CD_RESOLUTION_720X576_70HZ, */
+	CD_RESOLUTION_720X576_75HZ,
+	CD_RESOLUTION_720X576_85HZ,
+	CD_RESOLUTION_SVGA_56HZ,
+	CD_RESOLUTION_SVGA_60HZ,
+	CD_RESOLUTION_SVGA_70HZ,
+	CD_RESOLUTION_SVGA_72HZ,
+	CD_RESOLUTION_SVGA_75HZ,
+	CD_RESOLUTION_SVGA_85HZ,
+	CD_RESOLUTION_832X624_75HZ,
+	/* CD_RESOLUTION_WVGA_59HZ, */
+	CD_RESOLUTION_WVGA_60HZ,
+	/* CD_RESOLUTION_WVGA_75HZ, */
+	CD_RESOLUTION_XGA_60HZ,
+	CD_RESOLUTION_XGA_70HZ,
+	CD_RESOLUTION_XGA_72HZ,
+	CD_RESOLUTION_XGA_75HZ,
+	CD_RESOLUTION_XGA_75HZ_MAC,
+	CD_RESOLUTION_XGA_85HZ,
+	CD_RESOLUTION_1152X864_60HZ,
+	CD_RESOLUTION_1152X864_70HZ,
+	CD_RESOLUTION_1152X864_72HZ,
+	CD_RESOLUTION_1152X864_75HZ,
+	CD_RESOLUTION_1152X870_75HZ,
+	/* CD_RESOLUTION_1152X864_85HZ, */
+	CD_RESOLUTION_1152X900_66HZ,
+	CD_RESOLUTION_1152X900_76HZ,
+	CD_RESOLUTION_1280X720_50HZ,
+	CD_RESOLUTION_1280X720_60HZ,
+	CD_RESOLUTION_1280X720_60HZCVT,
+	CD_RESOLUTION_1280X720_70HZ,
+	CD_RESOLUTION_1280X720_72HZ,
+	CD_RESOLUTION_1280X720_75HZ,
+	CD_RESOLUTION_1280X720_85HZ,
+	CD_RESOLUTION_1280X768_60HZ,
+	CD_RESOLUTION_1280X768_75HZ,
+	CD_RESOLUTION_1280X800_60HZ,
+	CD_RESOLUTION_1280X800_75HZ,
+	CD_RESOLUTION_1280X960_60HZ,
+	CD_RESOLUTION_1280X960_70HZ,
+	CD_RESOLUTION_1280X960_72HZ,
+	CD_RESOLUTION_1280X960_75HZ,
+	CD_RESOLUTION_1280X960_85HZ,
+	/* CD_RESOLUTION_SXGA_48HZ, */
+	CD_RESOLUTION_SXGA_60HZ,
+	/* CD_RESOLUTION_SXGA_60HZ_SOG,
+	CD_RESOLUTION_SXGA_67HZ, */
+	CD_RESOLUTION_SXGA_70HZ,
+	CD_RESOLUTION_SXGA_72HZ,
+	CD_RESOLUTION_SXGA_75HZ,
+	CD_RESOLUTION_SXGA_76HZ,
+	CD_RESOLUTION_SXGA_85HZ,
+	CD_RESOLUTION_WXGA_60HZ,
+	CD_RESOLUTION_1366X768_60HZ,
+	CD_RESOLUTION_1400X1050_60HZRB,
+	CD_RESOLUTION_1400X1050_60HZ,
+	CD_RESOLUTION_1400X1050_75HZ,
+	/* CD_RESOLUTION_1440X900_60HZRB, */
+	CD_RESOLUTION_1440X900_60HZ,
+	CD_RESOLUTION_1440X900_75HZ,
+	CD_RESOLUTION_1600X900_60HZRB,
+	/* CD_RESOLUTION_1600X1024_75HZ,
+	CD_RESOLUTION_UXGA_60HZRB, */
+	CD_RESOLUTION_UXGA_60HZ,
+	/* CD_RESOLUTION_UXGA_64HZ, */
+	CD_RESOLUTION_UXGA_65HZ,
+	CD_RESOLUTION_UXGA_67HZ,
+	CD_RESOLUTION_UXGA_70HZ,
+	CD_RESOLUTION_UXGA_75HZ,
+	/* CD_RESOLUTION_UXGA_85HZ, */
+	CD_RESOLUTION_1680X1050_60HZRB,
+	CD_RESOLUTION_1680X1050_60HZ,
+	CD_RESOLUTION_1680X1050_75HZ,
+	/* CD_RESOLUTION_1680X1050_85HZ, */
+	CD_RESOLUTION_1920X1080_24HZ,
+	CD_RESOLUTION_1920X1080_25HZ,
+	CD_RESOLUTION_1920X1080_30HZ,
+	CD_RESOLUTION_1920X1080I_50HZ,
+	CD_RESOLUTION_1920X1080_50HZ,
+	CD_RESOLUTION_1920X1080_60HZRB,
+	CD_RESOLUTION_1920X1080_60HZCVT,
+	CD_RESOLUTION_1920X1080I_60HZ,
+	CD_RESOLUTION_1920X1080_60HZ,
+	/* CD_RESOLUTION_1920X1080_75HZ, */
+	CD_RESOLUTION_1920X1200_60HZRB,
+	CD_RESOLUTION_1920X1200_60HZ,
+	CD_RESOLUTION_2048X1152_60HZRB,
+	CD_RESOLUTION_2560X1600_60HZRB,
+	CD_RESOLUTION_PC_END	= CD_RESOLUTION_2560X1600_60HZRB,
+	CD_RESOLUTION_NOSIGNAL,
+	CD_RESOLUTION_NOVIDEO,
+	CD_RESOLUTION_NOTDEFINE,
+	CD_RESOLUTION_NOTSUPPORTED,
+
+	/* For UD */
+	CD_RESOLUTION_2160P_30HZ,
+	CD_RESOLUTION_2160P_24HZ,
+	CD_RESOLUTION_2160P_25HZ,
+	CD_RESOLUTION_MAX
+};
+
+#define TD_RESOLUTION_720P			CD_RESOLUTION_720P
+#define TD_RESOLUTION_720P_50Hz			CD_RESOLUTION_720P_50Hz
+#define TD_RESOLUTION_1080I			CD_RESOLUTION_1080I
+#define TD_RESOLUTION_1080I_50Hz		CD_RESOLUTION_1080I_50Hz
+#define TD_RESOLUTION_720P_3D			CD_RESOLUTION_720P_3D
+#define TD_RESOLUTION_720P_50Hz_3D		CD_RESOLUTION_720P_50Hz_3D
+#define TD_RESOLUTION_1080P_24Hz_3D		CD_RESOLUTION_1080P_24Hz_3D
+#define TD_RESOLUTION_1080P_25Hz_3D		CD_RESOLUTION_1080P_25Hz_3D
+#define TD_RESOLUTION_1080P_30Hz_3D		CD_RESOLUTION_1080P_30Hz_3D
+#define TD_RESOLUTION_1080P_48Hz_3D		CD_RESOLUTION_1080P_48Hz_3D
+#define TD_RESOLUTION_1080P_50Hz_3D		CD_RESOLUTION_1080P_50Hz_3D
+#define TD_RESOLUTION_1080P_60Hz_3D		CD_RESOLUTION_1080P_60Hz_3D
+#define TD_RESOLUTION_1080I_50Hz_3D		CD_RESOLUTION_1080I_50Hz_3D
+#define TD_RESOLUTION_1080I_60Hz_3D		CD_RESOLUTION_1080I_60Hz_3D
+#define TD_RESOLUTION_NOSIGNAL			CD_RESOLUTION_NOSIGNAL
+
+#define TD_RESOLUTION_1080P_24Hz		CD_RESOLUTION_1080P_24Hz
+#define TD_RESOLUTION_1080P_25Hz		CD_RESOLUTION_1080P_25Hz
+#define TD_RESOLUTION_1080P_30Hz		CD_RESOLUTION_1080P_30Hz
+#define TD_RESOLUTION_1080P_50Hz		CD_RESOLUTION_1080P_50Hz
+#define TD_RESOLUTION_1080P			CD_RESOLUTION_1080P
+
+
+enum e_input_v_freq {
+	E_FREQUENCY_50HZ,
+	E_FREQUENCY_60HZ,
+	E_FREQUENCY_48HZ,
+	E_NUM_OF_INPUT_V_FREQ
+};
+
+enum motion_plus_mode {
+	E_MOTION_PLUS_OFF = 0,
+	E_MOTION_PLUS_WEAK,
+	E_MOTION_PLUS_MEDIUM,
+	E_MOTION_PLUS_STRONG,
+	E_MOTION_PLUS_CUSTOM,
+	E_MOTION_PLUS_DEMO,
+	E_MOTION_PLUS_RESET,
+	E_MOTION_PLUS_CHECK,
+	E_MOTION_PLUS_SUPPORT,
+	E_MOTION_PLUS_PC,
+	E_MOTION_PLUS_FACTORY,
+	E_MOTION_PLUS_LAST
+};
+
+enum e_frc_comp {
+	E_FRC_COMP = 0,
+	E_FRC_NO_COMP,
+	E_FRC_NO_COMP_3D,
+	E_FRC_NO_COMP_3D_FS,
+	E_NUM_OF_FRC_COMP
+};
+
+enum e_frc_csc {
+	E_FRC_CSC_OFF = 0,
+	E_FRC_CSC_ON,
+	E_NUM_OF_FRC_CSC
+};
+
+enum e_frc_ratio {
+	E_FRC_RATIO_1X = 0,
+	E_FRC_RATIO_2X,
+	E_FRC_RATIO_4X,
+	E_FRC_RATIO_30TO60,
+	E_FRC_RATIO_50TO50,
+	E_FRC_RATIO_50TO60,
+	E_FRC_RATIO_24TO60_FP,
+	E_FRC_RATIO_25TO60_FP,
+	E_FRC_RATIO_30TO60_FP,
+	E_FRC_RATIO_60TO60_FP,
+	E_NUM_OF_FRC_RATIO
+};
+
+enum e_3d_input_format {
+	E_3D_1080_24_SBS = 0,
+	E_3D_1080_50_SBS,
+	E_3D_1080_60_SBS,
+	E_3D_1080_24_TNB,
+	E_3D_1080_50_TNB,
+	E_3D_1080_60_TNB,
+	E_3D_2160_24_FP,
+	E_3D_2160_25_FP,
+	E_3D_2160_30_FP,
+	E_3D_2160_50_FP,
+	E_3D_2160_60_FP,
+	E_3D_2160_50I_FP,
+	E_3D_2160_60I_FP,
+	E_3D_1440_50_FP,
+	E_3D_1440_60_FP,
+	E_3D_SBS_50_GAME,
+	E_3D_TNB_50_GAME,
+	E_3D_2160_50FP_GAME,
+	E_3D_PC_CB,
+	E_3D_PC_LL,
+	E_3D_PC_VS,
+	E_3D_PC_FS,
+	E_3D_MPO,
+	E_NUM_OF_3D_INPUT_FORMAT
+};
+
+enum e_2d_to_3d_input_format {
+	E_2DTO3D_24HZ = 0,
+	E_2DTO3D_50HZ,
+	E_2DTO3D_60HZ,
+	E_2DTO3D_PC,
+	E_2DTO3D_50HZ_GAME,
+	E_NUM_OF_2DTO3D_INPUT_FORMAT
+};
+
+enum e_3d_input_size {
+	E_SIZE_50HZ = 0,
+	E_SIZE_60HZ,
+	E_SIZE_48TO48,
+	E_SIZE_50TO60,
+	E_SIZE_50TO50,
+	E_SIZE_50TO50_GAME,
+	E_SIZE_60TO60,
+	E_SIZE_60TO60_3D,
+	E_SIZE_24TO48_FP,
+	E_SIZE_24TO60_FP,
+	E_SIZE_25TO60_FP,
+	E_SIZE_30TO60_FP,
+	E_SIZE_50TO50_FP,
+	E_SIZE_50TO60_FP,
+	E_SIZE_50TO60_FPI,
+	E_SIZE_60TO60_FP,
+	E_SIZE_1440_50_FP,
+	E_SIZE_1440_60_FP,
+	E_SIZE_1440_50TO50_FP,
+	E_NUM_OF_3D_INPUT_SIZE
+/*
+	E_SIZE_50HZ = 0,
+	E_SIZE_60HZ,
+	E_SIZE_50TO60,
+	E_SIZE_50TO50,
+	E_SIZE_60TO60,
+	E_SIZE_24TO60_FP,
+	E_SIZE_25TO60_FP,
+	E_SIZE_30TO60_FP,
+	E_SIZE_50TO50_FP,
+	E_SIZE_50TO60_FP,
+	E_SIZE_50TO60_FPI,
+	E_SIZE_60TO60_FP,
+	E_NUM_OF_3D_INPUT_SIZE
+*/
+};
+
+enum e_3d_scalar {
+	E_3D_SCALER_NORMAL = 0,
+	E_3D_SCALER_2D_PC,
+	E_3D_SCALER_2D3D,
+	E_3D_SCALER_2D3D_PC,
+	E_3D_SCALER_SBS,
+	E_3D_SCALER_TNB,
+	E_3D_SCALER_2160_24P_FP,
+	E_3D_SCALER_2160_25P_FP,
+	E_3D_SCALER_2160_30P_FP,
+	E_3D_SCALER_2160_50I_FP,
+	E_3D_SCALER_2160_60I_FP,
+	E_3D_SCALER_2160_50P_FP,
+	E_3D_SCALER_2160_60P_FP,
+	E_3D_SCALER_1440_24P_FP,
+	E_3D_SCALER_1440_25P_FP,
+	E_3D_SCALER_1440_30P_FP,
+	E_3D_SCALER_1440_50P_FP,
+	E_3D_SCALER_1440_60P_FP,
+	E_3D_SCALER_PC_CHECK_BOARD,
+	E_3D_SCALER_PC_LINE_BY_LINE,
+	E_3D_SCALER_PC_VERTICL_STRIPE,
+	E_3D_SCALER_PC_FRAME_SEQUENTIAL,
+	E_3D_SCALER_2160_MPO,
+	E_NUM_OF_SET_3D_SCALER
+/*
+	E_3D_SCALER_2D3D = 0,
+	E_3D_SCALER_SBS,
+	E_3D_SCALER_TNB,
+	E_3D_SCALER_NORMAL,
+	E_NUM_OF_SET_3D_SCALER
+*/
+};
+
+enum e_judder {
+	E_JUDDER_1X_J1 = 0,
+	E_JUDDER_2X_J1,
+	E_JUDDER_4X_J1,
+	E_JUDDER_50_TO_60_J1,
+	E_JUDDER_24_TO_60_J1,
+	E_JUDDER_24_TO_60_J2,
+	E_JUDDER_25_TO_60_J3,
+	E_JUDDER_30_TO_60_J4,
+	E_JUDDER_NONE,
+	E_NUM_OF_SET_JUDDER
+};
+
+enum e_submcu_ctrl_mode {
+	E_SUB_CTRL_PVCC            = 0x00, /* SW_PVCC */
+	E_SUB_CTRL_TCON_RESET      = 0x01, /* T_RST */
+	E_SUB_CTRL_3D_EN           = 0x02, /* 3D */
+	E_SUB_CTRL_TCON_DCC        = 0x03, /* TEMP SENSOR */
+	E_SUB_CTRL_TCON_EEPROM_WP  = 0x04, /* TCON EEPROM WP ON/OFF */
+	E_SUB_CTRL_DEVICE_NRESET   = 0x05, /* ECHOFS NRESET */
+	E_SUB_CTRL_DEVICE_FASTINIT = 0x06, /* ECHOFS FAST INIT FOR FASTLOGO */
+	E_SUB_CTRL_N240_SEL        = 0x07, /* N240_SEL for Gamma IC */
+	E_NUM_OF_SUB_CTRL_MODE
+};
+
+enum e_comp_3d_black {
+	E_COMP_3D_PILLAR_ON,
+	E_COMP_3D_PILLAR_OFF,
+	E_COMP_3D_LETTERBOX_ON,
+	E_COMP_3D_LETTERBOX_OFF,
+	E_NUM_OF_COMP_3D_BLACK
+};
+
+enum e_pivot_mode {
+	E_PICTURE_PIVOT_MODE,
+	E_PICTURE_NON_PIVOT_MODE,
+	E_NUM_OF_PICTURE_PIVOT_MODE
+};
+
+enum e_aging_pattern {
+	AGING_PATTERN_NONE,
+	AGING_PATTERN_RED,
+	AGING_PATTERN_GREEN,
+	AGING_PATTERN_BLUE,
+	AGING_PATTERN_WHITE,
+	AGING_PATTERN_SCROLLING
+};
+
+enum e_picture_setting {
+	E_PICTURE_DEFAULT,
+	E_PICTURE_HD,
+	E_PICTURE_SD,
+	E_PICTURE_1080P,
+	E_PICTURE_NOT_1080P,
+};
+
+enum e_bypass_mode {
+	eBYPASS_OFF = 0,
+	eBYPASS_2DP,
+	eBYPASS_3DP,
+};
+
+enum e_autoview_mode {
+	E_AUTOVIEW_NORMAL_MODE,
+	E_AUTOVIEW_DIRECT_KEY_MODE,
+	E_NUM_OF_AUTOVIEW_MODE
+};
+
+enum e_autoview_screen_mode {
+	eAUTOVIEW_WIDE,
+	eAUTOVIEW_WIDE_ZOOM,
+	eAUTOVIEW_ZOOM,
+	eAUTOVIEW_SCREEN_END
+};
+
+enum e_picture_size_type {
+	PS_16X9,				/* Picture Size 16:9 */
+	PS_4X3,					/* Picture Size 4:3 */
+	PS_WZOOM,				/* Picture Size Wide Zoom */
+	PS_ZOOM1,				/* Picture Size Zoom1 */
+	PS_ZOOM1_DN,				/* Picture Size Zoom1 Down */
+	PS_ZOOM2,				/* Picture Size Zoom2 */
+	PS_WIDEFIT,				/* Picture Size Wide fit */
+	PS_JUSTSCAN,				/* Picture Size Just Scan */
+	PS_SMART_VIEW1,				/* Picture Size Smart View1, 50% of Default Size */
+	PS_SMART_VIEW2,				/* Picture Size Smart View2, 75% of Default Size */
+	PS_PIP_SMALL_TOPLEFT,			/* Picture Size Pip Small 좌측 상단. */
+	PS_PIP_SMALL_BOTTOMLEFT,		/* Picture Size Pip Small 좌측 하단. */
+	PS_PIP_SMALL_TOPRIGHT,			/* Picture Size Pip Small 우측 상단. */
+	PS_PIP_SMALL_BOTTOMRIGHT,		/* Picture Size Pip Small 우측 하단. */
+	PS_PIP_LARGE_TOPLEFT,			/* Picture Size Pip Large 좌측 상단. */
+	PS_PIP_LARGE_BOTTOMLEFT,		/* Picture Size Pip Large 좌측 하단. */
+	PS_PIP_LARGE_TOPRIGHT,			/* Picture Size Pip Large 우측 상단. */
+	PS_PIP_LARGE_BOTTOMRIGHT,		/* Picture Size Pip Large 우측 하단. */
+	PS_PIP_DSMALL,				/* Picture Size Pip Double Small. */
+	PS_PIP_DSMALL2,				/* Picture Size Pip Double Small2 (for Y Project) */
+	PS_PIP_DLARGE,				/* Picture Size Pip Double Large. */
+	PS_PIP_POP,				/* Picture Size Pip POP (for LFD) */
+	PS_MAIN_DSMALL,				/* Picture Size Main Double Small. */
+	PS_MAIN_DSMALL2,			/* Picture Size Pip Double Small2 (for Y Project) */
+	PS_MAIN_DLARGE,				/* Picture Size Main Double Large. */
+	PS_MAIN_POP,				/* Picture Size Pip POP (for LFD) */
+	PS_PIG,					/* Picture Size PIG(Program Infomation Guide) */
+	PS_CUSTOM,				/* Picture Size CUSTOM */
+	PS_WIDE,				/* Picture Size Wide(패널의 사이즈에 맞춰서 full로 찬 모드) */
+	PS_ZOOM_CUSTOM,				/* Picture Size CUSTOM (for LFD) */
+	PS_ANAMORPHIC,				/* Picture Size Anamorphic (for Projector) */
+	PS_ORIGINAL_RATIO,			/*  Picture Size Origital Ratio ( for LFD ) */
+	/* AFD SIZE START */
+	PS_AFD_16X9_14X9,			/* Picture Size 16X9_14X9 */
+	PS_MAX,
+};
+
+enum e_backend_ld_picture {
+	E_SMARTLED_OFF = 0,
+	E_SMARTLED_ON,
+	E_SMARTLED_MOVIELOW,
+	E_SMARTLED_MOVIEMIDDLE,
+	E_SMARTLED_MOVIEHIGH,
+	E_NUM_OF_SMARTLED_PICTURE,
+};
+
+enum e_frc_pattern_type {
+	FRC_PRE_PATTERN, /*  Step1, */
+	FRC_POST_PATTERN, /*  Step2, */
+	FRC_STOP_PATTERN, /*  Stop FRC Pattern. */
+};
+
+enum factory_unique_id {
+	UID_BT_IR_SLAVDELAY48,
+	UID_BT_IR_SLAVDELAY60,
+	UID_BT_IR_BTEMIDEL_50_MOV,
+	UID_BT_IR_BTEMIDEL_60_DYN,
+	UID_BT_IR_BTEMIDEL_60_MOV,
+	UID_TEST_PATTERN_FRC_PRE_TEST_PATTERN,
+	UID_TEST_PATTERN_FRC_POST_TEST_PATTERN,
+	UID_FRC_FRC_FDISPLAY_ON_OFF,
+	UID_FRC_PC_MODE_ON_OFF,
+	UID_SPREAD_SPECTRUM_FRC_LVDS_SSC_ON_OFF,
+	UID_SPREAD_SPECTRUM_FRC_LVDS_SSC_MFR,
+	UID_SPREAD_SPECTRUM_FRC_LVDS_SSC_MRR,
+	UID_SPREAD_SPECTRUM_FRC_LVDS_SSC_PERIOD,
+	UID_SPREAD_SPECTRUM_FRC_LVDS_SSC_MODULATION,
+	UID_SPREAD_SPECTRUM_FRC_DDR_SSC_ON_OFF,
+	UID_SPREAD_SPECTRUM_FRC_DDR_SSC_MFR,
+	UID_SPREAD_SPECTRUM_FRC_DDR_SSC_MRR,
+	UID_DEBUG_HOME_PANEL_FRC,
+	UID_BT_IR_SLAVDELAY48_BON,
+	UID_BT_IR_SLAVDELAY60_BON,
+	UID_BCTR_R_CTR_DYN_ON,
+	UID_BCTR_R_CTR_MOV_ON,
+	UID_BCTR_R_IIR_OPTION,
+	UID_BCTR_R_IIR_VEL,
+	UID_BCTR_R_SLPFAC,
+	UID_BCTR_R_IIR_LTH,
+	UID_BCTR_R_IIR_LCOEF,
+	UID_BCTR_R_IIR_HCOEF,
+	UID_BCTR_R_UMAX_VAL,
+	UID_BCTR_R_UMIN_DYN_VAL,
+	UID_BCTR_R_UMIN_MOV_VAL,
+	UID_BCTR_R_MAX_DYN_DROP,
+	UID_BCTR_R_MIN_DYN_DROP,
+	UID_BCTR_R_MAXDOWN_TH1,
+	UID_BCTR_R_MAXDOWN_TH2,
+	UID_BCTR_R_UMAXH_TH,
+	UID_BCTR_R_UMINH_TH,
+	UID_BCTR_R_UMAX_MOV_VAL,
+	UID_BCTR_R_MAX_MOV_DROP,
+	UID_BCTR_R_MIN_MOV_DROP,
+	UID_BCTR_R_UMAXH_MOV_TH,
+	UID_BCTR_R_UMINH_MOV_TH,
+	UID_BCTR_R_HISTO_DYN_BIN,
+	UID_BCTR_R_HISTO_MOV_BIN,
+	UID_BCTR_CTR_ON_GLIMIT
+};
+
+enum e_celldepth_demo_state {
+	E_DEMO_OFF,
+	E_DEMO_ORIGINAL,
+	E_DEMO_1ST_IMAGE_PROCESSING,
+	E_DEMO_2ND_IMAGE_PROCESSING,
+	E_DEMO_1ST_ONOFF,
+	E_DEMO_2ND_ONOFF,
+	E_DEMO_3RD_ONOFF,
+	E_DEMO_IMAGE_PROCESSING,
+	E_DEMO_LCE_BITMAP,
+	E_DEMO_LCE_ONOFF
+};
+
+enum e_2d_input_format {
+	E_2D_VIDEO_24HZ = 0,
+	E_2D_VIDEO_50HZ,
+	E_2D_VIDEO_60HZ,
+	E_2D_PC,
+	E_NUM_OF_2D_INPUT_FORMAT
+};
+
+enum e_panel_type {
+	TD_PANEL_LCD,
+	TD_PANEL_PDP,	/* PDP */
+	TD_PANEL_GTV_DLP,
+	TD_PANEL_GTV_LCD,
+};
+
+enum e_vfrequency {
+	DUMMY_VFREQ
+};
+
+enum e_country_type {
+	TD_SELECT_US		= 0x00000001L,
+	TD_SELECT_KR		= 0x00000002L,
+	TD_SELECT_EU		= 0x00000004L,
+	TD_SELECT_DVBISDB	= 0x00000008L,
+	TD_SELECT_JP		= 0x00000040L,
+	TD_SELECT_CN		= 0x00000080L,
+	/*==== OPTION ========================*/
+	TD_SELECT_DVB           = (TD_SELECT_EU | TD_SELECT_CN),
+	TD_SELECT_ATSC		= (TD_SELECT_US | TD_SELECT_KR),
+	TD_SELECT_NOT_ATSC	= ~TD_SELECT_ATSC,
+
+	/*==== DEFAULT =======================*/
+	TD_SELECT_COUNTRY_DEFAULT	= TD_SELECT_US
+} ;
+
+enum e_locale_set {
+	DUMMY_LOCAL_SET
+};
+
+enum e_firmware_upgrade_mode {
+	E_FIRMWARE_UPGRADE_MAIN,
+	E_FIRMWARE_UPGRADE_FACTORY,
+	E_NUM_OF_FIRMWARE_UPGRADE_MODE,
+};
+
+enum e_backend_fw_version_header {
+	E_FOXFT1_240_VER_HEADER     = 0x00,
+	E_FOXFT1_120_VER_HEADER     = 0x01,
+	E_FOXFT1_120P_VER_HEADER    = 0x02,
+	E_FOXFT1_NTV_VER_HEADER     = 0x03,
+	E_FOXFT2_VER_HEADER         = 0x10,
+	E_FOXFT4_240_VER_HEADER     = 0x20,
+	E_NUM_OF_BACKEND_FW_VER_HEADER = 0xFF
+};
+
+enum e_color_format {
+	CD_COLOR_FORMAT_RGB,
+	CD_COLOR_FORMAT_YCbCr420,
+	CD_COLOR_FORMAT_YCbCr422,
+	CD_COLOR_FORMAT_YCbCr444,
+	CD_COLOR_FORMAT_XVYCC,
+	CD_COLOR_FORMAT_GRAY,
+	CD_COLOR_FORMAT_aRGB,
+	CD_COLOR_FORMAT_UNKNOWN,
+	CD_COLOR_FORMAT_AUTO,
+	CD_COLOR_FORMAT_RGB_FULL,
+	CD_COLOR_FORMAT_RGB_LIMITED
+};
+
+struct control_info {
+	enum cd_3d_effect_mode_k e_3d_mode;
+	int game_mode_on_off;
+	int internal_test;
+	enum cd_source_k e_source_mode;
+	int flickerless_3d;
+	enum format_3d_k e3dFormat;
+	int pc_mode;
+	enum e_film_mode film_mode;
+	enum motion_plus_mode auto_motion_mode;
+};
+
+struct video_extension_info {
+	int bit_rate;
+	enum cd_video_format_k e_video_format;
+	int level_type;
+};
+
+struct resolution_info {
+	unsigned int h_resolution;
+	unsigned int v_resolution;
+	unsigned int h_start;
+	unsigned int v_start;
+	unsigned int h_total;
+	unsigned int v_total;
+	unsigned int h_freq;
+	unsigned int v_freq;
+	int progress_scan;
+	int h_sync_positive;
+	int v_sync_positive;
+	int near_frequency;
+	int not_optimum_mode;
+	struct control_info control_info_3d;
+	struct video_extension_info video_ex_info;
+};
+
+struct foxft1_factory {
+	unsigned int m_iBTEmiDel_50_Dyn;
+	unsigned int m_iBTEmiDel_50_Mov;
+	unsigned int m_iBTEmiDel_60_Dyn;
+	unsigned int m_iBTEmiDel_60_Mov;
+	unsigned int m_iSlavDelay60;
+	unsigned int m_iSlavDelay48;
+	unsigned int m_iSlavDelay60_BON;
+	unsigned int m_iSlavDelay48_BON;
+	/*
+	FOXFT1_DutyDelay_t m_tDutyDelay;
+	FOXFT1_Glimit_t m_tGlimitLBRB;
+	FOXFT1_Glimit_t m_tGlimitLLRR;
+	*/
+};
+
+struct auto_motion_plus_t {
+	int is_ttx_on;
+	int is_pip_on;
+	int frame_doubling;
+	int is_game_mode;
+	int is_factory_mode;
+	enum cd_3d_effect_mode_k e_3d_mode;
+	unsigned char blur_reduction;
+	unsigned char judder_reduction;
+};
+
+struct rect_t {
+	int x;
+	int y;
+	int width;
+	int height;
+};
+
+struct drm_frc_automotion {
+	struct auto_motion_plus_t ampt;
+	enum motion_plus_mode mpm;
+};
+
+struct set_3d_t {
+	enum resolution_k res;
+	enum e_frc_comp frc_comp;
+	enum e_frc_csc frc_csc;
+	enum e_frc_ratio frc_ratio;
+	enum e_3d_input_format input_format_3d;
+	enum e_3d_input_size input_size_3d;
+	enum e_3d_scalar scaler_3d;
+	enum e_blur blur_set;
+	enum e_judder judder_set;
+	const char *p_remark;
+};
+
+struct sd_video_3d_settings {
+	enum cd_3d_effect_mode_k e3DModeIn;
+	enum cd_3d_effect_mode_k e3DModeOut;
+	/* enum sd_video_3d_shop_mode_k	e3DShopMode; */
+	unsigned int frameLockDelay;
+	int bFrameLockMode;
+};
+
+struct frc_video_3d_settings {
+	enum cd_3d_effect_mode_k e3DMode;
+	enum region_kind_k region;
+	enum format_3d_k e3DFormat;
+	int  vFreq;			/* Hz * 100 (ex: 50Hz = 5000) */
+	int bIsComponent;		/* if source is component 1 otherwise 0 */
+};
+
+struct frc_video_3d_detection {
+	enum e_autoview_mode av_type;
+	enum e_autoview_screen_mode av_mode;
+	struct rect_t rect;
+	enum cd_3d_effect_mode_k result;
+};
+
+struct frc_source_res_info {
+	enum cd_source_k source_mode;
+	enum resolution_k resolution;
+	enum picture_mode_k picture_mode;
+	enum e_color_format color_format;
+	int backlight;
+	int sports_mode;
+};
+
+struct frc_white_balance {
+	unsigned int r_gain;
+	unsigned int g_gain;
+	unsigned int b_gain;
+	unsigned int r_offset;
+	unsigned int g_offset;
+	unsigned int b_offset;
+};
+
+struct factory_data_ioctl {
+	enum factory_unique_id f_uid;
+	int f_val;
+	enum region_kind_k region;
+};
+
+struct auto_setting_ioctl {
+	int on_off;
+	int strength;
+	int viewpoint;
+};
+
+struct cell_depth_ioctl {
+	enum e_celldepth_demo_state demo_state;
+	int panel_size;
+};
+
+struct light_control_ioctl {
+	unsigned int start_pos;
+	unsigned int dim_pos_2;
+	unsigned int dim_pos_3;
+	unsigned int dim_pos_4;
+};
+
+struct firmware_upgrade_ioctl {
+	enum e_firmware_upgrade_mode fu_mode;
+	unsigned char *file_read_data;
+	unsigned int  data_size;
+
+};
+
+struct i2c_burst_data_ioctl {
+	unsigned short addr;
+	unsigned int len;
+	unsigned char *p_value;
+};
+
+struct i2c_data_ioctl {
+	unsigned short addr;
+	unsigned short mask;
+	unsigned short *p_value;
+};
+
+struct i2c_tcon_data_ioctl {
+	unsigned short addr;
+	unsigned short *data;
+};
+
+struct pwm_setting {
+	int common_block;
+	int common_frame;
+};
+
+struct pwm_width {
+	unsigned int pwm_width_offset[4];
+};
+
+struct bounds_ioctl {
+	unsigned short top;
+	unsigned short bottom;
+};
+
+struct latch_vcnt_ioctl {
+	unsigned int tcon_3d_latch_vcnt[4];
+};
+
+struct start_pos_ioctl {
+	unsigned int tcon_3d_start_pos[4];
+};
+
+struct rgb_pattern_ioctl {
+	enum e_frc_pattern_type frc_pattern;
+	int rgb_pattern;
+};
+
+struct cinema_black_ioctl {
+	unsigned int param_1;
+	unsigned int param_2;
+};
+
+struct cinema_black_pos {
+	unsigned int top_bottom;
+	unsigned int x_pos;
+	unsigned int y_pos;
+};
+
+struct cinema_black_block {
+	unsigned int top_bottom;
+	unsigned short r;
+	unsigned short g;
+	unsigned short b;
+};
+
+struct panel_vfreq_ioctl {
+	enum e_vfrequency type;
+	int is_country_60hz;
+};
+
+struct resolution_ioctl {
+	enum resolution_k res;
+	struct resolution_info res_info;
+};
+
+struct osd_region_ioctl {
+	int index;
+	int on_off;
+	int x;
+	int y;
+	int width;
+	int height;
+};
+
+struct sub_micom_cmd_ioctl {
+	enum e_submcu_ctrl_mode ctrl_mode;
+	unsigned short value;
+};
+
+struct bt_delay_ioctl {
+	unsigned int value;
+	enum region_kind_k region;
+};
+
+struct picture_test_ioctl {
+	enum e_frc_pattern_type frc_pattern;
+	int onoff;
+};
+
+/**********************************************************************/
+
+#ifndef PLZ_REMOVE_THESE
+
+#ifndef DRM_COMMAND_BASE
+#define DRM_COMMAND_BASE                0x40
+#define DRM_IOCTL_BASE			'd'
+#define DRM_IO(nr)			_IO(DRM_IOCTL_BASE, nr)
+#define DRM_IOR(nr, type)		_IOR(DRM_IOCTL_BASE, nr, type)
+#define DRM_IOW(nr, type)		_IOW(DRM_IOCTL_BASE, nr, type)
+#define DRM_IOWR(nr, type)		_IOWR(DRM_IOCTL_BASE, nr, type)
+#endif
+
+#define DRM_SDP_SET_PANEL_MUTE		0x15
+#define DRM_SDP_SET_SEAMLESS_MUTE	0x16
+
+#define DRM_IOCTL_PANEL_MUTE			DRM_IOWR(DRM_COMMAND_BASE + DRM_SDP_SET_PANEL_MUTE,    int)
+#define DRM_IOCTL_SEAMLESS_MUTE			DRM_IOWR(DRM_COMMAND_BASE + DRM_SDP_SET_SEAMLESS_MUTE, int)
+/* #define DRM_IOCTL_FRC_SET_BACKEND_COUNT	DRM_IOWR(DRM_COMMAND_BASE + DRM_SDP_SET_FRC_BACKEND, int) */
+/* #define DRM_IOCTL_FRC_SET_HOMEPANEL_MOVE	DRM_IOWR(DRM_COMMAND_BASE + DRM_SDP_SET_FRC_HOMEPANEL_MOVE, int) */
+
+
+/* 3D change */
+#define DRM_IOCTL_SDP_FOXFT1_SET_3D			FRC_IOWR(0x01, int)
+/* 2D change */
+#define DRM_IOCTL_SDP_FOXFT1_SET_2D			FRC_IOWR(0x02, int)
+/* 3D depth */
+#define DRM_IOCTL_SDP_FOXFT1_SET_3D_DEPTH		FRC_IOWR(0x03, int)
+/* 3D viewpoint */
+#define DRM_IOCTL_SDP_FOXFT1_SET_3D_VIEWPOINT		FRC_IOWR(0x04, int)
+/* 3D L R */
+#define DRM_IOCTL_SDP_FOXFT1_SET_3D_LR			FRC_IOWR(0x05, int)
+/* 3D bt delay */
+#define DRM_IOCTL_SDP_FOXFT1_SET_3D_BT_DELAY		FRC_IOWR(0x06, int)
+/* 3D video sync */
+#define DRM_IOCTL_SDP_FOXFT1_SET_3D_VIDEO_SYNC		FRC_IOWR(0x07, int)
+/* film set */
+#define DRM_IOCTL_SDP_FOXFT1_SET_FILM			FRC_IOWR(0x08, int)
+/* auto motion */
+#define DRM_IOCTL_SDP_FOXFT1_SET_AUTO_MOTION		FRC_IOWR(0x09, int)
+/* auto view */
+#define DRM_IOCTL_SDP_FOXFT1_SET_AUTO_VIEW		FRC_IOWR(0x0A, int)
+/* spread spectrum */
+#define DRM_IOCTL_SDP_FOXFT1_SET_SPREADSPECTRUM		FRC_IOWR(0x0B, int)
+/* BT SelfDiagnosis */
+#define DRM_IOCTL_SDP_FOXFT1_SET_BTSELFDIAGNOSIS	FRC_IOWR(0x0C, int)
+/* Set Blur Reduction */
+#define DRM_IOCTL_SDP_FOXFT1_SET_BLUR_REDUCTION		FRC_IOWR(0x0D, int)
+/* Set Judder reduction value */
+#define DRM_IOCTL_SDP_FOXFT1_SET_JUDDER_REDUCTION	FRC_IOWR(0x0E, int)
+/* Set Post pattern */
+#define DRM_IOCTL_SDP_FOXFT1_SET_PRE_PATTERN		FRC_IOWR(0x0F, int)
+/* Set Pre pattern */
+#define DRM_IOCTL_SDP_FOXFT1_SET_POST_PATTERN		FRC_IOWR(0x10, int)
+/*DEMO On/Off */
+#define DRM_IOCTL_SDP_FOXFT1_SET_DEMO			FRC_IOWR(0x11, int)
+/* Set Backend type(Single/Dual) */
+#define DRM_IOCTL_FRC_SET_BACKEND_COUNT			FRC_IOWR(0x12, int)
+/* Set Home Panel Move */
+#define DRM_IOCTL_FRC_SET_HOMEPANEL_MOVE		FRC_IOWR(0x13, int)
+
+#endif /* PLZ_REMOVE_THESE */
+
+/*******************************************************************************/
+
+/* 3D change */
+#define FRC_IOCTL_SDP_FOXFT1_SET_3D			FRC_IOWR(0x01, struct frc_video_3d_settings)
+
+/* 2D change */
+#define FRC_IOCTL_SDP_FOXFT1_SET_2D			FRC_IOWR(0x02, int)
+
+/* 3D depth */
+#define FRC_IOCTL_SDP_FOXFT1_SET_3D_DEPTH		FRC_IOWR(0x03, int)
+
+/* 3D viewpoint */
+#define FRC_IOCTL_SDP_FOXFT1_SET_3D_VIEWPOINT		FRC_IOWR(0x04, int)
+
+/* 3D L R swap */
+#define FRC_IOCTL_SDP_FOXFT1_SET_3D_LR			FRC_IOWR(0x05, int)
+
+/* 3D bt delay */
+#define FRC_IOCTL_SDP_FOXFT1_SET_3D_BT_DELAY		FRC_IOWR(0x06, struct bt_delay_ioctl)
+
+/* 3D video sync */
+#define FRC_IOCTL_SDP_FOXFT1_SET_3D_VIDEO_SYNC		FRC_IOWR(0x07, int)
+
+/* film set */
+#define FRC_IOCTL_SDP_FOXFT1_SET_FILM			FRC_IOWR(0x08, int)
+
+/* auto motion */
+#define FRC_IOCTL_SDP_FOXFT1_SET_AUTO_MOTION		FRC_IOWR(0x09, struct drm_frc_automotion)
+
+/* auto view */
+#define FRC_IOCTL_SDP_FOXFT1_SET_AUTO_VIEW		FRC_IOWR(0x0A, struct drm_frc_automotion)
+
+/* spread spectrum */
+#define FRC_IOCTL_SDP_FOXFT1_SET_SPREADSPECTRUM		FRC_IOWR(0x0B, int)
+
+/* BT SelfDiagnosis */
+#define FRC_IOCTL_SDP_FOXFT1_SET_BTSELFDIAGNOSIS	FRC_IOWR(0x0C, int)
+
+/* Set Blur Reduction */
+#define FRC_IOCTL_SDP_FOXFT1_SET_BLUR_REDUCTION		FRC_IOWR(0x0D, int)
+
+/* Set Judder reduction value */
+#define FRC_IOCTL_SDP_FOXFT1_SET_JUDDER_REDUCTION	FRC_IOWR(0x0E, int)
+
+/* Set Post pattern */
+#define FRC_IOCTL_SDP_FOXFT1_SET_PRE_PATTERN		FRC_IOWR(0x0F, int)
+
+/* Set Pre pattern */
+#define FRC_IOCTL_SDP_FOXFT1_SET_POST_PATTERN		FRC_IOWR(0x10, int)
+
+/*DEMO On/Off */
+#define FRC_IOCTL_SDP_FOXFT1_SET_DEMO			FRC_IOWR(0x11, int)
+
+/* Set Backend type(Single/Dual) */
+#define FRC_IOCTL_FRC_SET_BACKEND_COUNT			FRC_IOWR(0x12, int)
+
+/* Set Home Panel Move */
+#define FRC_IOCTL_FRC_SET_HOMEPANEL_MOVE		FRC_IOWR(0x13, int)
+
+/* panel mute */
+#define FRC_IOCTL_PANEL_MUTE				DRM_IOCTL_PANEL_MUTE
+
+/* panel mute seamless */
+#define FRC_IOCTL_SEAMLESS_MUTE				DRM_IOCTL_SEAMLESS_MUTE
+
+/* 3D auto detect */
+#define FRC_IOCTL_SDP_FOXFT1_GET_3D_DETECT		FRC_IOWR(0x14, struct frc_video_3d_detection)
+
+/* aging pattern */
+#define FRC_IOCTL_SDP_FOXFT1_SET_AGING_PATTERN		FRC_IOWR(0x15, int)
+
+/* factory data */
+#define FRC_IOCTL_SDP_FOXFT1_SET_FACTORY_DATA		FRC_IOWR(0x18, struct factory_data_ioctl)
+
+/* 3d black bar */
+#define FRC_IOCTL_SDP_FOXFT1_SET_3D_BLACK_BAR		FRC_IOWR(0x19, int)
+
+/* 3d lr control */
+#define FRC_IOCTL_SDP_FOXFT1_GET_3D_LR_CONTROL		FRC_IOWR(0x1A, int)
+
+/* 3d auto setting */
+#define FRC_IOCTL_SDP_FOXFT1_SET_3D_AUTO_SETTING	FRC_IOWR(0x1B, struct auto_setting_ioctl)
+
+/* pc mode */
+#define FRC_IOCTL_SDP_FOXFT1_SET_PC_MODE		FRC_IOWR(0x1C, int)
+
+/* dimming */
+#define FRC_IOCTL_SDP_FOXFT1_SET_DIMMING		FRC_IOWR(0x1D, int)
+
+/* picture info */
+#define FRC_IOCTL_SDP_FOXFT1_SET_PICTURE_INFO		FRC_IOWR(0x1E, struct frc_source_res_info)
+
+/* picture table */
+#define FRC_IOCTL_SDP_FOXFT1_SET_PICTURE_TABLE		FRC_IOWR(0x1F, int)
+
+/* 3d value */
+#define FRC_IOCTL_SDP_FOXFT1_GET_3D_SET_VALUE		FRC_IOWR(0x20, int)
+
+/* monitor task */
+#define FRC_IOCTL_SDP_FOXFT1_X_MONITOR_TASK		FRC_IOWR(0x21, int)
+
+/* white balance */
+#define FRC_IOCTL_SDP_FOXFT1_SET_WHITE_BALANCE		FRC_IOWR(0x22, struct frc_white_balance)
+
+/* glimit */
+#define FRC_IOCTL_SDP_FOXFT1_SET_GLIMIT			FRC_IOWR(0x23, int)
+
+/* bypass */
+#define FRC_IOCTL_SDP_FOXFT1_SET_BYPASS			FRC_IOWR(0x24, int)
+
+/* autoview osd detection */
+#define FRC_IOCTL_SDP_FOXFT1_START_AV_OSD_DETECT	FRC_IOWR(0x25, int)
+
+/* autoview osd level */
+#define FRC_IOCTL_SDP_FOXFT1_GET_AV_OSD_LEVEL		FRC_IOWR(0x26, int)
+
+/* reset autoview detect */
+#define FRC_IOCTL_SDP_FOXFT1_RESET_AV_DETECT		FRC_IOWR(0x27, int)
+
+/* autoview on off */
+#define FRC_IOCTL_SDP_FOXFT1_SET_AV_ON_OFF		FRC_IOWR(0x28, int)
+
+/* autoview interval */
+#define FRC_IOCTL_SDP_FOXFT1_SET_AV_INTERVAL		FRC_IOWR(0x29, int)
+
+/* focal zforce */
+#define FRC_IOCTL_SDP_FOXFT1_SET_FOCAL_ZFORCE		FRC_IOWR(0x2A, int)
+
+/* AFD start stop */
+#define FRC_IOCTL_SDP_FOXFT1_SET_AFD			FRC_IOWR(0x2B, int)
+
+/* autoview mode */
+#define FRC_IOCTL_SDP_FOXFT1_SET_AV_MODE		FRC_IOWR(0x2C, int)
+
+/* start/stop autoview detection */
+#define FRC_IOCTL_SDP_FOXFT1_SET_AV_DETECT		FRC_IOWR(0x2D, int)
+
+/* set autoview detect mode */
+#define FRC_IOCTL_SDP_FOXFT1_GET_AV_DETECT_MODE		FRC_IOWR(0x2E, int)
+
+/* set screen mode for autoview */
+#define FRC_IOCTL_SDP_FOXFT1_SET_SCREEN_MODE_AV		FRC_IOWR(0x2F, int)
+
+/* set screen rectangle for autoview */
+#define FRC_IOCTL_SDP_FOXFT1_SET_SCREEN_RECT_AV		FRC_IOWR(0x30, struct rect_t)
+
+/* check end autoview detection */
+#define FRC_IOCTL_SDP_FOXFT1_CHECK_END_AV_DETECT	FRC_IOWR(0x31, int)
+
+/* convert 3d in mode for sdal */
+/* #define FRC_IOCTL_SDP_FOXFT1_CONVERT_3D_IN_SDAL	FRC_IOWR(0x32, int) */
+
+/* convert 3d out mode for sdal */
+/* #define FRC_IOCTL_SDP_FOXFT1_CONVERT_3D_OUT_SDAL	FRC_IOWR(0x33, int) */
+
+/* get 3d mode for osd streoscopic */
+#define FRC_IOCTL_SDP_FOXFT1_GET_3D_OSD_STRSCOPIC	FRC_IOWR(0x34, int)
+
+/* get version */
+#define FRC_IOCTL_SDP_FOXFT1_GET_VERSION		FRC_IOWR(0x35, int)
+
+/* get data version */
+#define FRC_IOCTL_SDP_FOXFT1_GET_DATA_VERSION		FRC_IOWR(0x36, int)
+
+/* set picture size */
+#define FRC_IOCTL_SDP_FOXFT1_SET_PICTURE_SIZE		FRC_IOWR(0x37, int)
+
+/* recovery frc setting */
+#define FRC_IOCTL_SDP_FOXFT1_RECOVERY_FRC		FRC_IOWR(0x38, int)
+
+/* get frc init time */
+#define FRC_IOCTL_SDP_FOXFT1_GET_FRC_INIT_TIME		FRC_IOWR(0x39, int)
+
+/* execute cell depth demo */
+#define FRC_IOCTL_SDP_FOXFT1_X_CELL_DEPTH_DEMO		FRC_IOWR(0x3B, struct cell_depth_ioctl)
+
+/* set 3d light control */
+#define FRC_IOCTL_SDP_FOXFT1_SET_3D_LIGHT_CONTROL	FRC_IOWR(0x3C, struct light_control_ioctl)
+
+/* check crc for lvds */
+#define FRC_IOCTL_SDP_FOXFT1_CHECK_CRC_LVDS		FRC_IOWR(0x3D, int)
+
+/* check crc for tcon */
+#define FRC_IOCTL_SDP_FOXFT1_CHECK_CRC_TCON		FRC_IOWR(0x3E, int)
+
+/* upgrade firmware */
+#define FRC_IOCTL_SDP_FOXFT1_UPGRADE_FIRMWARE		FRC_IOWR(0x3F, struct firmware_upgrade_ioctl)
+
+/* read i2c burst data */
+#define FRC_IOCTL_SDP_FOXFT1_READ_BURST_I2C		FRC_IOWR(0x40, struct i2c_burst_data_ioctl)
+
+/* write i2c burst data */
+#define FRC_IOCTL_SDP_FOXFT1_WRITE_BURST_I2C		FRC_IOWR(0x41, struct i2c_burst_data_ioctl)
+
+/* write i2c data tcon update */
+#define FRC_IOCTL_SDP_FOXFT1_WRITE_I2C_TCON_UPDATE	FRC_IOWR(0x42, struct i2c_tcon_data_ioctl)
+
+/* read i2c data tcon update */
+#define FRC_IOCTL_SDP_FOXFT1_READ_I2C_TCON_UPDATE	FRC_IOWR(0x43, struct i2c_tcon_data_ioctl)
+
+/* read sub i2c data tcon update */
+#define FRC_IOCTL_SDP_FOXFT1_READ_SUB_I2C_TCON_UPDATE	FRC_IOWR(0x44, struct i2c_tcon_data_ioctl)
+
+/* read i2c data */
+#define FRC_IOCTL_SDP_FOXFT1_READ_I2C_DATA		FRC_IOWR(0x45, struct i2c_data_ioctl)
+
+/* write i2c mask data */
+#define FRC_IOCTL_SDP_FOXFT1_WRITE_I2C_MASK_DATA	FRC_IOWR(0x46, struct i2c_data_ioctl)
+
+/* write i2c data */
+#define FRC_IOCTL_SDP_FOXFT1_WRITE_I2C_DATA		FRC_IOWR(0x47, struct i2c_data_ioctl)
+
+/* set pwm ana mux */
+#define FRC_IOCTL_SDP_FOXFT1_SET_PWM_ANA_MUX		FRC_IOWR(0x48, int)
+
+/* set pwm brightness gain */
+#define FRC_IOCTL_SDP_FOXFT1_SET_PWM_BRI_GAIN		FRC_IOWR(0x49, int)
+
+/* set pwm common settings */
+#define FRC_IOCTL_SDP_FOXFT1_SET_PWM_CMN_SETTING	FRC_IOWR(0x4A, struct pwm_setting)
+
+/* set pwm width offset */
+#define FRC_IOCTL_SDP_FOXFT1_SET_PWM_WIDTH_OFFSET	FRC_IOWR(0x4B, struct pwm_width)
+
+/* set pwm limit */
+#define FRC_IOCTL_SDP_FOXFT1_SET_PWM_LIMIT		FRC_IOWR(0x4C, int)
+
+/* set pwm cnt */
+#define FRC_IOCTL_SDP_FOXFT1_SET_PWM_CNT		FRC_IOWR(0x4D, int)
+
+/* set tcon min width */
+#define FRC_IOCTL_SDP_FOXFT1_SET_TCON_MIN_WIDTH		FRC_IOWR(0x4E, int)
+
+/* get bounds */
+#define FRC_IOCTL_SDP_FOXFT1_GET_BOUNDS			FRC_IOWR(0x4F, struct bounds_ioctl)
+
+/* set pwm poff width */
+#define FRC_IOCTL_SDP_FOXFT1_SET_PWM_POFF_WIDTH		FRC_IOWR(0x50, struct bounds_ioctl)
+
+/* get pwm poff width */
+#define FRC_IOCTL_SDP_FOXFT1_GET_PWM_POFF_WIDTH		FRC_IOWR(0x51, struct bounds_ioctl)
+
+/* set 3d latch vcnt */
+#define FRC_IOCTL_SDP_FOXFT1_SET_3D_LATCH_VCNT		FRC_IOWR(0x52, struct latch_vcnt_ioctl)
+
+/* set 3d start pos */
+#define FRC_IOCTL_SDP_FOXFT1_SET_3D_START_POS		FRC_IOWR(0x53, struct start_pos_ioctl)
+
+/* get panel frequency */
+#define FRC_IOCTL_SDP_FOXFT1_GET_PANEL_FREQ		FRC_IOWR(0x54, int)
+
+/* set smart led picture */
+#define FRC_IOCTL_SDP_FOXFT1_SET_LED_PICTURE		FRC_IOWR(0x55, int)
+
+/* set dsp mode */
+/* #define FRC_IOCTL_SDP_FOXFT1_SET_DSP_MODE		FRC_IOWR(0x56, int) */
+
+/* set micon update flag */
+#define FRC_IOCTL_SDP_FOXFT1_SET_MICOM_UPDATE_FLAG	FRC_IOWR(0x57, int)
+
+/* get micon update flag */
+#define FRC_IOCTL_SDP_FOXFT1_GET_MICOM_UPDATE_FLAG	FRC_IOWR(0x58, int)
+
+/* get rgb pattern num */
+#define FRC_IOCTL_SDP_FOXFT1_GET_RGB_PATTERN_NUM	FRC_IOWR(0x59, struct rgb_pattern_ioctl)
+
+/* unused array */
+#define FRC_IOCTL_SDP_FOXFT1_UNUSED_ARRAY		FRC_IOWR(0x59, int)
+
+/* set 3d brightness information */
+#define FRC_IOCTL_SDP_FOXFT1_SET_3D_BRIGHT_INFO		FRC_IOWR(0x5A, int)
+
+/* set cinema black enhancer */
+#define FRC_IOCTL_SDP_FOXFT1_SET_CINEMA_BLACK		FRC_IOWR(0x5B, struct cinema_black_ioctl)
+
+/* set cinema black enhancer read position */
+#define FRC_IOCTL_SDP_FOXFT1_SET_CINEMA_BLACK_POS	FRC_IOWR(0x5C, struct cinema_black_pos)
+
+/* get cinema black block */
+#define FRC_IOCTL_SDP_FOXFT1_GET_CINEMA_BLACK_BLOCK	FRC_IOWR(0x5D, struct cinema_black_block)
+
+/* run backend chip test */
+#define FRC_IOCTL_SDP_FOXFT1_RUN_CHIP_TEST		FRC_IOWR(0x5E, int)
+
+/* get panel vfreq */
+#define FRC_IOCTL_SDP_FOXFT1_GET_PANEL_VFREQ		FRC_IOWR(0x5F, struct panel_vfreq_ioctl)
+
+/* set input size */
+#define FRC_IOCTL_SDP_FOXFT1_SET_INPUT_SIZE		FRC_IOWR(0x60, int)
+
+/* set resolution */
+#define FRC_IOCTL_SDP_FOXFT1_SET_RESOLUTION		FRC_IOWR(0x61, struct resolution_ioctl)
+
+/* set osd region */
+#define FRC_IOCTL_SDP_FOXFT1_SET_OSD_REGION		FRC_IOWR(0x62, struct osd_region_ioctl)
+
+/* set eosd */
+#define FRC_IOCTL_SDP_FOXFT1_SET_EOSD			FRC_IOWR(0x63, int)
+
+/* set 3d emitter sync */
+#define FRC_IOCTL_SDP_FOXFT1_SET_3D_EMITTER_SYNC	FRC_IOWR(0x64, int)
+
+/* send sub micom command */
+#define FRC_IOCTL_SDP_FOXFT1_SEND_SMC_CMD		FRC_IOWR(0x65, struct sub_micom_cmd_ioctl)
+
+/* set default data */
+#define FRC_IOCTL_SDP_FOXFT1_SET_DEFAULT_DATA		FRC_IOWR(0x66, int)
+
+/* show test pattern */
+#define FRC_IOCTL_SDP_FOXFT1_SET_PICTURE_TEST		FRC_IOWR(0x67, struct picture_test_ioctl)
+
+
+#endif /*  _UAPI_SDP_FRC_H_ */

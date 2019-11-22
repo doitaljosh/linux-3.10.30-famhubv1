@@ -1,0 +1,281 @@
+######################################################################
+#
+# 	Kconfig for machine about Samsung DTV Platform 
+# 	
+# 	created seungjun.heo@samsung.com
+#
+######################################################################
+#
+# Dec,16,2013	created by seungjun.heo
+# 
+
+if ARCH_SDP
+
+config MACH_SDP_DT
+	bool "Samsung DTV Machine using device tree"
+	select USE_OF
+	select ARM_GIC
+	select GIC_NON_BANKED
+	select USB_ARCH_HAS_EHCI if USB_SUPPORT
+	select USB_ARCH_HAS_OHCI if USB_SUPPORT
+	select USB_ARCH_HAS_XHCI if USB_SUPPORT
+	select PINCTRL
+	select PINCTRL_SDP
+	select ARCH_REQUIRE_GPIOLIB
+	select ARCH_DMA_ADDR_T_64BIT if ARM_LPAE
+	select ARM_HAS_SG_CHAIN
+	select CLKSRC_OF
+ 	help
+	  Say 'Y' here if you want your kernel to support the
+	  Samsung DTV using flattened device tree.
+
+choice
+	prompt "select SDP chip name"
+	default ARCH_SDP1304
+
+config ARCH_SDP1106
+	bool "SDP1106 : Echo-P"
+
+config ARCH_SDP1202
+	bool "SDP1202 : Fox-P"
+
+config ARCH_SDP1207
+	bool "SDP1207 : Fox-B"
+
+config ARCH_SDP1304
+	bool "SDP1304 : Golf-P"
+
+config ARCH_SDP1404
+	bool "SDP1404 : Hawk-P"
+
+config ARCH_SDP1406
+	bool "SDP1406 : Hawk-M"
+
+config ARCH_SDP1412
+	bool "SDP1412 : Hawk-A"
+
+endchoice
+
+config ARCH_SDP_BL
+	bool "SDP bigLittle cluster management"
+	depends on MCPM
+	select ARM_CCI
+	help
+	  Support for CPU and cluster power management on SDP bigLittle.
+
+#config ARM_TRUSTZONE
+#	bool "Support TrustZone-enabled Trusted Execution Environment"
+#	default n
+#	help
+#	  Select if you want a kernel to be executed at non-secure world.
+#	  This option should be used with related secure bootloader and
+#	  TrustZone software.
+#
+#	  If you don't know about TrustZone, say 'N'.
+
+
+
+menu "Samsung SDP Implementation"
+
+config 	SDP_TIMER
+	bool
+	default n
+	select GENERIC_TIME
+	select GENERIC_CLOCKEVENTS
+
+config SERIAL_SDP
+	tristate "UART Controller support"
+	default y
+	depends on ARCH_SDP
+	select SERIAL_CORE
+
+config SERIAL_SDP_CONSOLE
+	bool "Support Serial Console"
+	default y
+	depends on SERIAL_SDP=y
+	select SERIAL_CORE_CONSOLE
+
+config SDP_MAC
+        depends on ARCH_SDP
+        tristate "Ethernet MAC Driver"
+        select NET
+        select INET
+        select NETDEVICES
+        select MII
+        select ETHERNET
+        select PHYLIB
+
+config SDP_MAC_DEBUG
+		depends on SDP_MAC
+		bool "Print Debug Msg for SDP MAC"
+
+if SDP_MAC
+
+# Use Normal Descriptor
+config SDP_MAC_NORMAL_DESC
+		default n
+		bool	"MAC Use Normal Descriptor"
+
+choice
+        prompt "How to set MAC Address?"
+        default MAC_SET_RAMDOM
+
+config MAC_SET_BY_USER
+        depends on SDP_MAC
+        bool    "MAC set mac address by user"
+
+config MAC_SET_RANDOM
+        depends on SDP_MAC
+        bool    "Generate software assigned random ethernet addr"
+
+
+endchoice
+
+
+if MAC_SET_BY_USER
+
+config MAC_FRONT_4BYTE
+        depends on MAC_SET_BY_USER
+        hex     "MAC Mac address front 4 byte"
+        default 0xFFFFFFFF
+
+config MAC_END_2BYTE
+        depends on MAC_SET_BY_USER
+        hex     "MAC Mac address end 2 byte"
+        default 0xFFFF
+endif # MAC_SET_BY_USER
+
+endif # SDP_MAC
+
+config SDP_MMC
+	depends on ARCH_SDP
+	tristate "SDP MMC/SD Controller"
+	default y
+	select MMC
+
+config SDP_MMC_64BIT_ADDR
+	bool "Using IDMAC 64bit address"
+	default y if (ARCH_SDP1404 || ARCH_SDP1406)
+	depends on SDP_MMC
+
+config SDP_MMC_DMA
+	bool "Using Internal DMA Controler"
+	default y
+	depends on SDP_MMC
+
+
+#config SDP_MMC_USE_AUTO_STOP_CMD
+#	bool "Use to send H/W auto stop cmd"
+#	default y
+#	depends on SDP_MMC
+
+config SDP_MMC_USE_PRE_DEFINED_XFER
+	bool "Use Pre-defined data xfer(CMD23)"
+	default n
+	depends on SDP_MMC
+	help
+	  No: Open-ended xfer, Yes: Pre-defined xfer
+
+
+
+config SDP_SPI
+	tristate "SDP SPI Master Controller Driver"
+	default n
+	depends on ARCH_SDP
+	select SPI
+	select SPI_MASTER
+	help
+	  SDP SPI Master Controller Driver.
+
+config SDP_SPI_NUM_OF_CS
+	int "Number of chip select."
+	default 1
+	depends on SDP_SPI
+	help
+	  Default CS is 1, but if you used the GPIO CS, CS can be larger than 1.
+
+config SDP_SPIDEV
+	tristate "User Level SPI Device Driver for SDP SPI"
+	depends on SDP_SPI
+
+config SDP_SPI_DEBUG
+	bool "Print Debug Msg for SDP SPI"
+	depends on SDP_SPI
+
+
+
+config SDP_DMA330
+	tristate "SDP DMA330 Controller Driver"
+	default n
+	depends on (ARCH_SDP1202 || ARCH_SDP1207 || ARCH_SDP1302 || ARCH_SDP)
+	select DMADEVICES
+	select DMA_ENGINE
+
+config SDP_DMA330_DEBUG
+	bool "Print Debug Msg for SDP DMA330"
+	depends on SDP_DMA330
+
+config SDP_GADMA
+	tristate "SDP GADMA Controller Driver"
+	default n
+	depends on (ARCH_SDP)
+	select DMADEVICES
+	select DMA_ENGINE
+
+
+config SDP_GDMA
+	tristate "SDP General DMA Controller Driver"
+	default n
+	depends on (ARCH_SDP1207 || ARCH_SDP1307 || ARCH_SDP)
+	select DMADEVICES
+	select DMA_ENGINE
+
+
+config SDP_DMADEV
+	tristate "SDP DMADEV : Using user mode DMA"
+	default n
+	depends on DMA_ENGINE
+
+config SDP_DMATEST
+	tristate "SDP DMATEST : Simple DMA test client."
+	default n
+	depends on DMA_ENGINE
+
+
+config SDP_UNZIP
+	bool "SDP GZIP decompressor for Squashfs"
+	default y
+
+config SDP_THERMAL
+	depends on ARCH_SDP && CPU_FREQ
+	bool "Thermal Management"
+	default y
+
+config SDP_TEMPSENSOR
+	depends on ARCH_SDP
+	bool "Simple temperature sensor"
+	default y
+
+config SDP_HW_CLOCK
+	depends on ARCH_SDP
+	bool "HW clock, which ticks from power on of the board"
+	default n
+	help
+		Usually HW clock is enabled by onboot, so kernel can access
+		it by default.  But enabling this configuration makes HW
+		physicall address being mapped to virtual address space
+		on very early kernel setup.
+
+config SDP_MISC_PM
+	depends on ARCH_SDP
+	tristate "SDP MISC (wifi, st, bt) device power control Driver"
+	default y
+
+endmenu #Samsung SDP implements 
+
+#menu "Select ARM Errata Patch"
+#
+#endmenu
+
+endif # ARCH_SDP	
+

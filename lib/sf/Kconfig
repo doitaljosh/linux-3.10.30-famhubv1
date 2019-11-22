@@ -1,0 +1,23 @@
+#
+# Kernel config file for Security Framework libraries
+#
+menu "Security Framework libraries"
+
+config SFLIB
+	bool "Security Framework libraries"
+	default n
+	depends on SECURITY_SFD
+	select SFLIB_CORE
+	help
+		Select Security Framework Libraries to interact with kernel security
+		modules. Security Framework API consist of 3 major components:
+			1. Core component encaplulates basic data types and primitives.
+			2. Protocol component encapsulates operational structures.
+			3. Transport component provide mechanism for communication between
+				kernel components and user-space components.
+
+source lib/sf/core/Kconfig
+source lib/sf/protocol/Kconfig
+source lib/sf/transport/Kconfig
+
+endmenu

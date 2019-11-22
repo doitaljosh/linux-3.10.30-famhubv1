@@ -1,0 +1,55 @@
+#
+# Micom Interfaces for CEC/Normal Buffer data.
+#
+config AR_WT61P807
+	tristate "Micom Auto Remocon driver support for WT61P807"
+	depends on ARCH_SDP
+	depends on MFD_SDP_MICOM
+	help
+	  Support for the WT61P807 Auto Remocon data.
+
+config ISP_WT61P807
+	tristate "Micom ISP data support for WT61P807"
+	depends on ARCH_SDP
+	depends on MFD_SDP_MICOM
+	help
+	  Support for the WT61P807 ISP data, this is required for updating
+	  submicom firmware.
+
+config BRIGHTNESS_SENSOR_WT61P807
+	tristate "Brightness sensor support for WT61P807"
+	depends on ARCH_SDP
+	depends on MFD_SDP_MICOM
+	help
+	  Support for the WT61P807 brightness sensor driver
+
+config ONTIMER_WT61P807
+	tristate "Ontimer support for WT61P807"
+	depends on ARCH_SDP
+	depends on MFD_SDP_MICOM
+	help
+	  If you say yes here you get support for WT61P807 timer module.
+	  This driver can also be built as a module, if so, the module
+	  will be called "timer-wt61p807".
+
+config SYSTEM_WT61P807
+	tristate "System support for WT61P807"
+	depends on ARCH_SDP
+	depends on MFD_SDP_MICOM
+	help
+	  If you say yes here you get support for WT61P807 system module
+	  such as power on mode.
+
+config CEC_WT61P807
+	tristate "Micom interface for CEC data"
+	default n
+	depends on MFD_SDP_MICOM
+	help
+	  This is an interface for micom cec data comuunication.
+
+config MSG_WT61P807
+	tristate "Micom interface for Normal Buffer data"
+	default n
+	depends on MFD_SDP_MICOM
+	help
+	  This driver provides the interface to transmit the Normal Buffer data for sending messages to Micom.

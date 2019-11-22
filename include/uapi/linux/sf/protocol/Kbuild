@@ -1,0 +1,7 @@
+#
+# Protocol component header files exported to user-space file system
+#
+header-y += SfEnvironmentFormat.h
+header-y += SfOperationsFormat.h
+header-y += SfProtocolHeader.h
+header-y += SfPacket.h

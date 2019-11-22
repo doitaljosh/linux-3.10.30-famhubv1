@@ -1,0 +1,138 @@
+config VDFS_FS
+	tristate "Samsung VDFS file system support (EXPERIMENTAL)"
+	depends on BLOCK
+	select NLS
+	select CRC32
+	default n
+	help
+	  If you say Y here, you will be able to mount format
+	  VDFS-formatted hard drive partitions with full read-write access.
+
+	  To compile this code as a module, choose M here: the module will be
+	  called emmcfs.
+
+	  If unsure, say N.
+
+config VDFS_NFS_SUPPORT
+	bool "Support of NFS"
+	depends on VDFS_FS
+	help
+	  If you say Y here, you can export the file system via NFS. NOTE:
+	  VDFS doesn't support permanent file export. i.e. if NFS server
+	  will be rebooted, all opened files  on clients side will be
+	  invalidated.
+
+	  If unsure, say N.
+
+config VDFS_DEBUG
+	bool "Debug VDFS"
+	depends on VDFS_FS
+	help
+	  If you say Y here, you can use the 'debug' mount option to enable
+	  debugging output from the driver.
+
+	  If unsure, say N.
+
+config VDFS_NOOPTIMIZE
+	bool "Disable build optimization for VDFS"
+	depends on VDFS_FS
+	help
+	  If you say Y here, VDFS will be built with -O0 opt. Useful for
+	  gdb debug;
+
+	  If unsure, say N.
+
+config VDFS_STATISTIC
+	bool "Umount statistic"
+	depends on VDFS_FS
+	help
+	  This feature allows to count amount of data writen to block
+	  device during umount operation. At the end of umount, it 
+	  displays a message with appropriate value.
+		
+	  If unsure, say N. 
+
+	
+config VDFS_EXPERIMENTAL
+	bool "VDFS Experimental Features (EXPERIMENTAL)"
+	depends on VDFS_FS && EXPERIMENTAL
+
+	help
+	  Enables VDFS features under testing. These features are
+	  experimental.
+
+	  If unsure, say N.
+
+config VDFS_OLDEST_LAYOUT_VERSION
+	int "The oldest supported version of on-disk layout"
+	default 441
+	range 441 9999
+	depends on VDFS_FS
+	help
+	  
+	  VDFS volume should be formated by mkfs.vdfs utility not older
+	  than specified version.
+	  Older versions will be rejected by driver at mount time.
+
+	  Cann't be less then 331
+	  
+	  If unsure, leave default value
+
+config VDFS_CRC_CHECK
+	bool "VDFS CRC check"
+	depends on VDFS_FS
+	help
+		Enables CRC check for VDFS metadata
+
+		If unsure, say N.
+
+config VDFS_META_SANITY_CHECK
+        bool "VDFS metadata sanity check"
+        depends on VDFS_FS
+        help
+                This feature adds additional checks for VDFS metadata,
+		to find metadata corruption on early stage, and prevent
+		writing incorrect data to flash.
+
+                If unsure, say N.
+
+config VDFS_QUOTA
+	bool "VDFS quotas feature"
+	depends on VDFS_FS
+	help
+		Enables quotas feature. This feature allows the vdfs image
+		creator to allocate a maximum amount of disk space a user or
+		group may use. Quota can be set only during image
+		creation, changes at runtime not permitted.
+
+		If unsure, say N.
+
+config VDFS_PROC
+	bool "VDFS print path to files which has a dirty pages"
+	depends on VDFS_FS
+	help
+		VDFS file driver prints a path to files which has a dirty
+		pages via proc file system
+
+		If unsure, say N.
+
+config VDFS_HW2_SUPPORT
+	bool "Use HW2 API to decompress user data from installed SMART package"
+	depends on ARCH_SDP
+	depends on VDFS_FS
+	depends on MMC
+	depends on HW_DECOMP_BLK_MMC_SUBSYSTEM
+	select SDP_UNZIP
+	select SDP_UNZIP_TEST_DRIVER
+	help
+	  Utilize hardware decompressor to decompress packed user data from
+	  installed Squashfs imgages;
+
+config VDFS_SW_DECOMPRESS_RETRY
+	bool "Enable/disable retry decompression of squashfs chunck"
+	depends on VDFS_FS
+	help
+		In case of unsuccessfull decompresssion retry to decompress
+		chunck for 3 times till successfull result;
+
+		If unsure, say N.

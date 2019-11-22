@@ -1,0 +1,13 @@
+To compile the Bluetooth PCM Driver (BTPCM) you have to:
+> cd /3rdparty/embedded/brcm/linux/btpcm
+> make
+
+BTPCM Compile Options:
+> make PCM_SRC=TONE         => Generate a PCM Tone. This is the default option.
+> make PCM_SRC=ALSA         => Create and use a Virtual ALSA driver 
+> make PCM_SRC=IBIZA        => PCM samples come from Ibiza HW/DSP
+> make PCM_SRC=IBIZA_TONE   => PCM Tone samples to simulate Ibiza HW/DSP
+
+This driver must be loaded (insmod) before btusb driver.
+This driver must be unloaded (rmmod) after btusb driver.
+

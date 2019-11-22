@@ -1,0 +1,35 @@
+/*
+ * Copyright (C) 2014 Samsung Electronics Co.Ltd
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+
+/dts-v1/;
+/include/ "sdp1406.dtsi"
+
+/ {
+	model = "Samsung DTV based on SDP1406 SoC";
+	compatible = "samsung,dtv", "samsung,sdp1406";
+
+	memory {
+		device_type = "memory";
+		reg =  <0x40000000 0x08000000>;
+	};
+
+	chosen {
+		bootargs = "console=ttyS0,4800N8 root=/dev/ram0 initrd=0x40800000,32M rootwait earlyprintk fpga";
+	};
+
+	fixed-rate-clocks {
+		fin {
+			compatible = "samsung,sdp-clock-fin";
+			clock-frequency = <70000000>;
+		};
+	};
+
+	serial@00190A00 {
+		status = "okay";
+	};
+};

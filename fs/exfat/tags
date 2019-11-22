@@ -1,0 +1,885 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ATTR_ARCHIVE	exfat_api.h	70;"	d
+ATTR_EXTEND	exfat_api.h	72;"	d
+ATTR_HIDDEN	exfat_api.h	66;"	d
+ATTR_NORMAL	exfat_api.h	64;"	d
+ATTR_READONLY	exfat_api.h	65;"	d
+ATTR_RWMASK	exfat_api.h	73;"	d
+ATTR_SUBDIR	exfat_api.h	69;"	d
+ATTR_SYMLINK	exfat_api.h	71;"	d
+ATTR_SYSTEM	exfat_api.h	67;"	d
+ATTR_VOLUME	exfat_api.h	68;"	d
+AccessTimestamp	exfat_api.h	/^		DATE_TIME_T AccessTimestamp;$/;"	m	struct:__anon7
+Attr	exfat_api.h	/^		UINT32      Attr;$/;"	m	struct:__anon7
+BD_INFO_T	exfat_blkdev.h	/^	} BD_INFO_T;$/;"	t	typeref:struct:__BD_INFO_T
+BITMAP_LOC	exfat_global.c	79;"	d	file:
+BITMAP_SHIFT	exfat_global.c	80;"	d	file:
+BMAP_DENTRY_T	exfat.h	/^	} BMAP_DENTRY_T;$/;"	t	typeref:struct:__anon15
+BOOL	exfat_global.h	/^	typedef unsigned char           BOOL;$/;"	t
+BPBEX_T	exfat.h	/^	} BPBEX_T;$/;"	t	typeref:struct:__anon9
+BUF_CACHE_HASH_SIZE	exfat_data.h	70;"	d
+BUF_CACHE_SIZE	exfat_data.h	69;"	d
+BUF_CACHE_T	exfat_cache.h	/^	} BUF_CACHE_T;$/;"	t	typeref:struct:__BUF_CACHE_T
+Bitmap_clear	exfat_global.c	/^void Bitmap_clear(UINT8 *bitmap, INT32 i)$/;"	f
+Bitmap_clear_all	exfat_global.c	/^void Bitmap_clear_all(UINT8 *bitmap, INT32 mapsize)$/;"	f
+Bitmap_nbits_clear	exfat_global.c	/^void Bitmap_nbits_clear(UINT8 *bitmap, INT32 offset, INT32 nbits)$/;"	f
+Bitmap_nbits_set	exfat_global.c	/^void Bitmap_nbits_set(UINT8 *bitmap, INT32 offset, INT32 nbits)$/;"	f
+Bitmap_set	exfat_global.c	/^void Bitmap_set(UINT8 *bitmap, INT32 i)$/;"	f
+Bitmap_set_all	exfat_global.c	/^void Bitmap_set_all(UINT8 *bitmap, INT32 mapsize)$/;"	f
+Bitmap_test	exfat_global.c	/^INT32 Bitmap_test(UINT8 *bitmap, INT32 i)$/;"	f
+CASE_DENTRY_T	exfat.h	/^	} CASE_DENTRY_T;$/;"	t	typeref:struct:__anon16
+CHAIN_T	exfat_api.h	/^	} CHAIN_T;$/;"	t	typeref:struct:__anon5
+CLUSTER_16	exfat.h	121;"	d
+CLUSTER_32	exfat.h	122;"	d
+COPY_DENTRY	exfat_global.h	136;"	d
+CS_DEFAULT	exfat.h	119;"	d
+CS_DIR_ENTRY	exfat.h	117;"	d
+CS_PBR_SECTOR	exfat.h	118;"	d
+ClusterSize	exfat_api.h	/^		UINT32      ClusterSize;$/;"	m	struct:__anon4
+CreateTimestamp	exfat_api.h	/^		DATE_TIME_T CreateTimestamp;$/;"	m	struct:__anon7
+DATE_TIME_T	exfat_api.h	/^	} DATE_TIME_T;$/;"	t	typeref:struct:__anon1
+DAYS_DELTA	exfat_oal.c	105;"	d	file:
+DAYS_DELTA	exfat_super.c	126;"	d	file:
+DECLARE_MUTEX	exfat_oal.h	73;"	d
+DEFAULT_CODEPAGE	exfat_data.h	73;"	d
+DEFAULT_IOCHARSET	exfat_data.h	74;"	d
+DELAYED_SYNC	exfat.c	71;"	d	file:
+DENTRY_SIZE	exfat.h	74;"	d
+DENTRY_SIZE_BITS	exfat.h	75;"	d
+DENTRY_T	exfat.h	/^	} DENTRY_T;$/;"	t	typeref:struct:__anon10
+DEV_INFO_T	exfat_api.h	/^	} DEV_INFO_T;$/;"	t	typeref:struct:__anon3
+DIRTYBIT	exfat_cache.h	51;"	d
+DIR_ENTRY_T	exfat_api.h	/^	} DIR_ENTRY_T;$/;"	t	typeref:struct:__anon7
+DOS_CUR_DIR_NAME	exfat_nls.h	54;"	d
+DOS_DENTRY_T	exfat.h	/^	} DOS_DENTRY_T;$/;"	t	typeref:struct:__anon11
+DOS_NAME_LENGTH	exfat_api.h	60;"	d
+DOS_NAME_T	exfat_nls.h	/^	} DOS_NAME_T;$/;"	t	typeref:struct:__anon21
+DOS_PAR_DIR_NAME	exfat_nls.h	55;"	d
+DOS_PATH_LENGTH	exfat_api.h	61;"	d
+Day	exfat_api.h	/^		UINT16      Day;$/;"	m	struct:__anon1
+DevSize	exfat_api.h	/^		UINT32      DevSize;    \/\/ block device size in sectors$/;"	m	struct:__anon3
+ELAPSED_TIME	exfat.c	73;"	d	file:
+ELAPSED_TIME	exfat_super.c	97;"	d	file:
+ENTRY_SET_CACHE_T	exfat.h	/^	} ENTRY_SET_CACHE_T;$/;"	t	typeref:struct:__anon20
+ES_2_ENTRIES	exfat.h	415;"	d
+ES_3_ENTRIES	exfat.h	416;"	d
+ES_ALL_ENTRIES	exfat.h	417;"	d
+ES_MODE_GET_CRITICAL_SEC_ENTRY	exfat.c	2856;"	d	file:
+ES_MODE_GET_FILE_ENTRY	exfat.c	2853;"	d	file:
+ES_MODE_GET_NAME_ENTRY	exfat.c	2855;"	d	file:
+ES_MODE_GET_STRM_ENTRY	exfat.c	2854;"	d	file:
+ES_MODE_STARTED	exfat.c	2852;"	d	file:
+EXFAT	exfat_api.h	53;"	d
+EXFAT_CONFIG_DEBUG_MSG	exfat_config.h	99;"	d
+EXFAT_CONFIG_DISCARD	exfat_config.h	97;"	d
+EXFAT_CONFIG_KERNEL_DEBUG	exfat_config.h	98;"	d
+EXFAT_DEBUGFLAGS_ERROR_RW	exfat.h	65;"	d
+EXFAT_DEBUGFLAGS_INVALID_UMOUNT	exfat.h	64;"	d
+EXFAT_ERRORS_CONT	exfat_super.h	43;"	d
+EXFAT_ERRORS_PANIC	exfat_super.h	44;"	d
+EXFAT_ERRORS_RO	exfat_super.h	45;"	d
+EXFAT_HASH_BITS	exfat_super.h	67;"	d
+EXFAT_HASH_SIZE	exfat_super.h	68;"	d
+EXFAT_I	exfat_super.h	/^static inline struct exfat_inode_info *EXFAT_I(struct inode *inode) {$/;"	f
+EXFAT_IOCTL_GET_VOLUME_ID	exfat_super.h	48;"	d
+EXFAT_IOC_GET_DEBUGFLAGS	exfat.h	61;"	d
+EXFAT_IOC_SET_DEBUGFLAGS	exfat.h	62;"	d
+EXFAT_ROOT_INO	exfat_api.h	50;"	d
+EXFAT_SB	exfat_super.h	107;"	d
+EXFAT_SUPER_MAGIC	exfat_api.h	49;"	d
+EXFAT_THRESHOLD	exfat.h	87;"	d
+EXFAT_VERSION	exfat_version.h	19;"	d
+EXT_SIGNATURE	exfat.h	79;"	d
+FAIL	exfat_global.h	70;"	d
+FALSE	exfat_global.h	64;"	d
+FAT1_start_sector	exfat.h	/^		UINT32      FAT1_start_sector;      \/\/ FAT1 start sector$/;"	m	struct:__FS_INFO_T
+FAT2_start_sector	exfat.h	/^		UINT32      FAT2_start_sector;      \/\/ FAT2 start sector$/;"	m	struct:__FS_INFO_T
+FAT_CACHE_HASH_SIZE	exfat_data.h	68;"	d
+FAT_CACHE_SIZE	exfat_data.h	67;"	d
+FAT_cache_array	exfat.h	/^		BUF_CACHE_T FAT_cache_array[FAT_CACHE_SIZE];$/;"	m	struct:__FS_INFO_T
+FAT_cache_find	exfat_cache.c	/^static BUF_CACHE_T *FAT_cache_find(struct super_block *sb, UINT32 sec)$/;"	f	file:
+FAT_cache_get	exfat_cache.c	/^static BUF_CACHE_T *FAT_cache_get(struct super_block *sb, UINT32 sec)$/;"	f	file:
+FAT_cache_hash_list	exfat.h	/^		BUF_CACHE_T FAT_cache_hash_list[FAT_CACHE_HASH_SIZE];$/;"	m	struct:__FS_INFO_T
+FAT_cache_insert_hash	exfat_cache.c	/^static void FAT_cache_insert_hash(struct super_block *sb, BUF_CACHE_T *bp)$/;"	f	file:
+FAT_cache_lru_list	exfat.h	/^		BUF_CACHE_T FAT_cache_lru_list;$/;"	m	struct:__FS_INFO_T
+FAT_cache_remove_hash	exfat_cache.c	/^static void FAT_cache_remove_hash(BUF_CACHE_T *bp)$/;"	f	file:
+FAT_getblk	exfat_cache.c	/^UINT8 *FAT_getblk(struct super_block *sb, UINT32 sec)$/;"	f
+FAT_modify	exfat_cache.c	/^void FAT_modify(struct super_block *sb, UINT32 sec)$/;"	f
+FAT_read	exfat_cache.c	/^INT32 FAT_read(struct super_block *sb, UINT32 loc, UINT32 *content)$/;"	f
+FAT_release_all	exfat_cache.c	/^void FAT_release_all(struct super_block *sb)$/;"	f
+FAT_sync	exfat_cache.c	/^void FAT_sync(struct super_block *sb)$/;"	f
+FAT_write	exfat_cache.c	/^INT32 FAT_write(struct super_block *sb, UINT32 loc, UINT32 content)$/;"	f
+FFS_ALIGNMENTERR	exfat_api.h	85;"	d
+FFS_CONFIG_LEGACY_32BIT_API	exfat_config.h	67;"	d
+FFS_CONFIG_LEGACY_32BIT_API	exfat_config.h	73;"	d
+FFS_CONFIG_LITTLE_ENDIAN	exfat_config.h	61;"	d
+FFS_CONFIG_OS	exfat_config.h	56;"	d
+FFS_CONFIG_SUPPORT_CP1250	exfat_config.h	78;"	d
+FFS_CONFIG_SUPPORT_CP1251	exfat_config.h	79;"	d
+FFS_CONFIG_SUPPORT_CP1252	exfat_config.h	80;"	d
+FFS_CONFIG_SUPPORT_CP1253	exfat_config.h	81;"	d
+FFS_CONFIG_SUPPORT_CP1254	exfat_config.h	82;"	d
+FFS_CONFIG_SUPPORT_CP1255	exfat_config.h	83;"	d
+FFS_CONFIG_SUPPORT_CP1256	exfat_config.h	84;"	d
+FFS_CONFIG_SUPPORT_CP1257	exfat_config.h	85;"	d
+FFS_CONFIG_SUPPORT_CP1258	exfat_config.h	86;"	d
+FFS_CONFIG_SUPPORT_CP874	exfat_config.h	87;"	d
+FFS_CONFIG_SUPPORT_CP932	exfat_config.h	88;"	d
+FFS_CONFIG_SUPPORT_CP936	exfat_config.h	89;"	d
+FFS_CONFIG_SUPPORT_CP949	exfat_config.h	90;"	d
+FFS_CONFIG_SUPPORT_CP950	exfat_config.h	91;"	d
+FFS_CONFIG_SUPPORT_UTF8	exfat_config.h	92;"	d
+FFS_DEVEJECT	exfat_api.h	100;"	d
+FFS_DIRBUSY	exfat_api.h	96;"	d
+FFS_EOF	exfat_api.h	95;"	d
+FFS_ERROR	exfat_api.h	99;"	d
+FFS_FILEEXIST	exfat_api.h	90;"	d
+FFS_FORMATERR	exfat_api.h	82;"	d
+FFS_FULL	exfat_api.h	94;"	d
+FFS_INVALIDFID	exfat_api.h	88;"	d
+FFS_INVALIDPATH	exfat_api.h	87;"	d
+FFS_MAXOPENED	exfat_api.h	93;"	d
+FFS_MEDIAERR	exfat_api.h	81;"	d
+FFS_MEMORYERR	exfat_api.h	97;"	d
+FFS_MOUNTED	exfat_api.h	83;"	d
+FFS_NAMETOOLONG	exfat_api.h	98;"	d
+FFS_NOTFOUND	exfat_api.h	89;"	d
+FFS_NOTMOUNTED	exfat_api.h	84;"	d
+FFS_NOTOPENED	exfat_api.h	92;"	d
+FFS_PERMISSIONERR	exfat_api.h	91;"	d
+FFS_SEMAPHOREERR	exfat_api.h	86;"	d
+FFS_SUCCESS	exfat_api.h	80;"	d
+FILE_DENTRY_T	exfat.h	/^	} FILE_DENTRY_T;$/;"	t	typeref:struct:__anon12
+FILE_ID_T	exfat_api.h	/^	} FILE_ID_T;$/;"	t	typeref:struct:__anon6
+FM_REGULAR	exfat_api.h	76;"	d
+FM_SYMLINK	exfat_api.h	77;"	d
+FREE	exfat_global.h	119;"	d
+FREE	exfat_global.h	132;"	d
+FS_FUNC_T	exfat.h	/^	} FS_FUNC_T;$/;"	t	typeref:struct:__anon19
+FS_INFO_T	exfat.h	/^	} FS_INFO_T;$/;"	t	typeref:struct:__FS_INFO_T
+FS_STRUCT_T	exfat.h	/^	} FS_STRUCT_T;$/;"	t	typeref:struct:__FS_STRUCT_T
+FatType	exfat_api.h	/^		UINT32      FatType;$/;"	m	struct:__anon4
+FreeClusters	exfat_api.h	/^		UINT32      FreeClusters;$/;"	m	struct:__anon4
+FsCreateDir	exfat_api.c	/^EXPORT_SYMBOL(FsCreateDir);$/;"	v
+FsCreateDir	exfat_api.c	/^INT32 FsCreateDir(struct inode *inode, UINT8 *path, FILE_ID_T *fid)$/;"	f
+FsCreateFile	exfat_api.c	/^EXPORT_SYMBOL(FsCreateFile);$/;"	v
+FsCreateFile	exfat_api.c	/^INT32 FsCreateFile(struct inode *inode, UINT8 *path, UINT8 mode, FILE_ID_T *fid)$/;"	f
+FsGetVolInfo	exfat_api.c	/^EXPORT_SYMBOL(FsGetVolInfo);$/;"	v
+FsGetVolInfo	exfat_api.c	/^INT32 FsGetVolInfo(struct super_block *sb, VOL_INFO_T *info)$/;"	f
+FsGetparent	exfat_api.c	/^EXPORT_SYMBOL(FsGetparent);$/;"	v
+FsGetparent	exfat_api.c	/^INT32 FsGetparent(struct inode *inode, FILE_ID_T *fid)$/;"	f
+FsInit	exfat_api.c	/^INT32 FsInit(void)$/;"	f
+FsLookupFile	exfat_api.c	/^EXPORT_SYMBOL(FsLookupFile);$/;"	v
+FsLookupFile	exfat_api.c	/^INT32 FsLookupFile(struct inode *inode, UINT8 *path, FILE_ID_T *fid)$/;"	f
+FsMapCluster	exfat_api.c	/^EXPORT_SYMBOL(FsMapCluster);$/;"	v
+FsMapCluster	exfat_api.c	/^INT32 FsMapCluster(struct inode *inode, INT32 clu_offset, UINT32 *clu)$/;"	f
+FsMountVol	exfat_api.c	/^EXPORT_SYMBOL(FsMountVol);$/;"	v
+FsMountVol	exfat_api.c	/^INT32 FsMountVol(struct super_block *sb)$/;"	f
+FsMoveFile	exfat_api.c	/^EXPORT_SYMBOL(FsMoveFile);$/;"	v
+FsMoveFile	exfat_api.c	/^INT32 FsMoveFile(struct inode *old_parent_inode, FILE_ID_T *fid, struct inode *new_parent_inode, struct dentry *new_dentry)$/;"	f
+FsReadDir	exfat_api.c	/^EXPORT_SYMBOL(FsReadDir);$/;"	v
+FsReadDir	exfat_api.c	/^INT32 FsReadDir(struct inode *inode, DIR_ENTRY_T *dir_entry)$/;"	f
+FsReadFile	exfat_api.c	/^EXPORT_SYMBOL(FsReadFile);$/;"	v
+FsReadFile	exfat_api.c	/^INT32 FsReadFile(struct inode *inode, FILE_ID_T *fid, void *buffer, UINT64 count, UINT64 *rcount)$/;"	f
+FsReadStat	exfat_api.c	/^EXPORT_SYMBOL(FsReadStat);$/;"	v
+FsReadStat	exfat_api.c	/^INT32 FsReadStat(struct inode *inode, DIR_ENTRY_T *info)$/;"	f
+FsReleaseCache	exfat_api.c	/^EXPORT_SYMBOL(FsReleaseCache);$/;"	v
+FsReleaseCache	exfat_api.c	/^INT32 FsReleaseCache(struct super_block *sb)$/;"	f
+FsRemoveDir	exfat_api.c	/^EXPORT_SYMBOL(FsRemoveDir);$/;"	v
+FsRemoveDir	exfat_api.c	/^INT32 FsRemoveDir(struct inode *inode, FILE_ID_T *fid)$/;"	f
+FsRemoveFile	exfat_api.c	/^EXPORT_SYMBOL(FsRemoveFile);$/;"	v
+FsRemoveFile	exfat_api.c	/^INT32 FsRemoveFile(struct inode *inode, FILE_ID_T *fid)$/;"	f
+FsSetAttr	exfat_api.c	/^EXPORT_SYMBOL(FsSetAttr);$/;"	v
+FsSetAttr	exfat_api.c	/^INT32 FsSetAttr(struct inode *inode, UINT32 attr)$/;"	f
+FsShutdown	exfat_api.c	/^INT32 FsShutdown(void)$/;"	f
+FsSyncVol	exfat_api.c	/^EXPORT_SYMBOL(FsSyncVol);$/;"	v
+FsSyncVol	exfat_api.c	/^INT32 FsSyncVol(struct super_block *sb, INT32 do_sync)$/;"	f
+FsTruncateFile	exfat_api.c	/^EXPORT_SYMBOL(FsTruncateFile);$/;"	v
+FsTruncateFile	exfat_api.c	/^INT32 FsTruncateFile(struct inode *inode, UINT64 new_size)$/;"	f
+FsUmountVol	exfat_api.c	/^EXPORT_SYMBOL(FsUmountVol);$/;"	v
+FsUmountVol	exfat_api.c	/^INT32 FsUmountVol(struct super_block *sb)$/;"	f
+FsWriteFile	exfat_api.c	/^EXPORT_SYMBOL(FsWriteFile);$/;"	v
+FsWriteFile	exfat_api.c	/^INT32 FsWriteFile(struct inode *inode, FILE_ID_T *fid, void *buffer, UINT64 count, UINT64 *wcount)$/;"	f
+FsWriteStat	exfat_api.c	/^EXPORT_SYMBOL(FsWriteStat);$/;"	v
+FsWriteStat	exfat_api.c	/^INT32 FsWriteStat(struct inode *inode, DIR_ENTRY_T *info)$/;"	f
+GET16	exfat.h	133;"	d
+GET16_A	exfat.h	170;"	d
+GET16_A	exfat.h	177;"	d
+GET32	exfat.h	135;"	d
+GET32_A	exfat.h	171;"	d
+GET32_A	exfat.h	178;"	d
+GET64	exfat.h	138;"	d
+GET64_A	exfat.h	172;"	d
+GET64_A	exfat.h	179;"	d
+GET_CLUSTER_FROM_SECTOR	exfat.h	130;"	d
+HIGH_INDEX_BIT	exfat.h	186;"	d
+HIGH_INDEX_MASK	exfat.h	187;"	d
+Hour	exfat_api.h	/^		UINT16      Hour;$/;"	m	struct:__anon1
+INT16	exfat_global.h	/^	typedef short                   INT16;  \/\/ 2 byte signed integer$/;"	t
+INT32	exfat_global.h	/^	typedef int                     INT32;  \/\/ 4 byte signed integer$/;"	t
+INT64	exfat_global.h	/^	typedef long long               INT64;  \/\/ 8 byte signed integer$/;"	t
+INT8	exfat_global.h	/^	typedef char                    INT8;   \/\/ 1 byte signed integer$/;"	t
+IS_LAST_SECTOR_IN_CLUSTER	exfat.h	127;"	d
+IS_LEAP_YEAR	exfat_oal.c	108;"	d	file:
+IS_LEAP_YEAR	exfat_super.c	129;"	d	file:
+LOCKBIT	exfat_cache.h	50;"	d
+LOW_INDEX_BIT	exfat.h	188;"	d
+MALLOC	exfat_global.h	116;"	d
+MALLOC	exfat_global.h	131;"	d
+MAX	exfat_global.h	78;"	d
+MAX_CHARSET_SIZE	exfat_api.h	56;"	d
+MAX_DENTRY	exfat_data.h	63;"	d
+MAX_DEVICE	exfat_data.h	53;"	d
+MAX_DRIVE	exfat_data.h	56;"	d
+MAX_NAME_LENGTH	exfat_api.h	58;"	d
+MAX_OPEN	exfat_data.h	59;"	d
+MAX_PATH_DEPTH	exfat_api.h	57;"	d
+MAX_PATH_LENGTH	exfat_api.h	59;"	d
+MAX_VOLUME	exfat.h	72;"	d
+MBR_SECTOR_T	exfat_part.h	/^	} MBR_SECTOR_T;$/;"	t	typeref:struct:__anon24
+MBR_SIGNATURE	exfat_part.h	50;"	d
+MEMCMP	exfat_global.h	128;"	d
+MEMCMP	exfat_global.h	135;"	d
+MEMCPY	exfat_global.h	125;"	d
+MEMCPY	exfat_global.h	134;"	d
+MEMSET	exfat_global.h	122;"	d
+MEMSET	exfat_global.h	133;"	d
+MIN	exfat_global.h	77;"	d
+MilliSecond	exfat_api.h	/^		UINT16      MilliSecond;$/;"	m	struct:__anon1
+Minute	exfat_api.h	/^		UINT16      Minute;$/;"	m	struct:__anon1
+ModifyTimestamp	exfat_api.h	/^		DATE_TIME_T ModifyTimestamp;$/;"	m	struct:__anon7
+Month	exfat_api.h	/^		UINT16      Month;$/;"	m	struct:__anon1
+NAME_DENTRY_T	exfat.h	/^	} NAME_DENTRY_T;$/;"	t	typeref:struct:__anon14
+NLS_LOSSY_CHAR_TO_UNI_ERROR	exfat_nls.h	67;"	d
+NLS_LOSSY_ERROR	exfat_nls.h	68;"	d
+NLS_LOSSY_TOOLONG	exfat_nls.h	66;"	d
+NLS_LOSSY_TOOSHORT	exfat_nls.h	65;"	d
+NULL	exfat_global.h	73;"	d
+NUM_UPCASE	exfat_nls.h	52;"	d
+Name	exfat_api.h	/^		INT8        Name[MAX_NAME_LENGTH *MAX_CHARSET_SIZE];$/;"	m	struct:__anon7
+NumClusters	exfat_api.h	/^		UINT32      NumClusters;$/;"	m	struct:__anon4
+NumSubdirs	exfat_api.h	/^		UINT32      NumSubdirs;$/;"	m	struct:__anon7
+OEM_NAME	exfat.h	81;"	d
+OK	exfat_global.h	67;"	d
+OS_LINUX	exfat_config.h	54;"	d
+OS_NONOS	exfat_config.h	53;"	d
+Offset	exfat_api.h	/^		UINT32      Offset;    \/\/ start sector number of the partition$/;"	m	struct:__anon2
+Opt_allow_utime	exfat_super.c	/^	Opt_allow_utime,$/;"	e	enum:__anon26	file:
+Opt_charset	exfat_super.c	/^	Opt_charset,$/;"	e	enum:__anon26	file:
+Opt_codepage	exfat_super.c	/^	Opt_codepage,$/;"	e	enum:__anon26	file:
+Opt_debug	exfat_super.c	/^	Opt_debug,$/;"	e	enum:__anon26	file:
+Opt_discard	exfat_super.c	/^	Opt_discard,$/;"	e	enum:__anon26	file:
+Opt_dmask	exfat_super.c	/^	Opt_dmask,$/;"	e	enum:__anon26	file:
+Opt_err	exfat_super.c	/^	Opt_err,$/;"	e	enum:__anon26	file:
+Opt_err_cont	exfat_super.c	/^	Opt_err_cont,$/;"	e	enum:__anon26	file:
+Opt_err_panic	exfat_super.c	/^	Opt_err_panic,$/;"	e	enum:__anon26	file:
+Opt_err_ro	exfat_super.c	/^	Opt_err_ro,$/;"	e	enum:__anon26	file:
+Opt_flush	exfat_super.c	/^    Opt_flush,$/;"	e	enum:__anon26	file:
+Opt_fmask	exfat_super.c	/^	Opt_fmask,$/;"	e	enum:__anon26	file:
+Opt_gid	exfat_super.c	/^	Opt_gid,$/;"	e	enum:__anon26	file:
+Opt_namecase	exfat_super.c	/^	Opt_namecase,$/;"	e	enum:__anon26	file:
+Opt_shrink_batch	exfat_super.c	/^	Opt_shrink_batch,$/;"	e	enum:__anon26	file:
+Opt_uid	exfat_super.c	/^	Opt_uid,$/;"	e	enum:__anon26	file:
+Opt_umask	exfat_super.c	/^	Opt_umask,$/;"	e	enum:__anon26	file:
+PART_ENTRY_T	exfat_part.h	/^	} PART_ENTRY_T;$/;"	t	typeref:struct:__anon25
+PART_INFO_T	exfat_api.h	/^	} PART_INFO_T;$/;"	t	typeref:struct:__anon2
+PBR_SECTOR_T	exfat.h	/^	} PBR_SECTOR_T;$/;"	t	typeref:struct:__anon8
+PBR_SIGNATURE	exfat.h	78;"	d
+PBR_sector	exfat.h	/^		UINT32      PBR_sector;             \/\/ PBR sector$/;"	m	struct:__FS_INFO_T
+PRINT	exfat_global.h	203;"	d
+PRINT	exfat_global.h	206;"	d
+PRINTK	exfat_global.h	160;"	d
+PRINTK	exfat_global.h	165;"	d
+PRINT_TIME	exfat.c	87;"	d	file:
+PRINT_TIME	exfat.c	91;"	d	file:
+PRINT_TIME	exfat_super.c	111;"	d	file:
+PRINT_TIME	exfat_super.c	115;"	d	file:
+SECS_PER_DAY	exfat_oal.c	99;"	d	file:
+SECS_PER_DAY	exfat_super.c	120;"	d	file:
+SECS_PER_HOUR	exfat_oal.c	98;"	d	file:
+SECS_PER_HOUR	exfat_super.c	119;"	d	file:
+SECS_PER_MIN	exfat_oal.c	97;"	d	file:
+SECS_PER_MIN	exfat_super.c	118;"	d	file:
+SET16	exfat.h	145;"	d
+SET16_A	exfat.h	173;"	d
+SET16_A	exfat.h	180;"	d
+SET32	exfat.h	150;"	d
+SET32_A	exfat.h	174;"	d
+SET32_A	exfat.h	181;"	d
+SET64	exfat.h	157;"	d
+SET64_A	exfat.h	175;"	d
+SET64_A	exfat.h	182;"	d
+SET_LOSSY	exfat_nls.h	70;"	d
+START_SECTOR	exfat.h	124;"	d
+STRCAT	exfat_global.h	144;"	d
+STRCMP	exfat_global.h	145;"	d
+STRCPY	exfat_global.h	142;"	d
+STRLEN	exfat_global.h	147;"	d
+STRM_DENTRY_T	exfat.h	/^	} STRM_DENTRY_T;$/;"	t	typeref:struct:__anon13
+STRNCMP	exfat_global.h	146;"	d
+STRNCPY	exfat_global.h	143;"	d
+STR_EXFAT	exfat.h	82;"	d
+SecSize	exfat_api.h	/^		UINT32      SecSize;    \/\/ sector size in bytes$/;"	m	struct:__anon3
+Second	exfat_api.h	/^		UINT16      Second;$/;"	m	struct:__anon1
+Size	exfat_api.h	/^		UINT32      Size;      \/\/ in sectors$/;"	m	struct:__anon2
+Size	exfat_api.h	/^		UINT64      Size;$/;"	m	struct:__anon7
+THERE_IS_MBR	exfat.c	64;"	d	file:
+TIMESTAMP_T	exfat_oal.h	/^	} TIMESTAMP_T;$/;"	t	typeref:struct:__anon23
+TIME_END	exfat.c	86;"	d	file:
+TIME_END	exfat.c	90;"	d	file:
+TIME_END	exfat_super.c	110;"	d	file:
+TIME_END	exfat_super.c	114;"	d	file:
+TIME_START	exfat.c	85;"	d	file:
+TIME_START	exfat.c	89;"	d	file:
+TIME_START	exfat_super.c	109;"	d	file:
+TIME_START	exfat_super.c	113;"	d	file:
+TM_ACCESS	exfat.h	114;"	d
+TM_CREATE	exfat.h	112;"	d
+TM_MODIFY	exfat.h	113;"	d
+TRUE	exfat_global.h	61;"	d
+TYPE_ACL	exfat.h	103;"	d
+TYPE_ACLTAB	exfat.h	107;"	d
+TYPE_ALL	exfat.h	109;"	d
+TYPE_BENIGN_PRI	exfat.h	104;"	d
+TYPE_BENIGN_SEC	exfat.h	108;"	d
+TYPE_BITMAP	exfat.h	94;"	d
+TYPE_CRITICAL_PRI	exfat.h	93;"	d
+TYPE_CRITICAL_SEC	exfat.h	100;"	d
+TYPE_DELETED	exfat.h	91;"	d
+TYPE_DIR	exfat.h	97;"	d
+TYPE_EXTEND	exfat.h	102;"	d
+TYPE_FILE	exfat.h	98;"	d
+TYPE_GUID	exfat.h	105;"	d
+TYPE_INVALID	exfat.h	92;"	d
+TYPE_PADDING	exfat.h	106;"	d
+TYPE_STREAM	exfat.h	101;"	d
+TYPE_SYMLINK	exfat.h	99;"	d
+TYPE_UNUSED	exfat.h	90;"	d
+TYPE_UPCASE	exfat.h	95;"	d
+TYPE_VOLUME	exfat.h	96;"	d
+UENTRY_T	exfat.h	/^	} UENTRY_T;$/;"	t	typeref:struct:__anon18
+UINT16	exfat_global.h	/^	typedef unsigned short          UINT16; \/\/ 2 byte unsigned integer$/;"	t
+UINT32	exfat_global.h	/^	typedef unsigned int            UINT32; \/\/ 4 byte unsigned integer$/;"	t
+UINT64	exfat_global.h	/^	typedef unsigned long long      UINT64; \/\/ 8 byte ussigned integer$/;"	t
+UINT8	exfat_global.h	/^	typedef unsigned char           UINT8;  \/\/ 1 byte unsigned integer$/;"	t
+UNIX_SECS_1980	exfat_oal.c	100;"	d	file:
+UNIX_SECS_1980	exfat_super.c	121;"	d	file:
+UNIX_SECS_2108	exfat_oal.c	102;"	d	file:
+UNIX_SECS_2108	exfat_super.c	123;"	d	file:
+UNI_CUR_DIR_NAME	exfat_nls.h	58;"	d
+UNI_CUR_DIR_NAME	exfat_nls.h	61;"	d
+UNI_NAME_T	exfat_nls.h	/^	} UNI_NAME_T;$/;"	t	typeref:struct:__anon22
+UNI_PAR_DIR_NAME	exfat_nls.h	59;"	d
+UNI_PAR_DIR_NAME	exfat_nls.h	62;"	d
+UTBL_COL_COUNT	exfat.h	190;"	d
+UTBL_ROW_COUNT	exfat.h	189;"	d
+UsedClusters	exfat_api.h	/^		UINT32      UsedClusters;$/;"	m	struct:__anon4
+VOLM_DENTRY_T	exfat.h	/^	} VOLM_DENTRY_T;$/;"	t	typeref:struct:__anon17
+VOL_CLEAN	exfat.h	83;"	d
+VOL_DIRTY	exfat.h	84;"	d
+VOL_INFO_T	exfat_api.h	/^	} VOL_INFO_T;$/;"	t	typeref:struct:__anon4
+VOL_LABEL	exfat.h	80;"	d
+WSTRCHR	exfat_global.h	152;"	d
+WSTRLEN	exfat_global.h	153;"	d
+YEAR_2100	exfat_oal.c	107;"	d	file:
+YEAR_2100	exfat_super.c	128;"	d	file:
+Year	exfat_api.h	/^		UINT16      Year;$/;"	m	struct:__anon1
+_EXFAT_API_H	exfat_api.h	36;"	d
+_EXFAT_BLKDEV_H	exfat_blkdev.h	37;"	d
+_EXFAT_CACHE_H	exfat_cache.h	37;"	d
+_EXFAT_CONFIG_H	exfat_config.h	36;"	d
+_EXFAT_DATA_H	exfat_data.h	36;"	d
+_EXFAT_GLOBAL_H	exfat_global.h	36;"	d
+_EXFAT_H	exfat.h	36;"	d
+_EXFAT_LINUX_H	exfat_super.h	22;"	d
+_EXFAT_NLS_H	exfat_nls.h	36;"	d
+_EXFAT_OAL_H	exfat_oal.h	37;"	d
+_EXFAT_PART_H	exfat_part.h	36;"	d
+__BD_INFO_T	exfat_blkdev.h	/^	typedef struct __BD_INFO_T {$/;"	s
+__BUF_CACHE_T	exfat_cache.h	/^	typedef struct __BUF_CACHE_T {$/;"	s
+__FAT_read	exfat_cache.c	/^static INT32 __FAT_read(struct super_block *sb, UINT32 loc, UINT32 *content)$/;"	f	file:
+__FAT_write	exfat_cache.c	/^static INT32 __FAT_write(struct super_block *sb, UINT32 loc, UINT32 content)$/;"	f	file:
+__FS_INFO_T	exfat.h	/^	typedef struct __FS_INFO_T {$/;"	s
+__FS_STRUCT_T	exfat.h	/^	typedef struct __FS_STRUCT_T {$/;"	s
+__buf	exfat.h	/^		void *__buf;$/;"	m	struct:__anon20
+__buf_getblk	exfat_cache.c	/^static UINT8 *__buf_getblk(struct super_block *sb, UINT32 sec)$/;"	f	file:
+__load_default_upcase_table	exfat.c	/^INT32 __load_default_upcase_table(struct super_block *sb)$/;"	f
+__load_upcase_table	exfat.c	/^INT32 __load_upcase_table(struct super_block *sb, UINT32 sector, UINT32 num_sectors, UINT32 utbl_checksum)$/;"	f
+__t1	exfat.c	/^static UINT32 __t1, __t2;$/;"	v	file:
+__t1	exfat_super.c	/^static UINT32 __t1, __t2;$/;"	v	file:
+__t2	exfat.c	/^static UINT32 __t1, __t2;$/;"	v	file:
+__t2	exfat_super.c	/^static UINT32 __t1, __t2;$/;"	v	file:
+__write_partial_entries_in_entry_set	exfat.c	/^static INT32 __write_partial_entries_in_entry_set (struct super_block *sb, ENTRY_SET_CACHE_T *es, UINT32 sec, INT32 off, UINT32 count)$/;"	f	file:
+__wstrchr	exfat_global.c	/^INT32 __wstrchr(UINT16 *str, UINT16 wchar)$/;"	f
+__wstrlen	exfat_global.c	/^INT32 __wstrlen(UINT16 *str)$/;"	f
+_exfat_bmap	exfat_super.c	/^static sector_t _exfat_bmap(struct address_space *mapping, sector_t block)$/;"	f	file:
+_walk_fat_chain	exfat.c	/^static INT32 _walk_fat_chain (struct super_block *sb, CHAIN_T *p_dir, INT32 byte_offset, UINT32 *clu)$/;"	f	file:
+access_date	exfat.h	/^		UINT8       access_date[2];             \/\/ aligned$/;"	m	struct:__anon11
+access_date	exfat.h	/^		UINT8       access_date[2];             \/\/ aligned$/;"	m	struct:__anon12
+access_time	exfat.h	/^		UINT8       access_time[2];             \/\/ aligned$/;"	m	struct:__anon12
+access_time_ms	exfat.h	/^		UINT8       access_time_ms;$/;"	m	struct:__anon12
+alloc_cluster	exfat.h	/^		INT32       (*alloc_cluster)(struct super_block *sb, INT32 num_alloc, CHAIN_T *p_chain);$/;"	m	struct:__anon19
+alloc_flag	exfat.h	/^		INT32	alloc_flag;	\/\/ flag in stream entry. 01 for cluster chain, 03 for contig. clusteres.$/;"	m	struct:__anon20
+allow_utime	exfat_super.h	/^	unsigned short allow_utime; \/* permission for setting the [am]time *\/$/;"	m	struct:exfat_mount_options
+attr	exfat.h	/^		UINT8       attr;$/;"	m	struct:__anon11
+attr	exfat.h	/^		UINT8       attr[2];                    \/\/ aligned$/;"	m	struct:__anon12
+attr	exfat_api.h	/^		UINT32      attr;$/;"	m	struct:__anon6
+bad_dos_chars	exfat_nls.c	/^static UINT16 bad_dos_chars[] = {$/;"	v	file:
+bad_uni_chars	exfat_nls.c	/^static UINT16 bad_uni_chars[] = {$/;"	v	file:
+bd_info	exfat_super.h	/^	BD_INFO_T bd_info;$/;"	m	struct:exfat_sb_info
+bdev_close	exfat_blkdev.c	/^INT32 bdev_close(struct super_block *sb)$/;"	f
+bdev_init	exfat_blkdev.c	/^INT32 bdev_init(void)$/;"	f
+bdev_open	exfat_blkdev.c	/^INT32 bdev_open(struct super_block *sb)$/;"	f
+bdev_read	exfat_blkdev.c	/^INT32 bdev_read(struct super_block *sb, UINT32 secno, struct buffer_head **bh, UINT32 num_secs, INT32 read)$/;"	f
+bdev_shutdown	exfat_blkdev.c	/^INT32 bdev_shutdown(void)$/;"	f
+bdev_sync	exfat_blkdev.c	/^INT32 bdev_sync(struct super_block *sb)$/;"	f
+bdev_write	exfat_blkdev.c	/^INT32 bdev_write(struct super_block *sb, UINT32 secno, struct buffer_head *bh, UINT32 num_secs, INT32 sync)$/;"	f
+bgn_chs	exfat_part.h	/^		UINT8       bgn_chs[3];$/;"	m	struct:__anon25
+boot_code	exfat.h	/^		UINT8       boot_code[390];$/;"	m	struct:__anon8
+boot_code	exfat_part.h	/^		UINT8       boot_code[446];$/;"	m	struct:__anon24
+bpb	exfat.h	/^		UINT8       bpb[109];$/;"	m	struct:__anon8
+buf_bh	exfat_cache.h	/^		struct buffer_head   *buf_bh;$/;"	m	struct:__BUF_CACHE_T	typeref:struct:__BUF_CACHE_T::buffer_head
+buf_cache_array	exfat.h	/^		BUF_CACHE_T buf_cache_array[BUF_CACHE_SIZE];$/;"	m	struct:__FS_INFO_T
+buf_cache_find	exfat_cache.c	/^static BUF_CACHE_T *buf_cache_find(struct super_block *sb, UINT32 sec)$/;"	f	file:
+buf_cache_get	exfat_cache.c	/^static BUF_CACHE_T *buf_cache_get(struct super_block *sb, UINT32 sec)$/;"	f	file:
+buf_cache_hash_list	exfat.h	/^		BUF_CACHE_T buf_cache_hash_list[BUF_CACHE_HASH_SIZE];$/;"	m	struct:__FS_INFO_T
+buf_cache_insert_hash	exfat_cache.c	/^static void buf_cache_insert_hash(struct super_block *sb, BUF_CACHE_T *bp)$/;"	f	file:
+buf_cache_lru_list	exfat.h	/^		BUF_CACHE_T buf_cache_lru_list;$/;"	m	struct:__FS_INFO_T
+buf_cache_remove_hash	exfat_cache.c	/^static void buf_cache_remove_hash(BUF_CACHE_T *bp)$/;"	f	file:
+buf_getblk	exfat_cache.c	/^UINT8 *buf_getblk(struct super_block *sb, UINT32 sec)$/;"	f
+buf_init	exfat_cache.c	/^INT32 buf_init(struct super_block *sb)$/;"	f
+buf_lock	exfat_cache.c	/^void buf_lock(struct super_block *sb, UINT32 sec)$/;"	f
+buf_modify	exfat_cache.c	/^void buf_modify(struct super_block *sb, UINT32 sec)$/;"	f
+buf_release	exfat_cache.c	/^void buf_release(struct super_block *sb, UINT32 sec)$/;"	f
+buf_release_all	exfat_cache.c	/^void buf_release_all(struct super_block *sb)$/;"	f
+buf_shutdown	exfat_cache.c	/^INT32 buf_shutdown(struct super_block *sb)$/;"	f
+buf_sync	exfat_cache.c	/^void buf_sync(struct super_block *sb)$/;"	f
+buf_unlock	exfat_cache.c	/^void buf_unlock(struct super_block *sb, UINT32 sec)$/;"	f
+calc_checksum_1byte	exfat.c	/^UINT8 calc_checksum_1byte(void *data, INT32 len, UINT8 chksum)$/;"	f
+calc_checksum_2byte	exfat.c	/^UINT16 calc_checksum_2byte(void *data, INT32 len, UINT16 chksum, INT32 type)$/;"	f
+calc_checksum_4byte	exfat.c	/^UINT32 calc_checksum_4byte(void *data, INT32 len, UINT32 chksum, INT32 type)$/;"	f
+calc_num_entries	exfat.h	/^		INT32       (*calc_num_entries)(UNI_NAME_T *p_uniname);$/;"	m	struct:__anon19
+casesensitive	exfat_super.h	/^	unsigned char casesensitive;$/;"	m	struct:exfat_mount_options
+checksum	exfat.h	/^		UINT8       checksum[2];                \/\/ aligned$/;"	m	struct:__anon12
+checksum	exfat.h	/^		UINT8       checksum[4];                \/\/ aligned$/;"	m	struct:__anon16
+clear_cluster	exfat.c	/^INT32 clear_cluster(struct super_block *sb, UINT32 clu)$/;"	f
+clr_alloc_bitmap	exfat.c	/^INT32 clr_alloc_bitmap(struct super_block *sb, UINT32 clu)$/;"	f
+clu	exfat.h	/^		CHAIN_T     clu;$/;"	m	struct:__anon18
+clu_count	exfat.h	/^		UINT8       clu_count[4];$/;"	m	struct:__anon9
+clu_offset	exfat.h	/^		UINT8       clu_offset[4];$/;"	m	struct:__anon9
+clu_srch_ptr	exfat.h	/^		UINT32      clu_srch_ptr;           \/\/ cluster search pointer$/;"	m	struct:__FS_INFO_T
+cluster_size	exfat.h	/^		UINT32      cluster_size;           \/\/ cluster size in bytes$/;"	m	struct:__FS_INFO_T
+cluster_size_bits	exfat.h	/^		UINT32      cluster_size_bits;$/;"	m	struct:__FS_INFO_T
+codepage	exfat_super.h	/^	unsigned short codepage;    \/* codepage for shortname conversions *\/$/;"	m	struct:exfat_mount_options
+convert_ch_to_uni	exfat_nls.c	/^static INT32 convert_ch_to_uni(struct nls_table *nls, UINT16 *uni, UINT8 *ch, INT32 *lossy)$/;"	f	file:
+convert_uni_to_ch	exfat_nls.c	/^static INT32 convert_uni_to_ch(struct nls_table *nls, UINT8 *ch, UINT16 uni, INT32 *lossy)$/;"	f	file:
+count_dos_name_entries	exfat.c	/^INT32 count_dos_name_entries(struct super_block *sb, CHAIN_T *p_dir, UINT32 type)$/;"	f
+count_ext_entries	exfat.h	/^		INT32       (*count_ext_entries)(struct super_block *sb, CHAIN_T *p_dir, INT32 entry, DENTRY_T *p_entry);$/;"	m	struct:__anon19
+count_num_clusters	exfat.c	/^INT32 count_num_clusters(struct super_block *sb, CHAIN_T *p_chain)$/;"	f
+count_used_clusters	exfat.h	/^		INT32       (*count_used_clusters)(struct super_block *sb);$/;"	m	struct:__anon19
+create_date	exfat.h	/^		UINT8       create_date[2];             \/\/ aligned$/;"	m	struct:__anon11
+create_date	exfat.h	/^		UINT8       create_date[2];             \/\/ aligned$/;"	m	struct:__anon12
+create_dir	exfat.c	/^INT32 create_dir(struct inode *inode, CHAIN_T *p_dir, UNI_NAME_T *p_uniname, FILE_ID_T *fid)$/;"	f
+create_file	exfat.c	/^INT32 create_file(struct inode *inode, CHAIN_T *p_dir, UNI_NAME_T *p_uniname, UINT8 mode, FILE_ID_T *fid)$/;"	f
+create_time	exfat.h	/^		UINT8       create_time[2];             \/\/ aligned$/;"	m	struct:__anon11
+create_time	exfat.h	/^		UINT8       create_time[2];             \/\/ aligned$/;"	m	struct:__anon12
+create_time_ms	exfat.h	/^		UINT8       create_time_ms;$/;"	m	struct:__anon11
+create_time_ms	exfat.h	/^		UINT8       create_time_ms;$/;"	m	struct:__anon12
+data_start_sector	exfat.h	/^		UINT32      data_start_sector;      \/\/ data area start sector$/;"	m	struct:__FS_INFO_T
+day	exfat_oal.h	/^		UINT16      day;        \/* 1 ~ 31               *\/$/;"	m	struct:__anon23
+days_in_year	exfat_oal.c	/^static time_t days_in_year[] = {$/;"	v	file:
+days_in_year	exfat_super.c	/^static time_t days_in_year[] = {$/;"	v	file:
+debug_flags	exfat_super.h	/^	long debug_flags;$/;"	m	struct:exfat_sb_info
+def_boot	exfat_part.h	/^		UINT8       def_boot;$/;"	m	struct:__anon25
+delete_dir_entry	exfat.h	/^		void        (*delete_dir_entry)(struct super_block *sb, CHAIN_T *p_dir, INT32 entry, INT32 offset, INT32 num_entries);$/;"	m	struct:__anon19
+dentries_in_root	exfat.h	/^		UINT32      dentries_in_root;       \/\/ num of dentries in root dir$/;"	m	struct:__FS_INFO_T
+dentries_per_clu	exfat.h	/^		UINT32      dentries_per_clu;       \/\/ num of dentries per cluster$/;"	m	struct:__FS_INFO_T
+dev_ejected	exfat.h	/^		UINT32      dev_ejected;            \/\/ block device operation error flag$/;"	m	struct:__FS_INFO_T
+dir	exfat.h	/^		UINT32      dir;$/;"	m	struct:__anon18
+dir	exfat_api.h	/^		CHAIN_T     dir;$/;"	m	struct:__anon6
+dir	exfat_api.h	/^		UINT32      dir;$/;"	m	struct:__anon5
+discard	exfat_super.h	/^	unsigned char discard;      \/* flag on if -o dicard specified and device support discard() *\/$/;"	m	struct:exfat_mount_options
+drv	exfat.h	/^		UINT32      drv;                    \/\/ drive ID$/;"	m	struct:__FS_INFO_T
+drv	exfat_cache.h	/^		INT32                drv;$/;"	m	struct:__BUF_CACHE_T
+dummy	exfat.h	/^		UINT8       dummy[32];$/;"	m	struct:__anon10
+end_chs	exfat_part.h	/^		UINT8       end_chs[3];$/;"	m	struct:__anon25
+entry	exfat.h	/^		INT32       entry;$/;"	m	struct:__anon18
+entry	exfat_api.h	/^		INT32       entry;$/;"	m	struct:__anon6
+errors	exfat_super.h	/^	unsigned char errors;       \/* on error: continue, panic, remount-ro *\/$/;"	m	struct:exfat_mount_options
+exfat_alloc_cluster	exfat.c	/^INT32 exfat_alloc_cluster(struct super_block *sb, INT32 num_alloc, CHAIN_T *p_chain)$/;"	f
+exfat_alloc_inode	exfat_super.c	/^static struct inode *exfat_alloc_inode(struct super_block *sb) {$/;"	f	file:
+exfat_allow_set_time	exfat_super.c	/^static int exfat_allow_set_time(struct exfat_sb_info *sbi, struct inode *inode)$/;"	f	file:
+exfat_aops	exfat_super.c	/^const struct address_space_operations exfat_aops = {$/;"	v	typeref:struct:address_space_operations
+exfat_attach	exfat_super.c	/^static void exfat_attach(struct inode *inode, loff_t i_pos)$/;"	f	file:
+exfat_bmap	exfat_super.c	/^static int exfat_bmap(struct inode *inode, sector_t sector, sector_t *phys,$/;"	f	file:
+exfat_build_inode	exfat_super.c	/^static struct inode *exfat_build_inode(struct super_block *sb,$/;"	f	file:
+exfat_calc_num_entries	exfat.c	/^INT32 exfat_calc_num_entries(UNI_NAME_T *p_uniname)$/;"	f
+exfat_chain_cont_cluster	exfat.c	/^void exfat_chain_cont_cluster(struct super_block *sb, UINT32 chain, INT32 len)$/;"	f
+exfat_clear_inode	exfat_super.c	/^static void exfat_clear_inode(struct inode *inode)$/;"	f	file:
+exfat_cont_expand	exfat_super.c	/^static int exfat_cont_expand(struct inode *inode, loff_t size)$/;"	f	file:
+exfat_core-y	Makefile	/^exfat_core-y	:= exfat.o exfat_api.o exfat_blkdev.o exfat_cache.o \\$/;"	m
+exfat_count_ext_entries	exfat.c	/^INT32 exfat_count_ext_entries(struct super_block *sb, CHAIN_T *p_dir, INT32 entry, DENTRY_T *p_entry)$/;"	f
+exfat_count_used_clusters	exfat.c	/^INT32 exfat_count_used_clusters(struct super_block *sb)$/;"	f
+exfat_create	exfat_super.c	/^static int exfat_create(struct inode *dir, struct dentry *dentry, umode_t mode,$/;"	f	file:
+exfat_debug_kill_sb	exfat_super.c	/^static void exfat_debug_kill_sb(struct super_block *sb)$/;"	f	file:
+exfat_default_codepage	exfat_super.c	/^static int exfat_default_codepage = DEFAULT_CODEPAGE;$/;"	v	file:
+exfat_default_iocharset	exfat_super.c	/^static char exfat_default_iocharset[] = DEFAULT_IOCHARSET;$/;"	v	file:
+exfat_delete_dir_entry	exfat.c	/^void exfat_delete_dir_entry(struct super_block *sb, CHAIN_T *p_dir, INT32 entry, INT32 order, INT32 num_entries)$/;"	f
+exfat_delete_inode	exfat_super.c	/^static void exfat_delete_inode(struct inode *inode)$/;"	f	file:
+exfat_dentry_ops	exfat_super.c	/^static const struct dentry_operations exfat_dentry_ops = {$/;"	v	typeref:struct:dentry_operations	file:
+exfat_destroy_inode	exfat_super.c	/^static void exfat_destroy_inode(struct inode *inode)$/;"	f	file:
+exfat_destroy_inodecache	exfat_super.c	/^static void __exit exfat_destroy_inodecache(void)$/;"	f	file:
+exfat_detach	exfat_super.c	/^static void exfat_detach(struct inode *inode)$/;"	f	file:
+exfat_dir_inode_operations	exfat_super.c	/^const struct inode_operations exfat_dir_inode_operations = {$/;"	v	typeref:struct:inode_operations
+exfat_dir_operations	exfat_super.c	/^const struct file_operations exfat_dir_operations = {$/;"	v	typeref:struct:file_operations
+exfat_direct_IO	exfat_super.c	/^static ssize_t exfat_direct_IO(int rw, struct kiocb *iocb,$/;"	f	file:
+exfat_evict_inode	exfat_super.c	/^static void exfat_evict_inode(struct inode *inode)$/;"	f	file:
+exfat_export_ops	exfat_super.c	/^static const struct export_operations exfat_export_ops = {$/;"	v	typeref:struct:export_operations	file:
+exfat_fh_to_dentry	exfat_nfs.c	/^struct dentry *exfat_fh_to_dentry(struct super_block *sb, struct fid *fid,$/;"	f
+exfat_fh_to_parent	exfat_nfs.c	/^struct dentry *exfat_fh_to_parent(struct super_block *sb, struct fid *fid,$/;"	f
+exfat_file_fsync	exfat_super.c	/^static int exfat_file_fsync(struct file *filp, int datasync)$/;"	f	file:
+exfat_file_inode_operations	exfat_super.c	/^const struct inode_operations exfat_file_inode_operations = {$/;"	v	typeref:struct:inode_operations
+exfat_file_operations	exfat_super.c	/^const struct file_operations exfat_file_operations = {$/;"	v	typeref:struct:file_operations
+exfat_file_release	exfat_super.c	/^static int exfat_file_release(struct inode *inode, struct file *filp)$/;"	f	file:
+exfat_fill_inode	exfat_super.c	/^static int exfat_fill_inode(struct inode *inode, FILE_ID_T *fid)$/;"	f	file:
+exfat_fill_super	exfat_super.c	/^static int exfat_fill_super(struct super_block *sb, void *data, int silent)$/;"	f	file:
+exfat_find	exfat_super.c	/^static int exfat_find(struct inode *dir, struct qstr *qname,$/;"	f	file:
+exfat_find_dir_entry	exfat.c	/^INT32 exfat_find_dir_entry(struct super_block *sb, CHAIN_T *p_dir, UNI_NAME_T *p_uniname, INT32 num_entries, DOS_NAME_T *p_dosname, UINT32 type)$/;"	f
+exfat_follow_link	exfat_super.c	/^static void *exfat_follow_link(struct dentry *dentry, struct nameidata *nd)$/;"	f	file:
+exfat_free_cluster	exfat.c	/^void exfat_free_cluster(struct super_block *sb, CHAIN_T *p_chain, INT32 do_relse)$/;"	f
+exfat_fs-y	Makefile	/^exfat_fs-y	:= exfat_super.o exfat_nfs.o$/;"	m
+exfat_fs_func	exfat.c	/^static FS_FUNC_T exfat_fs_func = {$/;"	v	file:
+exfat_fs_mount	exfat_super.c	/^static struct dentry *exfat_fs_mount(struct file_system_type *fs_type,$/;"	f	file:
+exfat_fs_type	exfat_super.c	/^static struct file_system_type exfat_fs_type = {$/;"	v	typeref:struct:file_system_type	file:
+exfat_generic_ioctl	exfat_super.c	/^static int exfat_generic_ioctl(struct inode *inode, struct file *filp,$/;"	f	file:
+exfat_get_block	exfat_super.c	/^static int exfat_get_block(struct inode *inode, sector_t iblock,$/;"	f	file:
+exfat_get_entry_attr	exfat.c	/^UINT32 exfat_get_entry_attr(DENTRY_T *p_entry)$/;"	f
+exfat_get_entry_clu0	exfat.c	/^UINT32 exfat_get_entry_clu0(DENTRY_T *p_entry)$/;"	f
+exfat_get_entry_flag	exfat.c	/^UINT8 exfat_get_entry_flag(DENTRY_T *p_entry)$/;"	f
+exfat_get_entry_size	exfat.c	/^UINT64 exfat_get_entry_size(DENTRY_T *p_entry)$/;"	f
+exfat_get_entry_time	exfat.c	/^void exfat_get_entry_time(DENTRY_T *p_entry, TIMESTAMP_T *tp, UINT8 mode)$/;"	f
+exfat_get_entry_type	exfat.c	/^UINT32 exfat_get_entry_type(DENTRY_T *p_entry)$/;"	f
+exfat_get_parent	exfat_super.c	/^static struct dentry *exfat_get_parent(struct dentry *child_dir)$/;"	f	file:
+exfat_get_sb	exfat_super.c	/^static int exfat_get_sb(struct file_system_type *fs_type,$/;"	f	file:
+exfat_get_uni_name_from_ext_entry	exfat.c	/^void exfat_get_uni_name_from_ext_entry(struct super_block *sb, CHAIN_T *p_dir, INT32 entry, UINT16 *uniname, INT32 *faulty_entry)$/;"	f
+exfat_getattr	exfat_super.c	/^static int exfat_getattr(struct vfsmount *mnt, struct dentry *dentry, struct kstat *stat)$/;"	f	file:
+exfat_hash	exfat_super.c	/^static inline unsigned long exfat_hash(loff_t i_pos)$/;"	f	file:
+exfat_hash_init	exfat_super.c	/^static void exfat_hash_init(struct super_block *sb)$/;"	f	file:
+exfat_i_pos_read	exfat_super.c	/^static inline loff_t exfat_i_pos_read(struct exfat_sb_info *sbi,$/;"	f	file:
+exfat_iget	exfat_super.c	/^static struct inode *exfat_iget(struct super_block *sb, loff_t i_pos) {$/;"	f	file:
+exfat_init_dir_entry	exfat.c	/^INT32 exfat_init_dir_entry(struct super_block *sb, CHAIN_T *p_dir, INT32 entry, UINT32 type,$/;"	f
+exfat_init_ext_entry	exfat.c	/^INT32 exfat_init_ext_entry(struct super_block *sb, CHAIN_T *p_dir, INT32 entry, INT32 num_entries,$/;"	f
+exfat_init_inodecache	exfat_super.c	/^static int __init exfat_init_inodecache(void)$/;"	f	file:
+exfat_inode_cachep	exfat_super.c	/^static struct kmem_cache *exfat_inode_cachep;$/;"	v	typeref:struct:kmem_cache	file:
+exfat_inode_info	exfat_super.h	/^struct exfat_inode_info {$/;"	s
+exfat_ioctl_volume_id	exfat_super.c	/^static int exfat_ioctl_volume_id(struct inode *dir)$/;"	f	file:
+exfat_lookup	exfat_super.c	/^static struct dentry *exfat_lookup(struct inode *dir, struct dentry *dentry,$/;"	f	file:
+exfat_make_attr	exfat_super.h	/^static inline u32 exfat_make_attr(struct inode *inode)$/;"	f
+exfat_make_mode	exfat_super.h	/^static inline mode_t exfat_make_mode(struct exfat_sb_info *sbi,$/;"	f
+exfat_mkdir	exfat_super.c	/^static int exfat_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode)$/;"	f	file:
+exfat_mode_can_hold_ro	exfat_super.h	/^static inline int exfat_mode_can_hold_ro(struct inode *inode)$/;"	f
+exfat_mount	exfat.c	/^INT32 exfat_mount(struct super_block *sb, PBR_SECTOR_T *p_pbr)$/;"	f
+exfat_mount_options	exfat_super.h	/^struct exfat_mount_options {$/;"	s
+exfat_nfs_get_inode	exfat_nfs.c	/^static struct inode *exfat_nfs_get_inode(struct super_block *sb,$/;"	f	file:
+exfat_put_super	exfat_super.c	/^static void exfat_put_super(struct super_block *sb)$/;"	f	file:
+exfat_read_root	exfat_super.c	/^static int exfat_read_root(struct inode *inode)$/;"	f	file:
+exfat_readdir	exfat_super.c	/^static int exfat_readdir(struct file *filp, void *dirent, filldir_t filldir)$/;"	f	file:
+exfat_readpage	exfat_super.c	/^static int exfat_readpage(struct file *file, struct page *page)$/;"	f	file:
+exfat_readpages	exfat_super.c	/^static int exfat_readpages(struct file *file, struct address_space *mapping,$/;"	f	file:
+exfat_remount	exfat_super.c	/^static int exfat_remount(struct super_block *sb, int *flags, char *data)$/;"	f	file:
+exfat_rename	exfat_super.c	/^static int exfat_rename(struct inode *old_dir, struct dentry *old_dentry,$/;"	f	file:
+exfat_revalidate	exfat_super.c	/^static int exfat_revalidate(struct dentry *dentry, unsigned int flags)$/;"	f	file:
+exfat_rmdir	exfat_super.c	/^static int exfat_rmdir(struct inode *dir, struct dentry *dentry)$/;"	f	file:
+exfat_sanitize_mode	exfat_super.c	/^static int exfat_sanitize_mode(const struct exfat_sb_info *sbi,$/;"	f	file:
+exfat_save_attr	exfat_super.h	/^static inline void exfat_save_attr(struct inode *inode, u32 attr)$/;"	f
+exfat_sb_info	exfat_super.h	/^struct exfat_sb_info {$/;"	s
+exfat_set_entry_attr	exfat.c	/^void exfat_set_entry_attr(DENTRY_T *p_entry, UINT32 attr)$/;"	f
+exfat_set_entry_clu0	exfat.c	/^void exfat_set_entry_clu0(DENTRY_T *p_entry, UINT32 start_clu)$/;"	f
+exfat_set_entry_flag	exfat.c	/^void exfat_set_entry_flag(DENTRY_T *p_entry, UINT8 flags)$/;"	f
+exfat_set_entry_size	exfat.c	/^void exfat_set_entry_size(DENTRY_T *p_entry, UINT64 size)$/;"	f
+exfat_set_entry_time	exfat.c	/^void exfat_set_entry_time(DENTRY_T *p_entry, TIMESTAMP_T *tp, UINT8 mode)$/;"	f
+exfat_set_entry_type	exfat.c	/^void exfat_set_entry_type(DENTRY_T *p_entry, UINT32 type)$/;"	f
+exfat_setattr	exfat_super.c	/^static int exfat_setattr(struct dentry *dentry, struct iattr *attr)$/;"	f	file:
+exfat_show_options	exfat_super.c	/^static int exfat_show_options(struct seq_file *m, struct dentry *root)$/;"	f	file:
+exfat_sops	exfat_super.c	/^const struct super_operations exfat_sops = {$/;"	v	typeref:struct:super_operations
+exfat_statfs	exfat_super.c	/^static int exfat_statfs(struct dentry *dentry, struct kstatfs *buf)$/;"	f	file:
+exfat_symlink	exfat_super.c	/^static int exfat_symlink(struct inode *dir, struct dentry *dentry, const char *target)$/;"	f	file:
+exfat_symlink_inode_operations	exfat_super.c	/^const struct inode_operations exfat_symlink_inode_operations = {$/;"	v	typeref:struct:inode_operations
+exfat_sync_fs	exfat_super.c	/^static int exfat_sync_fs(struct super_block *sb, int wait)$/;"	f	file:
+exfat_sync_inode	exfat_super.c	/^static int exfat_sync_inode(struct inode *inode)$/;"	f	file:
+exfat_time_fat2unix	exfat_super.c	/^void exfat_time_fat2unix(struct exfat_sb_info *sbi, struct timespec *ts,$/;"	f
+exfat_time_unix2fat	exfat_super.c	/^void exfat_time_unix2fat(struct exfat_sb_info *sbi, struct timespec *ts,$/;"	f
+exfat_tokens	exfat_super.c	/^static const match_table_t exfat_tokens = {$/;"	v	file:
+exfat_truncate	exfat_super.c	/^static void exfat_truncate(struct inode *inode)$/;"	f	file:
+exfat_unlink	exfat_super.c	/^static int exfat_unlink(struct inode *dir, struct dentry *dentry)$/;"	f	file:
+exfat_write_begin	exfat_super.c	/^static int exfat_write_begin(struct file *file, struct address_space *mapping,$/;"	f	file:
+exfat_write_end	exfat_super.c	/^static int exfat_write_end(struct file *file, struct address_space *mapping,$/;"	f	file:
+exfat_write_inode	exfat_super.c	/^static int exfat_write_inode(struct inode *inode, struct writeback_control *wbc)$/;"	f	file:
+exfat_writepage	exfat_super.c	/^static int exfat_writepage(struct page *page, struct writeback_control *wbc)$/;"	f	file:
+exfat_writepages	exfat_super.c	/^static int exfat_writepages(struct address_space *mapping,$/;"	f	file:
+exit_exfat_core	exfat_api.c	/^module_exit(exit_exfat_core);$/;"	v
+exit_exfat_core	exfat_api.c	/^static void __exit exit_exfat_core(void)$/;"	f	file:
+exit_exfat_fs	exfat_super.c	/^module_exit(exit_exfat_fs);$/;"	v
+exit_exfat_fs	exfat_super.c	/^static void __exit exit_exfat_fs(void)$/;"	f	file:
+extract_uni_name_from_name_entry	exfat.c	/^INT32 extract_uni_name_from_name_entry(NAME_DENTRY_T *ep, UINT16 *uniname, INT32 order)$/;"	f
+fat_inode	exfat_super.h	/^	struct inode *fat_inode;$/;"	m	struct:exfat_sb_info	typeref:struct:exfat_sb_info::inode
+fat_length	exfat.h	/^		UINT8       fat_length[4];$/;"	m	struct:__anon9
+fat_offset	exfat.h	/^		UINT8       fat_offset[4];$/;"	m	struct:__anon9
+ffsCreateDir	exfat.c	/^INT32 ffsCreateDir(struct inode *inode, UINT8 *path, FILE_ID_T *fid)$/;"	f
+ffsCreateFile	exfat.c	/^INT32 ffsCreateFile(struct inode *inode, UINT8 *path, UINT8 mode, FILE_ID_T *fid)$/;"	f
+ffsGetParent	exfat.c	/^INT32 ffsGetParent(struct inode *inode, FILE_ID_T *fid)$/;"	f
+ffsGetStat	exfat.c	/^INT32 ffsGetStat(struct inode *inode, DIR_ENTRY_T *info)$/;"	f
+ffsGetVolInfo	exfat.c	/^INT32 ffsGetVolInfo(struct super_block *sb, VOL_INFO_T *info)$/;"	f
+ffsInit	exfat.c	/^INT32 ffsInit(void)$/;"	f
+ffsLookupFile	exfat.c	/^INT32 ffsLookupFile(struct inode *inode, UINT8 *path, FILE_ID_T *fid)$/;"	f
+ffsMapCluster	exfat.c	/^INT32 ffsMapCluster(struct inode *inode, INT32 clu_offset, UINT32 *clu)$/;"	f
+ffsMountVol	exfat.c	/^INT32 ffsMountVol(struct super_block *sb, INT32 drv)$/;"	f
+ffsMoveFile	exfat.c	/^INT32 ffsMoveFile(struct inode *old_parent_inode, FILE_ID_T *fid, struct inode *new_parent_inode, struct dentry *new_dentry)$/;"	f
+ffsReadDir	exfat.c	/^INT32 ffsReadDir(struct inode *inode, DIR_ENTRY_T *dir_entry)$/;"	f
+ffsReadFile	exfat.c	/^INT32 ffsReadFile(struct inode *inode, FILE_ID_T *fid, void *buffer, UINT64 count, UINT64 *rcount)$/;"	f
+ffsRemoveDir	exfat.c	/^INT32 ffsRemoveDir(struct inode *inode, FILE_ID_T *fid)$/;"	f
+ffsRemoveFile	exfat.c	/^INT32 ffsRemoveFile(struct inode *inode, FILE_ID_T *fid)$/;"	f
+ffsSetAttr	exfat.c	/^INT32 ffsSetAttr(struct inode *inode, UINT32 attr)$/;"	f
+ffsSetStat	exfat.c	/^INT32 ffsSetStat(struct inode *inode, DIR_ENTRY_T *info)$/;"	f
+ffsShutdown	exfat.c	/^INT32 ffsShutdown(void)$/;"	f
+ffsSyncVol	exfat.c	/^INT32 ffsSyncVol(struct super_block *sb, INT32 do_sync)$/;"	f
+ffsTruncateFile	exfat.c	/^INT32 ffsTruncateFile(struct inode *inode, UINT64 new_size)$/;"	f
+ffsUmountVol	exfat.c	/^INT32 ffsUmountVol(struct super_block *sb)$/;"	f
+ffsWriteFile	exfat.c	/^INT32 ffsWriteFile(struct inode *inode, FILE_ID_T *fid, void *buffer, UINT64 count, UINT64 *wcount)$/;"	f
+fid	exfat_super.h	/^	FILE_ID_T fid;$/;"	m	struct:exfat_inode_info
+find_dir_entry	exfat.h	/^		INT32       (*find_dir_entry)(struct super_block *sb, CHAIN_T *p_dir, UNI_NAME_T *p_uniname, INT32 num_entries, DOS_NAME_T *p_dosname, UINT32 type);$/;"	m	struct:__anon19
+find_empty_entry	exfat.c	/^INT32 find_empty_entry(struct inode *inode, CHAIN_T *p_dir, INT32 num_entries)$/;"	f
+find_last_cluster	exfat.c	/^UINT32 find_last_cluster(struct super_block *sb, CHAIN_T *p_chain)$/;"	f
+find_location	exfat.c	/^INT32 find_location(struct super_block *sb, CHAIN_T *p_dir, INT32 entry, UINT32 *sector, INT32 *offset)$/;"	f
+flag	exfat_cache.h	/^		UINT32               flag;$/;"	m	struct:__BUF_CACHE_T
+flags	exfat.h	/^		UINT8       flags;$/;"	m	struct:__anon13
+flags	exfat.h	/^		UINT8       flags;$/;"	m	struct:__anon14
+flags	exfat.h	/^		UINT8       flags;$/;"	m	struct:__anon15
+flags	exfat_api.h	/^		UINT8       flags;$/;"	m	struct:__anon5
+flags	exfat_api.h	/^		UINT8       flags;$/;"	m	struct:__anon6
+flush	exfat_super.h	/^	unsigned flush:1;           \/* write things quickly *\/$/;"	m	struct:exfat_mount_options
+free_alloc_bitmap	exfat.c	/^void free_alloc_bitmap(struct super_block *sb)$/;"	f
+free_bit	exfat.c	/^static UINT8 free_bit[] = {$/;"	v	file:
+free_cluster	exfat.h	/^		void        (*free_cluster)(struct super_block *sb, CHAIN_T *p_chain, INT32 do_relse);$/;"	m	struct:__anon19
+free_upcase_table	exfat.c	/^void free_upcase_table(struct super_block *sb)$/;"	f
+fs_dmask	exfat_super.h	/^	unsigned short fs_dmask;$/;"	m	struct:exfat_mount_options
+fs_error	exfat.c	/^void fs_error(struct super_block *sb)$/;"	f
+fs_fmask	exfat_super.h	/^	unsigned short fs_fmask;$/;"	m	struct:exfat_mount_options
+fs_func	exfat.h	/^		FS_FUNC_T	*fs_func;$/;"	m	struct:__FS_INFO_T
+fs_gid	exfat_super.h	/^	gid_t fs_gid;$/;"	m	struct:exfat_mount_options
+fs_info	exfat_super.h	/^	FS_INFO_T fs_info;$/;"	m	struct:exfat_sb_info
+fs_init	exfat.c	/^INT32 fs_init(void)$/;"	f
+fs_set_vol_flags	exfat.c	/^void fs_set_vol_flags(struct super_block *sb, UINT32 new_flag)$/;"	f
+fs_shutdown	exfat.c	/^INT32 fs_shutdown(void)$/;"	f
+fs_struct	exfat_data.c	/^FS_STRUCT_T fs_struct[MAX_DRIVE];$/;"	v
+fs_sync	exfat.c	/^void fs_sync(struct super_block *sb, INT32 do_sync)$/;"	f
+fs_uid	exfat_super.h	/^	uid_t fs_uid;$/;"	m	struct:exfat_mount_options
+fs_version	exfat.h	/^		UINT8       fs_version[2];$/;"	m	struct:__anon9
+get_col_index	exfat.h	/^	static inline UINT16 get_col_index(UINT16 i)$/;"	f
+get_current_msec	exfat.c	/^static UINT32 get_current_msec(void)$/;"	f	file:
+get_current_msec	exfat_super.c	/^static UINT32 get_current_msec(void)$/;"	f	file:
+get_entry_attr	exfat.h	/^		UINT32      (*get_entry_attr)(DENTRY_T *p_entry);$/;"	m	struct:__anon19
+get_entry_clu0	exfat.h	/^		UINT32      (*get_entry_clu0)(DENTRY_T *p_entry);$/;"	m	struct:__anon19
+get_entry_flag	exfat.h	/^		UINT8       (*get_entry_flag)(DENTRY_T *p_entry);$/;"	m	struct:__anon19
+get_entry_in_dir	exfat.c	/^DENTRY_T *get_entry_in_dir(struct super_block *sb, CHAIN_T *p_dir, INT32 entry, UINT32 *sector)$/;"	f
+get_entry_set_in_dir	exfat.c	/^ENTRY_SET_CACHE_T *get_entry_set_in_dir (struct super_block *sb, CHAIN_T *p_dir, INT32 entry, UINT32 type, DENTRY_T **file_ep)$/;"	f
+get_entry_size	exfat.h	/^		UINT64      (*get_entry_size)(DENTRY_T *p_entry);$/;"	m	struct:__anon19
+get_entry_time	exfat.h	/^		void        (*get_entry_time)(DENTRY_T *p_entry, TIMESTAMP_T *tp, UINT8 mode);$/;"	m	struct:__anon19
+get_entry_type	exfat.h	/^		UINT32      (*get_entry_type)(DENTRY_T *p_entry);$/;"	m	struct:__anon19
+get_entry_with_sector	exfat.c	/^DENTRY_T *get_entry_with_sector(struct super_block *sb, UINT32 sector, INT32 offset)$/;"	f
+get_num_entries_and_dos_name	exfat.c	/^INT32 get_num_entries_and_dos_name(struct super_block *sb, CHAIN_T *p_dir, UNI_NAME_T *p_uniname, INT32 *entries, DOS_NAME_T *p_dosname)$/;"	f
+get_row_index	exfat.h	/^	static inline UINT16 get_row_index(UINT16 i)$/;"	f
+get_uni_name_from_dos_entry	exfat.c	/^void get_uni_name_from_dos_entry(struct super_block *sb, DOS_DENTRY_T *ep, UNI_NAME_T *p_uniname, UINT8 mode)$/;"	f
+get_uni_name_from_ext_entry	exfat.h	/^		void        (*get_uni_name_from_ext_entry)(struct super_block *sb, CHAIN_T *p_dir, INT32 entry, UINT16 *uniname, INT32 *faulty_entry);$/;"	m	struct:__anon19
+hash_next	exfat_cache.h	/^		struct __BUF_CACHE_T *hash_next;$/;"	m	struct:__BUF_CACHE_T	typeref:struct:__BUF_CACHE_T::__BUF_CACHE_T
+hash_prev	exfat_cache.h	/^		struct __BUF_CACHE_T *hash_prev;$/;"	m	struct:__BUF_CACHE_T	typeref:struct:__BUF_CACHE_T::__BUF_CACHE_T
+hint_last_clu	exfat_api.h	/^		UINT32      hint_last_clu;$/;"	m	struct:__anon6
+hint_last_off	exfat_api.h	/^		INT32       hint_last_off;$/;"	m	struct:__anon6
+hint_uentry	exfat.h	/^		UENTRY_T    hint_uentry;            \/\/ unused entry hint information$/;"	m	struct:__FS_INFO_T
+hour	exfat_oal.h	/^		UINT16      hour;       \/* 0 ~ 23               *\/$/;"	m	struct:__anon23
+i_fat_hash	exfat_super.h	/^	struct hlist_node i_fat_hash;    \/* hash by i_location *\/$/;"	m	struct:exfat_inode_info	typeref:struct:exfat_inode_info::hlist_node
+i_pos	exfat_super.h	/^	loff_t i_pos;               \/* on-disk position of directory entry or 0 *\/$/;"	m	struct:exfat_inode_info
+init_dir_entry	exfat.h	/^		INT32      (*init_dir_entry)(struct super_block *sb, CHAIN_T *p_dir, INT32 entry, UINT32 type,$/;"	m	struct:__anon19
+init_exfat_core	exfat_api.c	/^module_init(init_exfat_core);$/;"	v
+init_exfat_core	exfat_api.c	/^static int __init init_exfat_core(void)$/;"	f	file:
+init_exfat_fs	exfat_super.c	/^module_init(init_exfat_fs);$/;"	v
+init_exfat_fs	exfat_super.c	/^static int __init init_exfat_fs(void)$/;"	f	file:
+init_ext_entry	exfat.h	/^		INT32      (*init_ext_entry)(struct super_block *sb, CHAIN_T *p_dir, INT32 entry, INT32 num_entries,$/;"	m	struct:__anon19
+init_file_entry	exfat.c	/^void init_file_entry(FILE_DENTRY_T *ep, UINT32 type)$/;"	f
+init_name_entry	exfat.c	/^void init_name_entry(NAME_DENTRY_T *ep, UINT16 *uniname)$/;"	f
+init_once	exfat_super.c	/^static void init_once(void *foo)$/;"	f	file:
+init_strm_entry	exfat.c	/^void init_strm_entry(STRM_DENTRY_T *ep, UINT8 flags, UINT32 start_clu, UINT64 size)$/;"	f
+inode_hash_lock	exfat_super.h	/^	spinlock_t inode_hash_lock;$/;"	m	struct:exfat_sb_info
+inode_hashtable	exfat_super.h	/^	struct hlist_head inode_hashtable[EXFAT_HASH_SIZE];$/;"	m	struct:exfat_sb_info	typeref:struct:exfat_sb_info::hlist_head
+iocharset	exfat_super.h	/^	char *iocharset;            \/* charset for filename input\/display *\/$/;"	m	struct:exfat_mount_options
+is_dir_empty	exfat.c	/^BOOL is_dir_empty(struct super_block *sb, CHAIN_T *p_dir)$/;"	f
+jmp_boot	exfat.h	/^		UINT8       jmp_boot[3];$/;"	m	struct:__anon8
+label_len	exfat.h	/^		UINT8       label_len;$/;"	m	struct:__anon17
+lcase	exfat.h	/^		UINT8       lcase;$/;"	m	struct:__anon11
+load_alloc_bitmap	exfat.c	/^INT32 load_alloc_bitmap(struct super_block *sb)$/;"	f
+load_upcase_table	exfat.c	/^INT32 load_upcase_table(struct super_block *sb)$/;"	f
+map_clu	exfat.h	/^		UINT32      map_clu;                \/\/ allocation bitmap start cluster$/;"	m	struct:__FS_INFO_T
+map_sectors	exfat.h	/^		UINT32      map_sectors;            \/\/ num of allocation bitmap sectors$/;"	m	struct:__FS_INFO_T
+min	exfat_oal.h	/^		UINT16      min;        \/* 0 ~ 59               *\/$/;"	m	struct:__anon23
+mmu_private	exfat_super.h	/^	loff_t mmu_private;         \/* physically allocated size *\/$/;"	m	struct:exfat_inode_info
+modify_date	exfat.h	/^		UINT8       modify_date[2];             \/\/ aligned$/;"	m	struct:__anon11
+modify_date	exfat.h	/^		UINT8       modify_date[2];             \/\/ aligned$/;"	m	struct:__anon12
+modify_time	exfat.h	/^		UINT8       modify_time[2];             \/\/ aligned$/;"	m	struct:__anon11
+modify_time	exfat.h	/^		UINT8       modify_time[2];             \/\/ aligned$/;"	m	struct:__anon12
+modify_time_ms	exfat.h	/^		UINT8       modify_time_ms;$/;"	m	struct:__anon12
+mon	exfat_oal.h	/^		UINT16      mon;        \/* 1 ~ 12               *\/$/;"	m	struct:__anon23
+mounted	exfat.h	/^		UINT32      mounted;$/;"	m	struct:__FS_STRUCT_T
+move_file	exfat.c	/^INT32 move_file(struct inode *inode, CHAIN_T *p_olddir, INT32 oldentry, CHAIN_T *p_newdir, UNI_NAME_T *p_uniname, FILE_ID_T *fid)$/;"	f
+move_to_lru	exfat_cache.c	/^static void move_to_lru(BUF_CACHE_T *bp, BUF_CACHE_T *list)$/;"	f	file:
+move_to_mru	exfat_cache.c	/^static void move_to_mru(BUF_CACHE_T *bp, BUF_CACHE_T *list)$/;"	f	file:
+multi_sector_read	exfat.c	/^INT32 multi_sector_read(struct super_block *sb, UINT32 sec, struct buffer_head **bh, INT32 num_secs, INT32 read)$/;"	f
+multi_sector_write	exfat.c	/^INT32 multi_sector_write(struct super_block *sb, UINT32 sec, struct buffer_head *bh, INT32 num_secs, INT32 sync)$/;"	f
+my_itoa	exfat_global.c	/^void my_itoa(INT8 *buf, INT32 v)$/;"	f
+my_log2	exfat_global.c	/^INT32 my_log2(UINT32 v)$/;"	f
+name	exfat.h	/^		UINT8       name[DOS_NAME_LENGTH];$/;"	m	struct:__anon11
+name	exfat_nls.h	/^		UINT16      name[MAX_NAME_LENGTH];$/;"	m	struct:__anon22
+name	exfat_nls.h	/^		UINT8       name[DOS_NAME_LENGTH];$/;"	m	struct:__anon21
+name_buf	exfat.c	/^static UINT8 name_buf[MAX_PATH_LENGTH *MAX_CHARSET_SIZE];$/;"	v	file:
+name_case	exfat_nls.h	/^		UINT8       name_case;$/;"	m	struct:__anon21
+name_hash	exfat.h	/^		UINT8       name_hash[2];               \/\/ aligned$/;"	m	struct:__anon13
+name_hash	exfat_nls.h	/^		UINT16      name_hash;$/;"	m	struct:__anon22
+name_len	exfat.h	/^		UINT8       name_len;$/;"	m	struct:__anon13
+name_len	exfat_nls.h	/^		UINT8       name_len;$/;"	m	struct:__anon22
+next	exfat_cache.h	/^		struct __BUF_CACHE_T *next;$/;"	m	struct:__BUF_CACHE_T	typeref:struct:__BUF_CACHE_T::__BUF_CACHE_T
+nls_cstring_to_uniname	exfat_nls.c	/^void nls_cstring_to_uniname(struct super_block *sb, UNI_NAME_T *p_uniname, UINT8 *p_cstring, INT32 *p_lossy)$/;"	f
+nls_disk	exfat_super.h	/^	struct nls_table *nls_disk; \/* Codepage used on disk *\/$/;"	m	struct:exfat_sb_info	typeref:struct:exfat_sb_info::nls_table
+nls_dosname_cmp	exfat_nls.c	/^INT32 nls_dosname_cmp(struct super_block *sb, UINT8 *a, UINT8 *b)$/;"	f
+nls_dosname_to_uniname	exfat_nls.c	/^void nls_dosname_to_uniname(struct super_block *sb, UNI_NAME_T *p_uniname, DOS_NAME_T *p_dosname)$/;"	f
+nls_io	exfat_super.h	/^	struct nls_table *nls_io;   \/* Charset used for input and display *\/$/;"	m	struct:exfat_sb_info	typeref:struct:exfat_sb_info::nls_table
+nls_uniname_cmp	exfat_nls.c	/^INT32 nls_uniname_cmp(struct super_block *sb, UINT16 *a, UINT16 *b)$/;"	f
+nls_uniname_to_cstring	exfat_nls.c	/^void nls_uniname_to_cstring(struct super_block *sb, UINT8 *p_cstring, UNI_NAME_T *p_uniname)$/;"	f
+nls_uniname_to_dosname	exfat_nls.c	/^void nls_uniname_to_dosname(struct super_block *sb, DOS_NAME_T *p_dosname, UNI_NAME_T *p_uniname, INT32 *p_lossy)$/;"	f
+nls_upper	exfat_nls.c	/^UINT16 nls_upper(struct super_block *sb, UINT16 a)$/;"	f
+num_FAT_sectors	exfat.h	/^		UINT32      num_FAT_sectors;        \/\/ num of FAT sectors$/;"	m	struct:__FS_INFO_T
+num_clusters	exfat.h	/^		UINT32      num_clusters;           \/\/ num of clusters in volume$/;"	m	struct:__FS_INFO_T
+num_entries	exfat.h	/^		UINT32 num_entries;$/;"	m	struct:__anon20
+num_ext	exfat.h	/^		UINT8       num_ext;$/;"	m	struct:__anon12
+num_fats	exfat.h	/^		UINT8       num_fats;$/;"	m	struct:__anon9
+num_sectors	exfat.h	/^		UINT32      num_sectors;            \/\/ num of sectors in volume$/;"	m	struct:__FS_INFO_T
+num_sectors	exfat_blkdev.h	/^		INT32 num_sectors;      \/\/ total number of sectors in this block device$/;"	m	struct:__BD_INFO_T
+num_sectors	exfat_part.h	/^		UINT8       num_sectors[4];$/;"	m	struct:__anon25
+oem_name	exfat.h	/^		UINT8       oem_name[8];$/;"	m	struct:__anon8
+offset	exfat.h	/^		INT32	offset;		\/\/ byte offset in the sector$/;"	m	struct:__anon20
+opened	exfat_blkdev.h	/^		BOOL  opened;           \/\/ opened or not$/;"	m	struct:__BD_INFO_T
+options	exfat_super.h	/^	struct exfat_mount_options options;$/;"	m	struct:exfat_sb_info	typeref:struct:exfat_sb_info::exfat_mount_options
+parent_dir	exfat_api.h	/^		CHAIN_T     parent_dir;$/;"	m	struct:__anon6
+parent_entry	exfat_api.h	/^		INT32	    parent_entry;$/;"	m	struct:__anon6
+parse_options	exfat_super.c	/^static int parse_options(char *options, int silent, int *debug,$/;"	f	file:
+partition	exfat_part.h	/^		UINT8       partition[64];$/;"	m	struct:__anon24
+pbr_bh	exfat.h	/^		struct buffer_head *pbr_bh;         \/\/ PBR sector$/;"	m	struct:__FS_INFO_T	typeref:struct:__FS_INFO_T::buffer_head
+perc_in_use	exfat.h	/^		UINT8       perc_in_use;$/;"	m	struct:__anon9
+phy_drv_no	exfat.h	/^		UINT8       phy_drv_no;$/;"	m	struct:__anon9
+prev	exfat_cache.h	/^		struct __BUF_CACHE_T *prev;$/;"	m	struct:__BUF_CACHE_T	typeref:struct:__BUF_CACHE_T::__BUF_CACHE_T
+push_to_lru	exfat_cache.c	/^static void push_to_lru(BUF_CACHE_T *bp, BUF_CACHE_T *list)$/;"	f	file:
+push_to_mru	exfat_cache.c	/^static void push_to_mru(BUF_CACHE_T *bp, BUF_CACHE_T *list)$/;"	f	file:
+release_entry_set	exfat.c	/^void release_entry_set (ENTRY_SET_CACHE_T *es)$/;"	f
+remove_file	exfat.c	/^void remove_file(struct inode *inode, CHAIN_T *p_dir, INT32 entry)$/;"	f
+rename_file	exfat.c	/^INT32 rename_file(struct inode *inode, CHAIN_T *p_dir, INT32 oldentry, UNI_NAME_T *p_uniname, FILE_ID_T *fid)$/;"	f
+reserved	exfat.h	/^		UINT8       reserved[18];$/;"	m	struct:__anon15
+reserved	exfat.h	/^		UINT8       reserved[8];$/;"	m	struct:__anon17
+reserved1	exfat.h	/^		UINT8       reserved1;$/;"	m	struct:__anon13
+reserved1	exfat.h	/^		UINT8       reserved1[2];$/;"	m	struct:__anon12
+reserved1	exfat.h	/^		UINT8       reserved1[3];$/;"	m	struct:__anon16
+reserved1	exfat.h	/^		UINT8       reserved1[53];$/;"	m	struct:__anon9
+reserved2	exfat.h	/^		UINT8       reserved2[12];$/;"	m	struct:__anon16
+reserved2	exfat.h	/^		UINT8       reserved2[2];$/;"	m	struct:__anon13
+reserved2	exfat.h	/^		UINT8       reserved2[7];$/;"	m	struct:__anon9
+reserved2	exfat.h	/^		UINT8       reserved2[9];$/;"	m	struct:__anon12
+reserved3	exfat.h	/^		UINT8       reserved3[4];               \/\/ aligned$/;"	m	struct:__anon13
+resolve_name	exfat.c	/^INT32 resolve_name(UINT8 *name, UINT8 **arg)$/;"	f
+resolve_path	exfat.c	/^INT32 resolve_path(struct inode *inode, UINT8 *path, CHAIN_T *p_dir, UNI_NAME_T *p_uniname)$/;"	f
+root_cluster	exfat.h	/^		UINT8       root_cluster[4];$/;"	m	struct:__anon9
+root_dir	exfat.h	/^		UINT32      root_dir;               \/\/ root dir cluster$/;"	m	struct:__FS_INFO_T
+root_start_sector	exfat.h	/^		UINT32      root_start_sector;      \/\/ root dir start sector$/;"	m	struct:__FS_INFO_T
+rwoffset	exfat_api.h	/^		INT64       rwoffset;$/;"	m	struct:__anon6
+s_lock	exfat_super.h	/^	struct mutex s_lock; \/* lock to prevent parallel access to superblock *\/$/;"	m	struct:exfat_sb_info	typeref:struct:exfat_sb_info::mutex
+sb	exfat.h	/^		struct super_block *sb;$/;"	m	struct:__FS_STRUCT_T	typeref:struct:__FS_STRUCT_T::super_block
+sb_dirty	exfat_super.h	/^	bool sb_dirty;$/;"	m	struct:exfat_sb_info
+search_deleted_or_unused_entry	exfat.c	/^INT32 search_deleted_or_unused_entry(struct super_block *sb, CHAIN_T *p_dir, INT32 num_entries)$/;"	f
+sec	exfat_cache.h	/^		UINT32               sec;$/;"	m	struct:__BUF_CACHE_T
+sec	exfat_oal.h	/^		UINT16      sec;        \/* 0 ~ 59               *\/$/;"	m	struct:__anon23
+sector	exfat.h	/^		UINT32	sector;		\/\/ sector number that contains file_entry$/;"	m	struct:__anon20
+sector_read	exfat.c	/^INT32 sector_read(struct super_block *sb, UINT32 sec, struct buffer_head **bh, INT32 read)$/;"	f
+sector_size	exfat_blkdev.h	/^		INT32 sector_size;      \/\/ in bytes$/;"	m	struct:__BD_INFO_T
+sector_size_bits	exfat.h	/^		UINT8       sector_size_bits;$/;"	m	struct:__anon9
+sector_size_bits	exfat_blkdev.h	/^		INT32 sector_size_bits;$/;"	m	struct:__BD_INFO_T
+sector_size_mask	exfat_blkdev.h	/^		INT32 sector_size_mask;$/;"	m	struct:__BD_INFO_T
+sector_write	exfat.c	/^INT32 sector_write(struct super_block *sb, UINT32 sec, struct buffer_head *bh, INT32 sync)$/;"	f
+sectors_per_clu	exfat.h	/^		UINT32      sectors_per_clu;        \/\/ cluster size in sectors$/;"	m	struct:__FS_INFO_T
+sectors_per_clu_bits	exfat.h	/^		UINT32      sectors_per_clu_bits;$/;"	m	struct:__FS_INFO_T
+sectors_per_clu_bits	exfat.h	/^		UINT8       sectors_per_clu_bits;$/;"	m	struct:__anon9
+set_alloc_bitmap	exfat.c	/^INT32 set_alloc_bitmap(struct super_block *sb, UINT32 clu)$/;"	f
+set_entry_attr	exfat.h	/^		void        (*set_entry_attr)(DENTRY_T *p_entry, UINT32 attr);$/;"	m	struct:__anon19
+set_entry_clu0	exfat.h	/^		void        (*set_entry_clu0)(DENTRY_T *p_entry, UINT32 clu0);$/;"	m	struct:__anon19
+set_entry_flag	exfat.h	/^		void        (*set_entry_flag)(DENTRY_T *p_entry, UINT8 flag);$/;"	m	struct:__anon19
+set_entry_size	exfat.h	/^		void        (*set_entry_size)(DENTRY_T *p_entry, UINT64 size);$/;"	m	struct:__anon19
+set_entry_time	exfat.h	/^		void        (*set_entry_time)(DENTRY_T *p_entry, TIMESTAMP_T *tp, UINT8 mode);$/;"	m	struct:__anon19
+set_entry_type	exfat.h	/^		void        (*set_entry_type)(DENTRY_T *p_entry, UINT32 type);$/;"	m	struct:__anon19
+shrink_batch	exfat_super.h	/^	long shrink_batch;$/;"	m	struct:exfat_mount_options
+signature	exfat.h	/^		UINT8       signature[2];$/;"	m	struct:__anon8
+signature	exfat_part.h	/^		UINT8       signature[2];$/;"	m	struct:__anon24
+size	exfat.h	/^		UINT8       size[4];                    \/\/ aligned$/;"	m	struct:__anon11
+size	exfat.h	/^		UINT8       size[8];                    \/\/ aligned$/;"	m	struct:__anon13
+size	exfat.h	/^		UINT8       size[8];                    \/\/ aligned$/;"	m	struct:__anon15
+size	exfat.h	/^		UINT8       size[8];                    \/\/ aligned$/;"	m	struct:__anon16
+size	exfat_api.h	/^		INT32       size;$/;"	m	struct:__anon5
+size	exfat_api.h	/^		UINT64      size;$/;"	m	struct:__anon6
+sm_P	exfat_cache.c	55;"	d	file:
+sm_P	exfat_oal.c	/^INT32 sm_P(struct semaphore *sm)$/;"	f
+sm_V	exfat_cache.c	56;"	d	file:
+sm_V	exfat_oal.c	/^void sm_V(struct semaphore *sm)$/;"	f
+sm_init	exfat_oal.c	/^INT32 sm_init(struct semaphore *sm)$/;"	f
+start_clu	exfat.h	/^		UINT8       start_clu[4];               \/\/ aligned$/;"	m	struct:__anon13
+start_clu	exfat.h	/^		UINT8       start_clu[4];               \/\/ aligned$/;"	m	struct:__anon15
+start_clu	exfat.h	/^		UINT8       start_clu[4];               \/\/ aligned$/;"	m	struct:__anon16
+start_clu	exfat_api.h	/^		UINT32      start_clu;$/;"	m	struct:__anon6
+start_clu_hi	exfat.h	/^		UINT8       start_clu_hi[2];            \/\/ aligned$/;"	m	struct:__anon11
+start_clu_lo	exfat.h	/^		UINT8       start_clu_lo[2];            \/\/ aligned$/;"	m	struct:__anon11
+start_sector	exfat_part.h	/^		UINT8       start_sector[4];$/;"	m	struct:__anon25
+sync_alloc_bitmap	exfat.c	/^void sync_alloc_bitmap(struct super_block *sb)$/;"	f
+sys_type	exfat_part.h	/^		UINT8       sys_type;$/;"	m	struct:__anon25
+target	exfat_super.h	/^	char  *target;$/;"	m	struct:exfat_inode_info
+test_alloc_bitmap	exfat.c	/^UINT32 test_alloc_bitmap(struct super_block *sb, UINT32 clu)$/;"	f
+tm_current	exfat_oal.c	/^TIMESTAMP_T *tm_current(TIMESTAMP_T *tp)$/;"	f
+truncate_lock	exfat_super.h	/^	struct rw_semaphore truncate_lock; \/* protect bmap against truncate *\/$/;"	m	struct:exfat_inode_info	typeref:struct:exfat_inode_info::rw_semaphore
+type	exfat.h	/^		UINT8       type;$/;"	m	struct:__anon12
+type	exfat.h	/^		UINT8       type;$/;"	m	struct:__anon13
+type	exfat.h	/^		UINT8       type;$/;"	m	struct:__anon14
+type	exfat.h	/^		UINT8       type;$/;"	m	struct:__anon15
+type	exfat.h	/^		UINT8       type;$/;"	m	struct:__anon16
+type	exfat.h	/^		UINT8       type;$/;"	m	struct:__anon17
+type	exfat_api.h	/^		UINT32      type;$/;"	m	struct:__anon6
+uni_upcase	exfat_upcase.c	/^UINT8 uni_upcase[NUM_UPCASE<<1] = {$/;"	v
+unicode_0_10	exfat.h	/^		UINT8       unicode_0_10[22];           \/\/ aligned$/;"	m	struct:__anon17
+unicode_0_14	exfat.h	/^		UINT8       unicode_0_14[30];           \/\/ aligned$/;"	m	struct:__anon14
+update_dir_checksum	exfat.c	/^void update_dir_checksum(struct super_block *sb, CHAIN_T *p_dir, INT32 entry)$/;"	f
+update_dir_checksum_with_entry_set	exfat.c	/^void update_dir_checksum_with_entry_set (struct super_block *sb, ENTRY_SET_CACHE_T *es)$/;"	f
+update_parent_info	exfat.c	/^static void update_parent_info( FILE_ID_T *fid, struct inode *parent_inode)$/;"	f	file:
+used_bit	exfat.c	/^static UINT8 used_bit[] = {$/;"	v	file:
+used_clusters	exfat.h	/^		UINT32      used_clusters;          \/\/ number of used clusters$/;"	m	struct:__FS_INFO_T
+v_sem	exfat.h	/^		struct semaphore v_sem;$/;"	m	struct:__FS_STRUCT_T	typeref:struct:__FS_STRUCT_T::semaphore
+valid_size	exfat.h	/^		UINT8       valid_size[8];              \/\/ aligned$/;"	m	struct:__anon13
+vfs_inode	exfat_super.h	/^	struct inode vfs_inode;$/;"	m	struct:exfat_inode_info	typeref:struct:exfat_inode_info::inode
+vol_amap	exfat.h	/^		struct buffer_head **vol_amap;      \/\/ allocation bitmap$/;"	m	struct:__FS_INFO_T	typeref:struct:__FS_INFO_T::buffer_head
+vol_flag	exfat.h	/^		UINT32      vol_flag;               \/\/ volume dirty flag$/;"	m	struct:__FS_INFO_T
+vol_flags	exfat.h	/^		UINT8       vol_flags[2];$/;"	m	struct:__anon9
+vol_id	exfat.h	/^		UINT32      vol_id;                 \/\/ volume serial number$/;"	m	struct:__FS_INFO_T
+vol_length	exfat.h	/^		UINT8       vol_length[8];$/;"	m	struct:__anon9
+vol_offset	exfat.h	/^		UINT8       vol_offset[8];$/;"	m	struct:__anon9
+vol_serial	exfat.h	/^		UINT8       vol_serial[4];$/;"	m	struct:__anon9
+vol_type	exfat.h	/^		UINT32      vol_type;               \/\/ volume FAT type$/;"	m	struct:__FS_INFO_T
+vol_utbl	exfat.h	/^		UINT16      **vol_utbl;               \/\/ upcase table$/;"	m	struct:__FS_INFO_T
+write_partial_entries_in_entry_set	exfat.c	/^INT32 write_partial_entries_in_entry_set (struct super_block *sb, ENTRY_SET_CACHE_T *es, DENTRY_T *ep, UINT32 count)$/;"	f
+write_whole_entry_set	exfat.c	/^INT32 write_whole_entry_set (struct super_block *sb, ENTRY_SET_CACHE_T *es)$/;"	f
+year	exfat_oal.h	/^		UINT16      year;       \/* 0 ~ 127 (since 1980) *\/$/;"	m	struct:__anon23
+z_sem	exfat_oal.c	/^DECLARE_MUTEX(z_sem);$/;"	v

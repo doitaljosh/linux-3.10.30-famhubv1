@@ -1,0 +1,67 @@
+#
+# Unauthorized Execution Prevention service module configuration
+#
+
+config SECURITY_SFD_UEP
+	tristate "UEP (Unauthorized Execution Prevention)"
+	depends on SECURITY_SFD_DISPATCHER
+	depends on (SECURITY_SFD_DISPATHCER_MMAP || SECURITY_SFD_DISPATHCER_EXEC || SECURITY_SFD_DISPATCHER_LOAD_KERNEL_MODULE)
+	default n
+	help
+		UEP module responsible for digital signature verification of the executable binaries and
+		loadable libraries. This module may be compiled built-in as well as loadable module.
+
+		If you unsure how to answer this question, answer N.
+
+config SECURITY_SFD_UEP_CHECK_LIBRARY
+	bool "Library signature verification"
+	depends on SECURITY_SFD_UEP && SECURITY_SFD_DISPATHCER_MMAP
+	default n
+	help
+		Enable verification of the libraries going to be loaded.
+
+config SECURITY_SFD_UEP_CHECK_PROCESS
+	bool "Process signature verification"
+	depends on SECURITY_SFD_UEP && SECURITY_SFD_DISPATHCER_EXEC
+	default n
+	help
+		Enable verification of the applications going to be executed.
+
+config SECURITY_SFD_UEP_CHECK_MODULE
+	bool "Kernel module signature verification"
+	depends on SECURITY_SFD_UEP && SECURITY_SFD_DISPATCHER_LOAD_KERNEL_MODULE
+	default n
+	help
+		Enable verification of the kernel modules going to be loaded to the kernel.
+
+config SECURITY_SFD_UEP_SIGNATURE_CACHE
+	bool "Caching of the signature verification"
+	depends on SECURITY_SFD_UEP
+	default n
+	help
+		Enable caching of the digital signature verification routine. This is done by
+		storing inode counters and comparing them on the next verification.
+
+choice
+	prompt "Default UEP Crytpography"
+	depends on SECURITY_SFD_UEP
+
+	config SECURITY_SFD_UEP_CRYPTO_MPI
+		bool "MPI based cryptography"
+		select MPILIB
+		select CRYPTO_MD5
+		help
+			MPI library for big numbers arithmetic
+
+	config SECURITY_SFD_UEP_CRYPTO_HW
+		bool "HW based cryptography"
+		help
+			Chip accelerated cryptography. Currenly not supported. This option is for future.
+
+	config SECURITY_SFD_UEP_CRYPTO_CRYPTOCORE
+		bool "CryptoCore based cryptography"
+		help
+			CryptoCore library is Samsung Electronics engine for crypto operations. Currenly not
+			supported. This option is for future.
+
+endchoice

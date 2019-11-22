@@ -1,0 +1,142 @@
+#
+# Dispatcher module of the SFD
+#
+
+config SECURITY_SFD_DISPATCHER
+	bool "Dispatcher"
+	depends on SECURITY_SFD
+	default y
+	help
+		This module is the major component of SFD. Dispathcer allocates kernel resources to other
+		SFD components. Current version of dispatcher module MUST be bult-in. Dispatcher provide
+		API for other SFD related modules such UEP, Notifier, etc. Dispatcher creates communication
+		BUS with the user-space based on netlink multicast protocol.
+
+		If you unsure how to answer this question, answer Y.
+
+config SECURITY_SFD_DISPATHCER_EXEC
+	bool "Process EXEC system call"
+	depends on SECURITY_SFD_DISPATCHER
+	default n
+	help
+		This option enable exec (sys_exec, sys_execve, sys_execl, etc.) system call processing
+		routine for Security Framework modules. This is done by adding a call into the following
+		function:
+			int search_binary_handler(struct linux_binprm *bprm);
+		located in the fs/exec.c file. The SFD handler declared in
+			include/linux/sf_security.h.
+		SFD function name is:
+			int sf_security_bprm_check(struct linux_binprm* pBinaryParameters);
+
+config SECURITY_SFD_DISPATHCER_MMAP
+	bool "Process MMAP system call"
+	depends on SECURITY_SFD_DISPATCHER
+	default n
+	help
+		This option enable mmap (sys_mmap, sys_mmap2, sys_mmap_pgoff, etc.) system call processing
+		routine for Security Framework modules. This is done by adding a call into the following
+		functions:
+			unsigned long vm_mmap_pgoff(struct file *file, unsigned long addr,
+				unsigned long len, unsigned long prot,
+				unsigned long flag, unsigned long pgoff);
+		located in mm/util.c file and:
+			long do_shmat(int shmid, char __user *shmaddr, int shmflg, ulong *raddr,
+				unsigned long shmlba);
+		located in ipc/shm.c. The SFD handler declared in include/linux/sf_security.h. SFD function
+		name is:
+			int sf_security_mmap_file(struct file* pFile, unsigned long prot, unsigned long flags);
+
+config SECURITY_SFD_DISPATCHER_LOAD_KERNEL_MODULE
+	bool "Loading module into kernel"
+	depends on SECURITY_SFD_DISPATCHER
+	default n
+	help
+		This option enable kernel module (insmod, modprobe) loading system call processing routine
+		for Security Framework modules. This is done by adding a call into following functions:
+			static int copy_module_from_user(const void __user *umod, unsigned long len,
+				struct load_info *info);
+		located in kernel/module.c file and:
+			static int copy_module_from_fd(int fd, struct load_info *info);
+		located in kernel/module.c. The SFD handler declared in include/linux/sf_security.h.
+		SFD function name is:
+			int sf_security_kernel_module_from_file(struct file* pFile);
+
+config SECURITY_SFD_DISPATCHER_OPEN
+	bool "Process OPEN system call"
+	depends on SECURITY_SFD_DISPATCHER
+	default n
+	help
+		This option enable open (sys_open) system call processing routine for Security Framework
+		modules. This is done by adding a call into following function:
+			static int do_dentry_open(struct file *f, int (*open)(struct inode *, struct file *),
+				const struct cred *cred);
+		located in fs/open.c. The SFD handler declared in include/linux/sf_security.h. SFD function
+		name is:
+			int sf_security_file_open(struct file* pFile, const struct cred* pCredentials);
+
+config SECURITY_SFD_DISPATHCER_CONNECT
+	bool "Process CONNECT system call"
+	depends on SECURITY_SFD_DISPATCHER
+	default n
+	help
+		This option enable connect (sys_connect) system call processing routine for Security
+		Framework modules. This is done by adding a call into following function:
+			SYSCALL_DEFINE3(connect, int, fd, struct sockaddr __user *, uservaddr, int, addrlen);
+		located in net/socket.c. The SFD handler declared in include/linux/sf_security.h.
+		SFD function name is:
+			int sf_security_socket_connect(struct socket* pSocket, struct sockaddr* pAddress,
+				int addrlen);
+
+config SECURITY_SFD_DISPATHCER_LISTEN
+	bool "Process LISTEN system call"
+	depends on SECURITY_SFD_DISPATCHER
+	default n
+	help
+		This option enable listen (sys_listen) system call processing routine for Security Framework
+		modules. This is done by adding a call into following function:
+			SYSCALL_DEFINE2(listen, int, fd, int, backlog);
+		located in net/socket.c. The SFD handler declared in include/linux/sf_security.h.
+		SFD function name is:
+			int sf_security_socket_listen(struct socket* pSocket, int backLog);
+
+config SECURITY_SFD_DISPATCHER_SOCKET
+	bool "Process SOCKET system call"
+	depends on SECURITY_SFD_DISPATCHER
+	default n
+	help
+		This option enable socket (sys_socket) system call processing routine for Security Framework
+		modules. This is done by adding a call into following functions:
+			int sock_create_lite(int family, int type, int protocol, struct socket **res);
+		located in net/socket.c and:
+			int __sock_create(struct net *net, int family, int type, int protocol,
+				struct socket **res, int kern);
+		located in net/socket.c. The SFD handler declared in include/linux/sf_security.h.
+		SFD function name is:
+			int sf_security_socket_create(int family, int type, int protocol, int kernel);
+
+config SECURITY_SFD_DISPATCHER_ACCEPT
+	bool "Process ACCEPT system call"
+	depends on SECURITY_SFD_DISPATCHER
+	default n
+	help
+		This option enable socket (sys_accept) system call processing routine for Security Framework
+		modules. This is done by adding a call into following function:
+			SYSCALL_DEFINE4(accept4, int, fd, struct sockaddr __user *, upeer_sockaddr,
+				int __user *, upeer_addrlen, int, flags);
+		located in net/socket.c. The SFD handler declared in include/linux/sf_security.h.
+		SFD function name is:
+			int sf_security_socket_accept(struct socket* pSocket, struct socket* pNewSocket);
+
+config SECURITY_SFD_DISPATHCER_BIND
+	bool "Process BIND system call"
+	depends on SECURITY_SFD_DISPATCHER
+	default n
+	help
+		This option enable bind (sys_bind) system call processing routine for Security Framework
+		modules. This is done by adding a call into following function:
+			SYSCALL_DEFINE3(bind, int, fd, struct sockaddr __user *, umyaddr, int, addrlen);
+		located in net/socket.c. The SFD handler declared in include/linux/sf_security.h
+		SFD function name is:
+			int sf_security_socket_bind(struct socket* pSocket, struct sockaddr* pAddress,
+				int addrSize);
+				

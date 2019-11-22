@@ -1,0 +1,29 @@
+[coda.c:1682]: (error) Uninitialized variable: ctx
+[exynos4-is/fimc-is.c:193]: (error) Uninitialized variable: adapter
+[exynos4-is/media-dev.c:488]: (error) Uninitialized variable: node
+[exynos4-is/media-dev.c:762]: (error) Uninitialized variable: node
+[exynos4-is/mipi-csis.c:681]: (error) Signed integer overflow for expression '255<<28'.
+[fsl-viu.c:340]: (error) Uninitialized variable: prev
+[marvell-ccic/mcam-core.c:1052]: (error) Uninitialized variable: sg
+[marvell-ccic/mcam-core.c:1052]: (error) Uninitialized variable: i
+[omap3isp/ispccdc.c:386]: (error) Uninitialized variable: req
+[omap3isp/ispccdc.c:386]: (error) Uninitialized variable: n
+[s3c-camif/camif-core.h:367]: (error) Uninitialized variable: tmp
+[s3c-camif/camif-core.h:367]: (error) Uninitialized variable: buf
+[s5p-tv/mixer_video.c:1008]: (error) Uninitialized variable: buf
+[s5p-tv/mixer_video.c:1008]: (error) Uninitialized variable: buf_tmp
+[soc_camera/atmel-isi.c:463]: (error) Uninitialized variable: buf
+[soc_camera/atmel-isi.c:463]: (error) Uninitialized variable: node
+[soc_camera/mx3_camera.c:429]: (error) Uninitialized variable: buf
+[soc_camera/mx3_camera.c:429]: (error) Uninitialized variable: tmp
+[soc_camera/pxa_camera.c:297]: (error) Uninitialized variable: i
+[soc_camera/pxa_camera.c:297]: (error) Uninitialized variable: sg
+[soc_camera/pxa_camera.c:361]: (error) Uninitialized variable: sg
+[soc_camera/pxa_camera.c:361]: (error) Uninitialized variable: i
+[soc_camera/soc_camera.c:1077]: (error) Uninitialized variable: icd
+[soc_camera/soc_camera.c:1395]: (error) Uninitialized variable: ix
+[soc_camera/soc_camera.c:1448]: (error) Uninitialized variable: ix
+[vino.c:3745]: (error) Array 'vino_indycam_v4l2_controls[9]' accessed at index 9, which is out of bounds.
+[vino.c:3746]: (error) Array 'vino_indycam_v4l2_controls[9]' accessed at index 9, which is out of bounds.
+[vino.c:3766]: (error) Array 'vino_saa7191_v4l2_controls[9]' accessed at index 9, which is out of bounds.
+[vino.c:3767]: (error) Array 'vino_saa7191_v4l2_controls[9]' accessed at index 9, which is out of bounds.

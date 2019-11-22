@@ -1,0 +1,11 @@
+#
+# Transport component header files exported to user-space file system
+#
+header-y += SfNetlink.h
+header-y += SfPacketEnvironmentSerialization.h
+header-y += SfPacketOperationSerialization.h
+header-y += SfProtocolHeaderSerialization.h
+header-y += SfSerialization.h
+header-y += SfTransport.h
+
+header-y += netlink/

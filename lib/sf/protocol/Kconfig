@@ -1,0 +1,6 @@
+config SFLIB_PROTOCOL
+	bool "Protocol component of the Security Framework"
+	default n
+	depends on SFLIB_CORE
+	help
+		To write information later

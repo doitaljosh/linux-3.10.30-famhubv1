@@ -1,0 +1,87 @@
+menu "CI+ Option"
+
+config PROHIBIT_DEVMEM
+		bool "prohibit access to /dev/mem and /dev/kmem"
+		default n 
+		help
+		  It will prevent to access to /dev/mem and /dev/kmem for security issue.
+
+config PROHIBIT_GROUP_SETUID
+		bool "prohibit setuid operation for preventing privilege rise"
+		default n
+		help
+		  It will prevent to setuid implementation for security issue.
+
+config USE_ARS
+    bool "Anit RemoteShell Dummy function"
+    default n
+
+config PNACL
+    bool "Modification for PNaCl"
+    default n
+
+config RSA_API
+	default n
+	bool "RSA API support"
+
+config SHA_API
+	default n
+	bool "SHA API support"
+
+config EXECUTE_AUTHULD
+	default n
+	depends on RSA_API=y && SHA_API=y
+	bool "Execute authuld program on background" 
+	help
+		decide whether executing authuld
+
+choice
+	prompt "1024 or 2048 RSA"
+	default RSA2048
+
+config RSA2048
+	bool "RSA2048 setting"
+
+config RSA1024
+	bool "RSA1024 setting"
+endchoice
+
+config SHUTDOWN
+	bool "Send shutdown signal to micom"
+	default n
+	depends on EXECUTE_AUTHULD=y 
+	help
+		decide whether send "shutdown" to micom or not
+
+config MICOM_TTY_PATH
+	string "tty device name(full path) for micom communication (ex: /dev/ttyS1)"
+	default "/dev/ttyS1"
+	depends on EXECUTE_AUTHULD=y 
+	help
+		device path setting for micom communication
+
+config AUTHULD_PATH
+	string "Path to authuld file"
+	default "/bin/authuld" 
+	depends on EXECUTE_AUTHULD=y 
+	help
+		Allows to redirect authuld files into specified location.
+
+config TIMEOUT_ACK_AUTHULD
+	int "Timout of authuld ack(minute)"
+	default 3
+	depends on EXECUTE_AUTHULD=y
+	help
+		if kernel do not get ACK from authuld, System will be down.
+config BOOTLOADER_ERASE
+	bool "erase bootloader in memory"
+	default n
+	help
+		During kernel initialization, onboot will be erased in memory
+config BOOTLOADER_SIZE
+	hex "bootloader size"
+	default 0x20000
+	depends on BOOTLOADER_ERASE
+	help
+		erase bootloader size
+endmenu # end of "CI+ Option" menu

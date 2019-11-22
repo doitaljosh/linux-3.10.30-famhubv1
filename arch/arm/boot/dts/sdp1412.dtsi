@@ -1,0 +1,254 @@
+/*
+ * Copyright (C) 2014 Samsung Electronics Co.Ltd
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+
+/include/ "sdp.dtsi"
+/include/ "sdp1412-clocks.dtsi"
+/*/include/ "sdp1412-pinctrl.dtsi"*/
+
+/ {
+	compatible = "samsung,sdp1412";
+
+	interrupt-parent = <&gic>;
+
+	gic: interrupt-controller@10fa0000 {
+		compatible = "arm,cortex-a15-gic";
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		reg = <0x10fa1000 0x1000>, <0x10fa2000 0x1000>;
+	};
+    
+	chipid@0x10080000 {
+            compatible = "samsung,sdp-chipid-hawkp";
+            reg = <0x10080000 0x20>;
+    };
+
+	clock:clock-controller@10DF0000 {
+		compatible = "samsung,sdp1412-clock";
+		reg = <0x10DF0000 0x200>;
+		#clock-cells = <1>;
+	};
+
+	timer: arch-timer {
+		compatible = "arm,armv7-timer";
+		interrupts = <1 14 0xf08>,
+				<1 13 0xf08>;
+	};
+
+	timer@10090400 {
+		compatible = "samsung,sdp-timer";
+		reg = <0x10090400 0x100>;
+		clocks = <&apb_pclk>;
+		clock-names = "apb_pclk";
+		int_stretch = <0xf>;
+		int_level;
+		one-shot;
+		nr_timers = <4>;
+		interrupts = <0 16 0>, <0 17 0>, <0 18 0>, <0 19 0>;
+		clocksource_id = <0>;
+		clockevent_id = <1>;
+		localtimer_ids = <2>, <3>;
+	};
+
+	serial@10090A00 {
+		compatible = "samsung,sdp-uart";
+		reg = <0x10090A00 0x40>;
+		interrupts = <0 65 0>;
+		clocks = <&apb_pclk>;
+		clock-names = "apb_pclk";
+		status = "disabled";
+	};
+
+	serial@10090A40 {
+		compatible = "samsung,sdp-uart";
+		reg = <0x10090A40 0x40>;
+		interrupts = <0 66 0>;
+		clocks = <&apb_pclk>;
+		clock-names = "apb_pclk";
+		status = "disabled";
+	};
+	
+	serial@10090A80 {
+		compatible = "samsung,sdp-uart";
+		reg = <0x10090A80 0x40>;
+		interrupts = <0 67 0>;
+		clocks = <&apb_pclk>;
+		clock-names = "apb_pclk";
+		status = "disabled";
+	};
+
+	serial@10090AC0 {
+		compatible = "samsung,sdp-uart";
+		reg = <0x10090AC0 0x40>;
+		interrupts = <0 68 0>;
+		clocks = <&apb_pclk>;
+		clock-names = "apb_pclk";
+		status = "disabled";
+	};
+		
+	i2c_0: i2c@10090100 {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		compatible = "samsung,sdp-i2c";
+		reg = <0x10090100 0x20>;
+		interrupts = <0 80 0>;
+		clocks = <&rstn_i2c>;
+		clock-names = "rstn_i2c";
+	};
+
+	i2c_1: i2c@10090120 {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		compatible = "samsung,sdp-i2c";
+		reg = <0x10090120 0x20>;
+		interrupts = <0 81 0>;
+		clocks = <&rstn_i2c>;
+		clock-names = "rstn_i2c";
+	};
+
+	i2c_2: i2c@10090140 {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		compatible = "samsung,sdp-i2c";
+		reg = <0x10090140 0x20>;
+		interrupts = <0 82 0>;
+		clocks = <&rstn_i2c>;
+		clock-names = "rstn_i2c";
+	};
+
+	i2c_3: i2c@10090160 {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		compatible = "samsung,sdp-i2c";
+		reg = <0x10090160 0x20>;
+		interrupts = <0 83 0>;
+		clocks = <&rstn_i2c>;
+		clock-names = "rstn_i2c";
+	};
+
+	i2c_4: i2c@10090180 {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		compatible = "samsung,sdp-i2c";
+		reg = <0x10090180 0x20>;
+		interrupts = <0 84 0>;
+		clocks = <&rstn_i2c>;
+		clock-names = "rstn_i2c";
+	};
+
+	ehci@30210000 {
+		compatible = "samsung,sdp-ehci", "usb-ehci";
+		reg = <0x30210000 0x100>;
+		interrupts = <0 37 0>;
+		status = "disabled";
+	};
+
+	ehci@30230000 {
+		compatible = "samsung,sdp-ehci", "usb-ehci";
+		reg = <0x30230000 0x100>;
+		interrupts = <0 38 0>;
+		status = "disabled";
+	};
+
+	ohci@30218000 {
+		compatible = "samsung,sdp-ohci", "usb-ohci";
+		reg = <0x30218000 0x100>;
+		interrupts = <0 39 0>;
+		status = "disabled";
+	};
+
+	ohci@30238000 {
+		compatible = "samsung,sdp-ohci", "usb-ohci";
+		reg = <0x30238000 0x100>;
+		interrupts = <0 40 0>;
+		status = "disabled";
+	};
+
+	xhci@30100000 {
+		compatible = "samsung,xhci-hcd", "usb-xhci";
+		reg = <0x30100000 0xC700>;
+		interrupts = <0 36 0>;
+		status = "disabled";
+	};
+
+	mmc {
+		compatible = "samsung,sdp-mmc";
+		reg = <0x10000000 0x1000>;
+		interrupts = <0 43 0>;
+		clocks = <&emmc_clk>;
+		clock-names = "emmc_clk";
+		fifo-depth = <0x80>;
+		min-max-clock = <400000 200000000>;
+
+		initregs = /*<0x10030000 0x00000003 0x00000003>,*//* 33bit Accesss setting */
+					<0x100000A8 0x07C780CF 0x07038004>;/* low speed delay for 33MHz */
+
+
+
+		tuning_set_size = <2>;
+
+		tuning_sam_hs200_default = <0x100000A8 0x000000CF 0x00000004>, <0x10000110 0x0 0x0>;
+		tuning_drv_hs200_default = <0x100000A8 0x07C78000 0x03020000>, <0x10000110 0x0 0x0>;
+		tuning_sam =
+					<0x100000A8 0xCF 0x01>, <0x10000110 0x3 0x0>,
+					<0x100000A8 0xCF 0x02>, <0x10000110 0x3 0x0>,
+					<0x100000A8 0xCF 0x03>, <0x10000110 0x3 0x0>,
+					<0x100000A8 0xCF 0x04>, <0x10000110 0x3 0x0>,
+					<0x100000A8 0xCF 0x05>, <0x10000110 0x3 0x0>,
+					<0x100000A8 0xCF 0x06>, <0x10000110 0x3 0x0>,
+					<0x100000A8 0xCF 0x07>, <0x10000110 0x3 0x0>,
+					<0x100000A8 0xCF 0x08>, <0x10000110 0x3 0x0>;
+
+		bus-width = <0x8>;
+//		force-pio-mode;
+		hw-reset;
+
+		/* Host Caps */
+		non-removable;
+		full-pwr-cycle;
+//		packed-cmd;
+//		bus-width-test;
+		highspeed;
+//		sdr104;
+		ddr50;
+//		hs200;
+//		hs200-tuning;
+
+	};
+
+	ethernet@10020000 {
+		compatible = "samsung,sdp-mac";
+		reg = <0x10020000 0x100>,
+			<0x10020100 0x300>,
+			<0x10020700 0x100>,
+			<0x10020800 0x100>,
+			<0x10021000 0x100>;
+		interrupts = <0 41 0>;
+		pad_ctrl_reg = <0x10030000 0x800 0x800>;/* select SRAM for MAC */
+		phy_sel_reg = <0x10040000 0x1 0x1>;		/* select RGMII register */
+		bus_width = <32>;
+		phy_mask = <0x1>;
+		napi_weight = <256>;
+	};
+
+
+	gadma@30070000 {
+		compatible = "samsung,sdp-gadma";
+		reg = <0x30070000 0x80>;
+		interrupts = <0 42 0>;
+		clocks = <&dma_clk>;
+		clock-names = "dma_clk";
+		//status = "disabled";
+	};
+
+
+	pmu	{
+		compatible = "arm,cortex-a15-pmu";
+		interrupts = <0 204 0>, <0 205 0>;
+	};
+
+};

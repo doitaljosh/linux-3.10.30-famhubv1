@@ -1,0 +1,108 @@
+menu "Samsung SABSP DEBUG patch"
+comment "VDLinux Debug patch"
+
+config VD_RELEASE
+    default n
+    bool "Turn on Release mode"
+    help
+     Set Debug/Release mode (n : Debug / y : Release)
+
+config UNHANDLED_IRQ_TRACE_DEBUGGING
+	bool "trace unhandled irq tracing"
+	depends on VD_RELEASE=n
+	default n
+
+config FCOUNT_DEBUG
+   bool "print f_count when umount fail(task info also is printed when CONFIG_FD_PID is enable) "
+   depends on VD_RELEASE=n
+   default n
+
+config UART_BROADCAST
+   bool "tty broadcast"
+   default y
+
+config IRQ_TIME
+   bool "IRQ_TIME"
+   default n
+   depends on VD_RELEASE=n
+   depends on UNHANDLED_IRQ_TRACE_DEBUGGING
+   help
+     It prints the time of irqs
+
+config PROHIBIT_SIG
+	int "Prohibit SIGNAL"
+	default "99"
+	depends on VD_RELEASE=n
+	help
+	 It makes coredump
+
+config OPEN_FILE_CHECKER
+	bool "In case of too many open files, It prints open file information"
+	default y
+	help
+	  It prints open file information.
+	  also if the FD_PID is enabled, open thread information is supported.
+
+config RUN_TIMER_DEBUG
+	bool "run timer debugging"
+	depends on VD_RELEASE=n
+
+config SCHED_HISTORY_ON_DDR
+	bool "enable sched_history_on_ddr"
+	default n
+	help
+	  DEBUG TOOL : schedule history on ddr	 
+
+config SCHED_HISTORY_ON_DDR_BUFADDR
+	hex "sched_history_on_ddr buffer address"
+	depends on SCHED_HISTORY_ON_DDR
+	help
+	  set buffer address for sched_history_on_ddr
+
+config ENABLE_OOM_DEBUG_LOGS
+	default n
+	bool "Enable OOM debug logs"
+	depends on VD_RELEASE=y
+	help
+	 Set console message log level to KERN_DEBUG(7)
+	 temporarily for enabling the OOM debug logs,
+	 when VD_RELEASE mode is set.
+
+config TRACE_SYS_WRITE
+	default n
+	bool "Trace sys_write call (access file,thread)"
+	depends on VD_RELEASE=n
+	help
+	 Print file access information and thread name 
+	 While sys_write is called.
+
+config PM_CRC_CHECK
+	default y
+	bool "CRC checking to check DDR status easily (without PM_CRC_CHECK_AREA_SELECT : Kernel text section)"
+	depends on VD_RELEASE=n
+	depends on EXECUTE_AUTHULD=y
+	depends on PM=y
+
+config PM_CRC_CHECK_AREA_SELECT
+	default n
+	bool "Select CRC check area related with PM_CRC_CHECK function"
+	depends on PM_CRC_CHECK=y
+
+config PM_CRC_CHECK_AREA_START
+	hex "PM CRC check start address (hex)"
+	depends on PM_CRC_CHECK_AREA_SELECT
+
+config PM_CRC_CHECK_AREA_SIZE
+	hex "PM CRC check size (hex)"
+	depends on PM_CRC_CHECK_AREA_SELECT
+
+config TRACE_SYS_SYNC_FSYNC
+	default n
+	bool "Trace sync/fsync call (access file,thread)"
+	depends on VD_RELEASE=n
+	help
+	 Print file access information and thread name 
+	 While sync/fsync is called.
+
+endmenu
+

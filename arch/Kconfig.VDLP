@@ -1,0 +1,1014 @@
+menu "Samsung"
+
+if ARM
+source "arch/arm/Kconfig.SABSP"
+endif
+
+source "drivers/Kconfig.DEBUG"
+
+menu "Samsung VDLP options"
+comment "VDLinux 5.x"
+
+config SHOW_FAULT_TRACE_INFO
+	bool "Show trace info on user page fault"
+	default y
+	depends on ARM || MIPS
+	help
+	  Shows trace information when "Segmentation fault" or "Bus error" occurs.
+	  Prints registers, call stack, maps, user stack, etc.
+
+config SHOW_THREAD_GROUP_STACK
+	bool "Show thread groups stack on user page fault"
+	default n
+	depends on SHOW_FAULT_TRACE_INFO
+	depends on ARM
+	help
+	  Shows thread groups user stack along with basic fault trace information.
+	  It may be useful where fault occurs in one thread, but another thread is
+	  a criminal.
+	  Be careful, dumping all threads stack can generate very long message.
+
+config DISABLE_UNALIGNED_ACCESS
+	bool "Disable support for unaligned access"
+	default n
+	depends on ALIGNMENT_TRAP
+	depends on ARM
+	help
+	  Do not allow support for unaligned access.
+
+config SHOW_EPC_RA_INFO
+       bool "show address range including epc, ra"
+       default y
+       depends on SHOW_FAULT_TRACE_INFO
+       depends on MIPS
+       help
+         Dump memory in which EPC and RA lies.
+
+config SHOW_PC_LR_INFO
+	bool "Show address range including PC, LR"
+	default y
+	depends on SHOW_FAULT_TRACE_INFO
+	depends on ARM
+	help
+	  Dump memory in which PC and LR lies.
+
+config DUMP_RANGE_BASED_ON_REGISTER
+	bool "Dump register value"
+	default n
+	depends on SHOW_PC_LR_INFO || SHOW_EPC_RA_INFO
+	help
+	  Dump a specific range of addr bases on register.
+
+config SERIAL_INPUT_MANIPULATION
+	bool "Manipulate serial input in N_TTY"
+	help
+	  Decide whether serial input by user is enabled or not.
+
+config SERIAL_INPUT_DISABLE_STRING
+	string "Serial input disable string"
+	default "~~bye"
+	depends on SERIAL_INPUT_MANIPULATION=y
+	help
+	  Default string that disable serial input by user.
+
+config SERIAL_INPUT_DEFAULT_SETUP_ENABLE
+	bool "Serial input enable setup at boot"
+	default y
+	depends on SERIAL_INPUT_MANIPULATION=y
+
+config SERIAL_INPUT_MANIPULATION_PORTNUM
+	int "Serial input port line number"
+	default 0
+	depends on SERIAL_INPUT_MANIPULATION=y
+
+config SERIAL_INPUT_ENABLE_ONLY_NUMBER
+	bool "Enable only 0~9, space, enter and backspace as serial input"
+	default n
+	depends on SERIAL_INPUT_MANIPULATION=y
+
+config SERIAL_INPUT_ENABLE_HELP_MSG
+	bool "Print help message for serial input"
+	default y
+	depends on SERIAL_INPUT_MANIPULATION=y
+
+config DTVLOGD
+	bool "DTVLOGD serial message logging system"
+	default n
+	help
+	  Saving all serial message into memory buffer.
+	  Logs are saved in in-kernel memory and can be used
+	  for other features:
+	  - Logging in usb or other area
+
+config DTVLOGD_EMERGENCY_LOG
+	bool "DTVLOGD - Emergency Log"
+	default n
+	depends on DTVLOGD
+	help
+	  Save emergency serial message into flash.
+	  Logs are saved in a temporary RAM buffer and get saved
+	  into flash area during:
+	  crash/watchdog restart.
+
+config DTVLOGD_USB_LOG
+	bool "DTVLOGD - USB Log"
+	default n
+	depends on DTVLOGD
+	help
+	  Save all serial message into usb.
+	  Logs are saved into USB at run-time.
+	  Depends on dtvlogd buffer.
+	  Use only for Debug as prints can be huge.
+
+config DTVLOGD_DEBUG
+	bool "DTVLOGD DEBUG mode"
+	default n
+	depends on DTVLOGD
+	help
+	  Prints all dtvlogd debug messages.
+	  It also enables taking backup of log file at runtime.
+	  (useful during development time)
+	  This is generally disabled (N).
+config SEPARATE_PRINTK_FROM_USER
+	bool "Separate messages(printf, printk) between user and kernel."
+	default y
+	depends on ARM || MIPS
+
+config KDEBUGD
+	bool "KDEBUGD - core"
+	default n
+	depends on SHOW_FAULT_TRACE_INFO
+	depends on SERIAL_INPUT_MANIPULATION
+	help
+	 kdebugd - kernel debugging helper
+	 kdebugd is a good solution for kernel hacker who want to know
+	 kernel information easily.
+
+
+config KDEBUGD_AGENT_SUPPORT
+        bool "Kdebugd Agent Support"
+        default n
+        depends on KDEBUGD
+	select KDEBUGD_BG
+        help
+         Add agent support in kernel/kdebugd.
+	  This will help to visualize kdebugd output on different target.
+	  Agent binary running on target can connect with Kdebugd
+	  and send data to TVis.
+
+config KDEBUGD_THREAD_PROFILER
+	bool "AGENT - Thread Profiler"
+	default y
+	depends on EVENT_TRACING
+	depends on KDEBUGD_AGENT_SUPPORT
+	help
+        Agent- thread profiler
+          provides information about created and destroyed threads.
+	  sends the thread information to Tvis by writing the thread
+	  entries on ringbuffer.
+
+
+config KDEBUGD_AGENT_SMACK_DISABLE
+       bool "AGENT - Smack Disable"
+       default y
+       depends on KDEBUGD_AGENT_SUPPORT
+       help
+         This config disable the partial SMACK support from Kernel,
+         which allows LD_PRELOAD to work after these changes.
+
+
+config KDEBUGD_BG
+	bool "KDEBUGD_BG - kdebugd run in background"
+	default y
+	depends on KDEBUGD
+	help
+	 kdebugd to run in background
+	 bgstart -Command to Run in Background through /proc/kdebugdauto_key_test
+
+config KDEBUGD_TRACE
+	bool "KDEBUGD - backtrace"
+	default y
+	depends on KDEBUGD
+	help
+	 kdebugd - backtrace
+	  1. Dump backtrace(User)
+
+config KDEBUGD_FTRACE
+    bool "KDEBUGD - Ftrace Support"
+    default y
+    depends on KDEBUGD
+    select FTRACE
+    select GENERIC_TRACER
+    help
+      Enable the kernel to trace every kernel function. This is done
+      by using a compiler feature to insert a small, 5-byte No-Operation
+      instruction at the beginning of every kernel function, which NOP
+      sequence is then dynamically patched into a tracer call when
+      tracing is enabled by the administrator. If it's runtime disabled
+      (the bootup default), then the overhead of the instructions is very
+      small and not measurable even in micro-benchmarks.
+
+config KDEBUGD_FTRACE_USER_BACKTRACE
+        bool "User space backtrace tracer"
+        depends on KDEBUGD_FTRACE
+        default y
+
+config KDEBUGD_FTRACE_HR_CLOCK
+        bool "High resolution trace clock"
+        depends on KDEBUGD_FTRACE
+        default y
+
+config FTRACE_DEFAULT_TRACER
+    string "Default tracer(check help for details)"
+    default "function"
+    depends on KDEBUGD_FTRACE
+    help
+        Default tracer(function, function_graph, sched_switch,
+		wakeup, irqsoff, preemptoff, stack, kmemtrace, branch)
+
+config FTRACE_DEFAULT_TRACE_LIST
+    string "Default trace list"
+    default ""
+    depends on KDEBUGD_FTRACE
+    help
+        Default trace list
+
+config FTRACE_DEFAULT_TRACE_NOT_LIST
+    string "Default trace not list"
+    default ""
+    depends on KDEBUGD_FTRACE
+    help
+        Default trace not list
+
+config FTRACE_DEFAULT_TRACE_GRAPH_LIST
+    string "Default trace graph list"
+    default ""
+    depends on KDEBUGD_FTRACE
+    help
+        Default trace graph list
+
+config FTRACE_DEFAULT_TRACE_BLACK_LIST
+    string "Default trace black list"
+    default "sched_clock,sdp_clksrc_read,c0_hpt_read,exynos4_flush_cache,arch_counter_read,arch_timer_read_counter"
+    depends on KDEBUGD_FTRACE
+    help
+       Default trace black list. This list stores the functions which cause recursion when
+	called from ftrace context.
+       Example, Echop 3.0.20 - sdp_clksrc_read
+	         Novatek 3.0.20 - c0_hpt_read
+	         SMDK C220 3.0.20 - exynos4_flush_cache
+
+config FTRACE_DEFAULT_TRACE_MODE
+	int "Default trace mode(1 print,2 log)"
+	default 1
+    depends on KDEBUGD_FTRACE
+    help
+        Default trace mode
+
+config FTRACE_DEFAULT_TRACE_OUTPUT_NUM_LINES
+	int "Default trace output num lines(0 to FTRACE_MAX_OUTPUT_NUM_LINES)"
+	default 0
+    depends on KDEBUGD_FTRACE
+    help
+        Default trace output num lines
+
+config FTRACE_DEFAULT_TRACE_OUTPUT_FILE_NAME
+    string "Default trace output file name"
+    default "/mtd_rwarea/trace.dat"
+    depends on KDEBUGD_FTRACE
+    help
+        Default trace output file name
+
+config FTRACE_DEFAULT_TRACE_SIZE_KB
+    int "Default trace buffer size(kb)(1 to FTRACE_MAX_TRACE_SIZE_KB)"
+    default 1
+    depends on KDEBUGD_FTRACE
+    help
+        Default trace buffer size(kb)
+
+config FTRACE_DEFAULT_TRACE_CPU_MASK
+    int "Default trace cpu mask(1 to CONFIG_NR_CPUS)"
+    default 3
+	 depends on SMP
+    depends on KDEBUGD_FTRACE
+    help
+        Default trace cpu mask
+		 Binary value 11(Decimal 3) represents mask set for 1st and 2nd CPU.
+		 By default CPU mask is 3.
+		 This means tracing will be done for 1st and 2nd CPU both.
+
+config FTRACE_TIMESTAMP_NSEC_STATUS
+    int "Default timestamp nanosecond resolution"
+    default 0
+    depends on KDEBUGD_FTRACE_HR_CLOCK
+    help
+        Default timestamp nanosecond resolution
+        By default it is disabled
+
+config FTRACE_BENCHMARK
+        bool "Ftrace Benchmark"
+        depends on KDEBUGD_FTRACE
+        default n
+       help
+        Ftrace benchmark
+        By default disable
+
+config KDEBUGD_FUTEX
+	bool "KDEBUGD - Futex List"
+	default y
+	depends on FUTEX
+	depends on KDEBUGD
+	help
+	 kdebugd - Futex List
+	  1. Dump the list of threads (with backtrace) waiting on futex
+
+config KDEBUGD_MISC
+	bool "KDEBUGD - miscellaneous functions"
+	default y
+	depends on KDEBUGD
+	help
+	 kdebugd - kernel debugging helper
+	  1. A list of tasks and their relation information
+	  2. A list of tasks and their priority information
+	  3. A list of tasks and their inforamtion + backtrace(kernel)
+	  4. Turn On/Off O(1) Scheduler prints
+	  5. Dump task register with pid
+	  6. Dump task maps with pid
+	  7. Dump user stack with pid
+	  8. Trace thread execution(look at PC)
+	  9. Schedule history logger
+
+config SHOW_TASK_STATE
+	bool "Show task state"
+	default y
+	depends on KDEBUGD_MISC
+	help
+	 kdebugd -A list of tasks and their relation information
+
+config SHOW_TASK_PRIORITY
+	bool "Show task priority"
+	default y
+	depends on KDEBUGD_MISC
+	help
+	 kdebugd -A list of tasks and their priority  information
+
+config TASK_STATE_BACKTRACE
+	bool "Show task state backtrace"
+	default y
+	depends on KDEBUGD_MISC
+	help
+	 kdebugd - A list of tasks and their inforamtion + backtrace(kernel).
+
+config TASK_FOR_COREDUMP
+	bool "Kill task to coredump"
+	default y
+	depends on KDEBUGD_MISC
+	help
+	 kdebugd - Kill the task to create coredump
+
+config SHOW_USER_THREAD_REGS
+	bool "Dump task register with pids"
+	default y
+	depends on KDEBUGD_MISC
+	help
+	 kdebugd - Dump task register with pid
+
+config SHOW_USER_MAPS_WITH_PID
+	bool "Dump task maps with pid "
+	default y
+	depends on KDEBUGD_MISC
+	help
+	 kdebugd - Dump task maps with pid
+
+config SHOW_USER_STACK_WITH_PID
+	bool "Dump task stack with pid "
+	default y
+	depends on KDEBUGD_MISC
+	help
+	 kdebugd - Dump task stack with pid
+
+config VIRTUAL_TO_PHYSICAL
+	bool "Usermode Virtual to Physical Address Converter"
+	default y
+	depends on KDEBUGD_MISC
+	help
+	 kdebugd - converts user mode virtual address to physical address and dumps contents of given location
+
+config MEMORY_VALIDATOR
+	bool "Memory Value Watcher"
+	default y
+	depends on VIRTUAL_TO_PHYSICAL
+	help
+	 kdebugd - Memory Value Watcher
+
+config TRACE_THREAD_PC
+	bool "Trace thread execution(look at PC)"
+	default y
+	depends on KDEBUGD_MISC
+	help
+	 kdebugd - Trace thread execution(look at PC)
+
+config SCHED_HISTORY
+	bool "show schedule history"
+	default y
+	depends on KDEBUGD_MISC
+	help
+	 kdebugd - Show schedule history logger
+
+config SCHED_HISTORY_AUTO_START
+	bool "schedule history auto start"
+	default n
+	depends on SCHED_HISTORY
+	help
+	 start schedule history in background.
+
+config CACHE_ANALYZER
+	bool "KDEBUGD - cache analyzer"
+	default y
+	depends on HW_PERF_EVENTS && KDEBUGD
+	help
+	 use the hardware per counters to analyze and profile using AOP and pmu counter monitor.
+		.
+		.
+		.
+
+config KDEBUGD_COUNTER_MONITOR
+	bool "KDEBUGD - counter monitor"
+	default y
+	depends on KDEBUGD
+	help
+	 kdebugd - counter monitor
+	  1. CPU Usage
+	  2. CPU Usage for each thread
+	  3. Memory Usage
+	  4. Disk Usage
+	  5. Network Usage
+	  6. PMU Events (Performance Monitoring Unit)
+
+config KDEBUGD_PMU_EVENTS_COUNTERS
+	bool "KDEBUGD - PMU events counters"
+	default y
+	depends on CACHE_ANALYZER && KDEBUGD_COUNTER_MONITOR
+	help
+	 use hardware performance counters to get cache access statistics
+
+config KDEBUGD_PMU_EVENTS_CPU_CYCLES_COUNTER
+	bool "Enable CPU cycles counter"
+	default y
+	depends on KDEBUGD_PMU_EVENTS_COUNTERS
+
+config KDEBUGD_PMU_EVENTS_INSTRUCTIONS_COUNTER
+	bool "Enable instructions counter"
+	default y
+	depends on KDEBUGD_PMU_EVENTS_COUNTERS
+
+config KDEBUGD_PMU_EVENTS_L1D_CACHE_MISS_COUNTER
+	bool "Enable L1D cache misses counter"
+	default y
+	depends on KDEBUGD_PMU_EVENTS_COUNTERS
+
+config KDEBUGD_PMU_EVENTS_L1I_CACHE_MISS_COUNTER
+	bool "Enable L1I cache misses counter"
+	default y
+	depends on KDEBUGD_PMU_EVENTS_COUNTERS
+
+config KDEBUGD_PMU_EVENTS_LL_CACHE_MISS_COUNTER
+	bool "Enable L2 cache misses counter"
+	default n
+	depends on KDEBUGD_PMU_EVENTS_COUNTERS
+
+config KDEBUGD_PMU_EVENTS_DTLB_MISS_COUNTER
+	bool "Enable DTLB cache misses counter"
+	default y
+	depends on KDEBUGD_PMU_EVENTS_COUNTERS
+
+config KDEBUGD_PMU_EVENTS_ITLB_MISS_COUNTER
+	bool "Enable ITLB cache misses counter"
+	default y
+	depends on KDEBUGD_PMU_EVENTS_COUNTERS
+
+config KDEBUGD_PMU_EVENTS_BPU_MISS_COUNTER
+	bool "Enable branch prediction errors counter"
+	default y
+	depends on KDEBUGD_PMU_EVENTS_COUNTERS
+
+config KDEBUGD_COUNTER_MON_AUTO_START
+	bool "KDEBUGD - counter monitor auto start"
+	default n
+	depends on KDEBUGD_COUNTER_MONITOR
+	help
+	 auto start feature of counter monitor at the boot time, counter monitor will start at boot time after given second(start second).
+
+config COUNTER_MON_AUTO_START_PERIOD
+	bool "KDEBUGD - counter monitor specified period"
+	default n
+	depends on KDEBUGD_COUNTER_MON_AUTO_START
+	help
+	 In this menu start and stop second can be specified for counter monitor auto start
+
+config COUNTER_MON_START_SEC
+	int "KDEBUGD - counter monitor start second"
+	default 0
+	depends on COUNTER_MON_AUTO_START_PERIOD
+	help
+	 set the start second.
+
+config COUNTER_MON_FINISHED_SEC
+	int "KDEBUGD - counter monitor finished seconds"
+	default 60
+	depends on COUNTER_MON_AUTO_START_PERIOD
+	help
+	 set the finished  second.
+
+config SEC_CPU_AUTO_START
+	bool "For CPU Usage"
+	default y
+	depends on KDEBUGD_COUNTER_MON_AUTO_START
+	help
+	 set the start and finished second for cpu usage start at boot time.
+
+config SEC_TOPTHREAD_AUTO_START
+	bool "For Top Thread"
+	default y
+	depends on KDEBUGD_COUNTER_MON_AUTO_START
+	help
+	 set the start and finished second for top thread start at boot time.
+
+config SEC_MEMUSAGE_AUTO_START
+	bool "For Memory Usage"
+	default y
+	depends on KDEBUGD_COUNTER_MON_AUTO_START
+	help
+	 set the start and finished second for mem usage start at boot time.
+
+config SEC_NETUSAGE_AUTO_START
+	bool "For Net Usage"
+	default y
+	depends on KDEBUGD_COUNTER_MON_AUTO_START
+	help
+	 set the start and finished second for net usage start at boot time.
+
+config SEC_DISKUSAGE_AUTO_START
+	bool "For Disk Usage"
+	default y
+	depends on KDEBUGD_COUNTER_MON_AUTO_START
+	help
+	 set the start and finished second for disk usage start at boot time.
+
+config SEC_PMU_EVENTS_AUTO_START
+	bool "For PMU events"
+	default y
+	depends on KDEBUGD_COUNTER_MON_AUTO_START
+	help
+	 set the start and finished second for PMU events start at boot time.
+	    .
+	    .
+	    .
+
+config KDEBUGD_CPUUSAGE_BUFFER_SIZE
+	int "CPU usage buffer size"
+	default 120
+	depends on KDEBUGD_COUNTER_MONITOR
+
+config KDEBUGD_TOPTHREAD_BUFFER_SIZE
+	int "Topthread buffer size"
+	default 120
+	depends on KDEBUGD_COUNTER_MONITOR
+
+config KDEBUGD_MEMUSAGE_BUFFER_SIZE
+	int "Memory usage buffer size"
+	default 120
+	depends on KDEBUGD_COUNTER_MONITOR
+
+config KDEBUGD_DISKUSAGE_BUFFER_SIZE
+	int "Disk usage buffer size"
+	default 120
+	depends on KDEBUGD_COUNTER_MONITOR
+
+config KDEBUGD_PMU_EVENTS_BUFFER_SIZE
+	int "PMU Events Counters buffer size"
+	default 120
+	depends on KDEBUGD_PMU_EVENTS_COUNTERS
+
+config KDEBUGD_NETUSAGE_BUFFER_SIZE
+	int "Network usage buffer size"
+	default 120
+	depends on KDEBUGD_COUNTER_MONITOR
+
+config ELF_MODULE
+	bool "KDEBUGD - ELF Module"
+	default y
+	depends on KDEBUGD
+
+config DWARF_MODULE
+	bool "DWARF Module"
+	default y
+	depends on ELF_MODULE
+
+config ADVANCE_OPROFILE
+	bool "KDEBUGD - Advance OProfile"
+	default y
+	depends on KDEBUGD
+	depends on OPROFILE
+
+if ADVANCE_OPROFILE
+choice
+	prompt "aop_granularity(us)"
+	default AOP_GRANULARITY_4ms
+
+config AOP_GRANULARITY_100us
+	bool "100 us granularity"
+	help
+	 This sets the granularity to 100us
+
+config AOP_GRANULARITY_1ms
+	bool "1 milli second granularity"
+	help
+	 This sets the granularity to 1 milli second
+
+config AOP_GRANULARITY_4ms
+	bool "4 milli second granularity"
+	help
+	 This sets the granularity to 4 milli second
+
+endchoice # "aop_granularity(us)"
+
+
+endif #ADVANCE_OPROFILE
+
+config AOP_CYCLES_SAMPLING_PERIOD
+	int "Sampling period if the Cycles counter is used for sampling"
+	default 10000000
+	depends on CACHE_ANALYZER && ADVANCE_OPROFILE
+
+config AOP_INSTRUCTIONS_SAMPLING_PERIOD
+	int "Sampling period if the Instructions counter is used for sampling"
+	default 10000000
+	depends on CACHE_ANALYZER && ADVANCE_OPROFILE
+
+config AOP_L1D_MISSES_SAMPLING_PERIOD
+	int "Sampling period if the L1D misses counter is used for sampling"
+	default 10000
+	depends on CACHE_ANALYZER && ADVANCE_OPROFILE
+
+config AOP_L1I_MISSES_SAMPLING_PERIOD
+	int "Sampling period if the L1I misses counter is used for sampling"
+	default 100000
+	depends on CACHE_ANALYZER && ADVANCE_OPROFILE
+
+config AOP_DTLB_MISSES_SAMPLING_PERIOD
+	int "Sampling period if the DTLB misses counter is used for sampling"
+	default 5000
+	depends on CACHE_ANALYZER && ADVANCE_OPROFILE
+
+config AOP_ITLB_MISSES_SAMPLING_PERIOD
+	int "Sampling period if the ITLB misses counter is used for sampling"
+	default 10000
+	depends on CACHE_ANALYZER && ADVANCE_OPROFILE
+
+config AOP_BPU_ERRORS_SAMPLING_PERIOD
+	int "Sampling period if the BPU errors counter is used for sampling"
+	default 10000
+	depends on CACHE_ANALYZER && ADVANCE_OPROFILE
+
+config AOP_AUTO_START
+	bool "Advance OProfile Auto start"
+	default n
+	depends on ADVANCE_OPROFILE
+
+config AOP_START_SEC
+	int "Advance OProfile Auto start start sec"
+	default 1
+	depends on AOP_AUTO_START
+
+config AOP_DURATION
+	int "Advance OProfile Auto Duration (in second)"
+	default 120
+	depends on AOP_AUTO_START
+
+config MEM_DBG
+	bool "KDEBUGD - Memory Debug"
+	default n
+	depends on KDEBUGD
+
+config MEM_CHK
+	bool "KDBG Memory corruption check"
+	default n
+	depends on MEM_DBG
+
+config KDEBUGD_LIFE_TEST
+	bool "KDEBUGD - LIFE_TEST"
+	default n
+	depends on KDEBUGD
+
+config LIFETEST_START_SEC
+	int "KDEBUGD - LifeTest start second"
+	default 15
+	depends on KDEBUGD_LIFE_TEST
+	help
+	 set the start second.
+
+config SET_LIFETEST_LOG
+	bool "Set LifeTest file path"
+	default y
+	depends on  KDEBUGD_LIFE_TEST
+
+config LIFETEST_LOG_PATH
+	string "KDEBUGD - LifeTest file path"
+	default "/mtd_rwarea/KDebugdLifeTest"
+	depends on SET_LIFETEST_LOG
+	help
+	 Here you can set the path of file on which
+	 the events are written. Make sure the path
+	 is read-write.
+
+config KDEBUGD_HUB_DTVLOGD
+	bool "KDEBUGD HUB DTVLOGD_PRINT"
+	default y
+	depends on DTVLOGD
+	depends on KDEBUGD
+	select DTVLOGD_HUB_KDEBUGD
+
+config KDEBUGD_PRINT_ONOFF
+	bool "KDEBUGD - Enable/disable prints"
+	default y
+	depends on KDEBUGD
+	help
+	  Select the task to enable/disable its printing.
+	  This feature helps to create a list of tasks for
+	  which user can enable the prints.It also allows
+	  to disable all user prints.
+
+config KDEBUGD_FD_DEBUG
+	bool "KDEBUGD - Enable/Disable FD Debug"
+	default y
+	depends on FD_PID
+	depends on KDEBUGD
+	help
+	  This feature allows the user to detect the below scenario:
+	  If one threads opens a particular file, and other thread
+	  closes that fd, then FD Debug can help detect this situation
+	  by providing a prints.
+
+config VDLP_VERSION_INFO
+	bool "Display kernel, patch number info"
+	default y
+	help
+	depends on ARM || MIPS
+	  Print kernel, patch number info.
+
+config CHECK_USERMODE_ADE_EMULATE
+	bool "Called load store emulate insn in user mode, send SIGBUS"
+	default y
+	depends on MIPS
+	help
+	  If check this option, send SIGBUS. If not, just print error
+	  and debug message.
+
+config PRINT_KILL_SIGNAL
+	bool "Print kill signal debug message"
+	default y
+	help
+	  Print debug message when kill signal is raised.
+
+config  PRINT_KILL_SIGNAL_ONLY_PERMITTED
+        bool "Print kill signal debug message only for permitted signals"
+        default y
+        depends on PRINT_KILL_SIGNAL
+        help
+	 Print debug messages when only permitted signals are raised
+	 (coredumpable + killable) otherwise debug messages are there for all
+	 signals
+
+config SKIP_CHECKING_MEMORY_WHILE_FORK
+	bool "Workaround glibc system() fail problem"
+	default y
+	help
+	  Workaround glibc system fail problem.
+
+config LPJ_MANUAL_SETTING
+	bool "LPJ value manual setting"
+	default y
+	help
+	  Manually set the loops_per_jiffy value, to skip calibrating delay loop
+	  on boot to improve boot time.
+	  Pls note that for each architecture this value is different, therefore
+	  first run target without this patch to get value.
+	  Once value is found from boot message log, enable this option and
+	  assign value to "Manual LPJ value"
+
+config LPJ_VALUE
+	int "Manual LPJ Value"
+	default 0
+	depends on LPJ_MANUAL_SETTING=y
+	help
+	  Find value for your architecture before setting this.
+
+config DEBUG_STACKOVERFLOW
+	bool "Check for stack overflows"
+	depends on ARM || MIPS
+	help
+	  This option will cause messages to be printed if free stack space
+	  drops below a certain limit.
+
+config PRINT_MODULE_ADDR
+	bool "Print Loaded Module Address"
+	default y
+	help
+	  Print loaded module address.
+
+config FD_PID
+	bool "Show thread-based file descriptor information (/proc/fd_pid)"
+	default y
+	help
+	  Show file descriptor information with thread name. The user can
+	  easily found which thread open this file descriptor.
+
+config CHECK_A15_INSTRUCTION
+	bool "Check A15 toolchain instruction"
+	depends on DEBUG_USER
+	default y
+
+config ACCURATE_COREDUMP
+	bool "Increase the accuracy of coredump image file"
+	default n
+	depends on ARM
+	help
+	 Reduce the possibility of any changes to the memory state of a
+	 usermode process during coredump generation. This option prevents
+	 (as far as possible) the other usermode threads from being able to change
+	 the memory state during coredump generation.
+
+config KDML
+	bool "KDEBUGD - Kernel Detect Memory Leak (KDML)"
+	default y
+	depends on TRACING
+	depends on KDEBUGD
+	help
+	  This feature allows the user to kernel memory leak detection.
+	  It hooks the kernel allocation and de-allocation APIs to maintain
+	  statistics to provide kernel memory leak information to user.
+	  Summarized information is provided based on caller and module
+	  for easy tracking of errors.
+
+config KDML_AUTO_START
+	bool "KDML auto start"
+	default n
+	depends on KDML
+	help
+	 start kdml from the beginning.
+	 KDML can be started by KDEBUGD menu during run-time.
+	 or it can be started using this flag.
+	 While this would track all/most allocations, boot-time/memory cost
+	 for tracing would be more.
+
+config RSS_INFO
+	bool "Support to print rss,rss max information of process memory"
+	default y
+	help
+	  Enable to print information of rss
+
+config MEMSTAT_INFO
+	bool "Support to print mem information of process memory"
+	default y
+	depends on RSS_INFO && PROC_PAGE_MONITOR
+	help
+	  Enable to print information of pss
+
+config VMALLOCUSED_PLUS
+	default y
+	depends on PROC_FS && MMU
+	bool "Plus useful info to 'VmallocUsed' field in meminfo" if EMBEDDED
+	help
+	  Add size information of ioremap, vmalloc, vmap, usermap, vpages regions.
+
+config MODULESUSED_PLUS
+	bool
+	default y
+	depends on VMALLOCUSED_PLUS && MODULES && ARM
+
+config VD_MEMINFO
+	bool "vd meminfo support"
+	default y
+	depends on RSS_INFO && VMALLOCUSED_PLUS
+	help
+	 meminfo VD version
+	 This function supports detail oom message
+
+config VD_MEMFREE
+	default y
+	bool "/proc/vd_memfree support"
+	help
+	 print MemFree+Buffers+Cached+SwapCached-Mapped Kbytes
+
+config ENABLE_OOM_DEBUG_LOGS
+	default n
+	bool "Enable OOM debug logs"
+	depends on VD_RELEASE=y
+	help
+	 Set console message log level to KERN_DEBUG(7)
+	 temporarily for enabling the OOM debug logs,
+	 when VD_RELEASE mode is set.
+
+config MUPT_TRACE
+	bool "Support to print memory usage information of process/thread memory (MUPT)"
+	default y
+	depends on RSS_INFO
+	depends on SHOW_FAULT_TRACE_INFO
+	help
+	  Enable to print information of per process/thread memory usage accounting.
+	  This config depends on CONFIG_RSS_INFO and CONFIG_SHOW_FAULT_TRACE_INFO.
+
+config PROFILE_MEMORY_USAGE
+        default y
+        bool "support profiling memory usage"
+        depends on VMALLOCUSED_PLUS && VD_MEMINFO
+        help
+         To stop profiling,
+         echo 0 > /proc/sys/vm/profile_memory_usage
+         To start profiling,
+         echo 1 > /proc/sys/vm/profile_memory_usage
+         To start profiling with printing info,
+         echo 2 > /proc/sys/vm/profile_memory_usage
+
+config T2D_DEBUGD
+	bool "T2DDEBUGD - core"
+	default n
+	help
+	 t2ddebugd - tizen tv device driver debugging helper
+	 this is based on kdebugd.
+
+config T2D_SERIAL_INPUT_PORTNUM
+        int "Serial input port line number"
+        default 0
+
+config T2D_PRINT 
+        int "enable t2d_print function"
+        default 0
+
+config PRETTY_SHELL
+	bool "Pretty and clean shell output by Ctrl-P"
+	default n
+	depends on TTY
+	help
+	  Usually all VD applications dump their output to common serial
+	  and it is really hell to use shell.
+	  - Pressing Ctrl-P you stop userland flood from all applications,
+	    which do not belong to session which controls the tty.
+	  - Pressing Ctrl-P-P you disable userland flood and kernel printk.
+	  - Pressing Ctrl-P once more time will enable everything again.
+
+config INSMOD_FASTBOOT
+        default n
+        bool "reduce insmod time via kernel_read function"
+        help
+          This option reduce insmod time. But if you use Busybox v1.6 over, should
+          modfiy busybox module/insmod.c source. This is temporary patch.
+
+config KSM_DEFAULT_ON
+	bool "enable kernel samepage merge by default"
+	depends on KSM
+	default n
+	help
+	  This option enables kernel samepage merging at the kernel level.
+
+config KSM_DEFER_RUN
+	bool "Defer start of KSM thread"
+	depends on KSM_DEFAULT_ON
+	default n
+	help
+	  Enable the option to defer starting of KSM thread.
+
+config KSM_DEFER_RUN_DELAY
+	int "KSM deferred start delay (in seconds)"
+	depends on KSM_DEFER_RUN
+	default 30
+	help
+	  The delay in seconds used to defer starting of KSM.
+
+config OVERCOMMIT_ALWAYS
+        default n
+        bool "enable memory OVECOMMIT_ALWAYS by default"
+        help
+	  This option changes memory overcommit policy to OVERCOMMIT_ALWAYS
+	  by default.
+
+config INCREASED_LOWMEM_RESERVE_RATIO
+        default n
+        bool "increase lowmem reserve ratio up to 4096 by default"
+        help
+	  This option increases lowmem reserve ratio for all zones up to
+	  4096.
+
+config VD_GIC_SET_AFFINITY
+	default n
+	bool "gic set affinity switch to cpumask_last"
+	help
+	  This option switches to cpumask_last in gic set affinity.
+
+config INIT_CREATE_COREDUMP
+	default y
+	bool "Init process (systemd) will generate coredump"
+
+endmenu #end of "Samsung VDLP options" menu
+endmenu #end of "Samsung" menu

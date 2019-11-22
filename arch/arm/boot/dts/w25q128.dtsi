@@ -1,0 +1,33 @@
+flash: w25q128@0 {
+	#address-cells = <1>;
+	#size-cells = <1>;
+	compatible = "winbond,w25q128";
+	reg = <0>;
+	spi-max-frequency = <10000000>;
+	m25p,fast-read;
+
+	fs_1_partition@0x000000 {
+		label = "fs_1_partition";
+		reg = <0x000000 0x500000>;
+	};
+	fs_2_partition@0x500000 {
+		label = "fs_2_partition";
+		reg = <0x500000 0xa00000>;
+	};
+	raw_1_partition@0xf00000 {
+		label = "raw_1_partition";
+		reg = <0xf00000 0x1000>;
+	};
+	raw_2_partition@0xf01000 {
+		label = "raw_2_partition";
+		reg = <0xf01000 0x1000>;
+	};
+	raw_3_partition@0xf02000 {
+		label = "raw_3_partition";
+		reg = <0xf02000 0x1000>;
+	};
+	raw_4_partition@0xf03000 {
+		label = "raw_4_partition";
+		reg = <0xf03000 0xfd000>;
+	};
+};

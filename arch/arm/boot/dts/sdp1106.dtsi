@@ -1,0 +1,458 @@
+/*
+ * Copyright (C) 2014 Samsung Electronics Co.Ltd
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+
+/include/ "sdp.dtsi"
+/include/ "sdp1106-clocks.dtsi"
+/include/ "sdp1106-pinctrl.dtsi"
+
+/ {
+	compatible = "samsung,sdp1106";
+
+	interrupt-parent = <&gic>;
+
+	cpus {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		cpu@0 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a9";
+			reg = <0xa00>;
+			clock-frequency = <30000000>;
+		};
+		cpu@1 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a9";
+			reg = <0xa01>;
+			clock-frequency = <30000000>;
+		};
+	};
+
+	local-timer@0x30b40600 {
+		compatible = "arm,cortex-a9-twd-timer";
+		reg = <0x30b40600 0x20>;
+		interrupts = <1 13 0xf08>;
+		clocks = <&twd_clk>;
+	};
+
+	scu@0x30b40000 {
+		compatible = "arm,cortex-a9-scu";
+		reg = <0x30b40000 0x60>;
+	};
+
+	cache-controller@0x30b50000 {
+		compatible = "arm,pl310-cache";
+		reg = <0x30b50000 0x1000>;
+		arm,data-latency = <2 2 1>;
+		arm,tag-latency = <2 2 1>;
+		cache-unified;
+		cache-level = <2>;
+	};
+/*
+	chipid@0x18080000 {
+		compatible = "samsung,sdp-chipid";
+		reg = <0x18080000 0x20>;
+	};
+*/
+
+	gic: interrupt-controller@30b41000 {
+		compatible = "arm,cortex-a9-gic";
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		reg = <0x30b41000 0x1000>, <0x30b40100 0x100>;
+	};
+
+	clock:clock-controller@30090800 {
+		compatible = "samsung,sdp1106-clock";
+		reg = <0x30090800 0x200>;
+	};
+
+	timer@30090400 {
+		compatible = "samsung,sdp-timer";
+		reg = <0x30090400 0x100>;
+		nr_timers = <2>;
+		clocks = <&apb_pclk>;
+		old-timer;
+		clock-names = "apb_pclk";
+		interrupts = <0 35 0>, < 0 36 0>;
+		clocksource_id = <0>;
+		clockevent_id = <1>;
+	};
+
+
+	serial@30090A00 {
+		compatible = "samsung,sdp-uart";
+		reg = <0x30090A00 0x40>;
+		interrupts = <0 28 0>;
+		clocks = <&apb_pclk>;
+		clock-names = "apb_pclk";
+		status = "disabled";
+	};
+
+	serial@30090A40 {
+		compatible = "samsung,sdp-uart";
+		reg = <0x30090A40 0x40>;
+		interrupts = <0 29 0>;
+		clocks = <&apb_pclk>;
+		clock-names = "apb_pclk";
+		status = "disabled";
+	};
+
+	serial@30090A80 {
+		compatible = "samsung,sdp-uart";
+		reg = <0x30090A80 0x40>;
+		interrupts = <0 30 0>;
+		clocks = <&apb_pclk>;
+		clock-names = "apb_pclk";
+		status = "disabled";
+	};
+
+	ethernet@30050000 {
+		compatible = "samsung,sdp-mac";
+		reg = <0x30050000 0x100>,
+			  <0x30050100 0x300>,
+			  <0x30050700 0x100>,
+			  <0x30050800 0x100>,
+			  <0x30051000 0x100>;
+		interrupts = <0 24 0>;
+		phy_sel_reg =  <0x30090CD8 0x1 0x1>;
+		pad_ctrl_reg = <0x30090CDC 0x1 0x1>;/* select SRAM for MAC */
+		bus_width = <128>;
+		phy_mask = <0>;
+		napi_weight = <128>;
+	};
+	
+	ehci@30070000 {
+		compatible = "samsung,sdp-ehci", "usb-ehci";
+		reg = <0x30070000 0x100>;
+		interrupts = <0 23 0>;
+		status = "disabled";
+	};
+
+	ehci@30080000 {
+		compatible = "samsung,sdp-ehci", "usb-ehci";
+		reg = <0x30080000 0x100>;
+		interrupts = <0 25 0>;
+		status = "disabled";
+	};
+
+	usben {
+		compatible = "samsung,sdp-usben", "usb-ehci";
+		status = "disabled";
+	};
+
+	ohci@30078000 {
+		compatible = "samsung,sdp-ohci", "usb-ohci";
+		reg = <0x30078000 0x100>;
+		interrupts = <0 32 0>;
+		status = "disabled";
+	};
+
+	ohci@30088000 {
+		compatible = "samsung,sdp-ohci", "usb-ohci";
+		reg = <0x30088000 0x100>;
+		interrupts = <0 33 0>;
+		status = "disabled";
+	};
+
+	pinctrl{
+		status = "okay";
+	};
+
+	i2c_0: i2c@30090100 {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		compatible = "samsung,sdp-i2c";
+		reg = <0x30090100 0x20>;
+		interrupts = <0 39 0>;
+		clocks = <&rstn_i2c>;
+		clock-names = "rstn_i2c";
+	};
+	
+	i2c_1: i2c@30090120 {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		compatible = "samsung,sdp-i2c";
+		reg = <0x30090120 0x20>;
+		interrupts = <0 40 0>;
+		clocks = <&rstn_i2c>;
+		clock-names = "rstn_i2c";
+	};
+
+	i2c_2: i2c@30090140 {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		compatible = "samsung,sdp-i2c";
+		reg = <0x30090140 0x20>;
+		interrupts = <0 41 0>;
+		clocks = <&rstn_i2c>;
+		clock-names = "rstn_i2c";
+	};
+
+	i2c_3: i2c@30090160 {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		compatible = "samsung,sdp-i2c";
+		reg = <0x30090160 0x20>;
+		interrupts = <0 42 0>;
+		clocks = <&rstn_i2c>;
+		clock-names = "rstn_i2c";
+	};
+	
+	i2c_4: i2c@30090180 {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		compatible = "samsung,sdp-i2c";
+		reg = <0x30090180 0x20>;
+		interrupts = <0 43 0>;
+		clocks = <&rstn_i2c>;
+		clock-names = "rstn_i2c";
+	};
+
+	i2c_5: i2c@300901A0 {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		compatible = "samsung,sdp-i2c";
+		reg = <0x300901A0 0x20>;
+		interrupts = <0 44 0>;
+		clocks = <&rstn_i2c>;
+		clock-names = "rstn_i2c";
+	};	
+/*
+	ehci@0x100e0000 {
+		compatible = "samsung,sdp-ehci", "usb-ehci";
+		reg = <0x100e0000 0x100>;
+		interrupts = <0 20 0>;
+		status = "okay";
+	};
+
+	ehci@0x100f0000 {
+		compatible = "samsung,sdp-ehci", "usb-ehci";
+		reg = <0x100f0000 0x100>;
+		interrupts = <0 22 0>;
+		status = "okay";
+	};
+
+	ohci@0x100e8000 {
+		compatible = "samsung,sdp-ohci", "usb-ohci";
+		reg = <0x100e8000 0x100>;
+		interrupts = <0 21 0>;
+		status = "okay";
+	};
+
+	ohci@0x100f8000 {
+		compatible = "samsung,sdp-ohci", "usb-ohci";
+		reg = <0x100f8000 0x100>;
+		interrupts = <0 23 0>;
+		status = "okay";
+	};
+
+	sata@0x30040000 {
+		compatible = "samsung,sdp-ahci";
+		reg = <0x30040000 0x200>;
+		interrupts = <0 25 0>;
+		phy_base = <0x100908f4>;
+		gpr_base = <0x100a0000>;
+		phy_bit = <17>;
+		link_bit = <16>;
+		status = "okay";
+	};
+
+	sata@0x30050000 {
+		compatible = "samsung,sdp-ahci";
+		reg = <0x30050000 0x200>;
+		interrupts = <0 26 0>;
+		phy_base = <0x100908f4>;
+		gpr_base = <0x100a0008>;
+		phy_bit = <19>;
+		link_bit = <18>;
+		status = "okay";
+	};
+*/
+	mmc@0x30000000 {
+		compatible = "samsung,sdp-mmc";
+		reg = <0x30000000 0x1000>;
+		interrupts = <0 47 0>;
+		irq-affinity = <0>;
+		clocks = <&emmc_clk>;
+		clock-names = "emmc_clk";
+		fifo-depth = <32>;
+		min-max-clock = <400000 100000000>;
+//		initregs =	<>;
+//		restoreregs =	<>;
+
+		bus-width = <0x8>;
+//		force-pio-mode;
+
+		non-removable;
+//		bus-width-test;
+//		hw-reset;
+		highspeed;
+//		sdr104;
+		ddr50;
+//		hs200;
+//		hs200-tuning;
+	};
+
+	/*** AUDIO Entries *****************************************************/
+sdpcodec: sdp-codec@30000000	{
+		compatible = "samsung,sdp-codec";
+		status = "okay";
+	};
+	
+ sdppf: sdp-platform@30000000  {
+		compatible = "samsung,sdp-platform";
+		samsung,audio-base = <0x64000000>;
+		samsung,audio-size = <0x1000000>;
+		samsung,hw-reg-base = <0x30000000>;
+		samsung,hw-reg-size = <0x1A16000>;
+		samsung,hw-clkreg-base = <0x30090900>;
+		samsung,hw-clkreg-size = <0x1000>;
+		samsung,audio-aio-irq = <0x20>;
+		samsung,audio-ae-irq = <0x21>;
+		status = "okay";
+	};
+	
+	sdp-dma@30000000  {
+		compatible = "samsung,sdp-dma";
+	};
+
+
+	sdp-mc-audio@30000000  {
+		compatible = "samsung,sdp-mc-audio";
+  		audio-codec = <&sdpcodec>;
+  		audio-pf = <&sdppf>;
+	};
+
+
+	/*ALSA SIF*/
+ sifcodec: sdp-sif-codec@30000000	{
+		compatible = "samsung,sdp-sif-codec";
+  		status = "okay";
+	};
+
+ sifpf: sdp-sif-platform@30000000  {
+		compatible = "samsung,sdp-sif-platform";
+  		status = "okay";
+	};
+
+
+	sdp-mc-sif@30000000	 {
+		compatible = "samsung,sdp-mc-sif";
+		sif-codec = <&sifcodec>;
+		sif-pf = <&sifpf>;
+	};
+
+	/*** DP Entries *******************************************/
+	sdp_dp@30000000 {
+		compatible = "samsung,sdp1304-sdp_dp";
+		reg =	<0x30220000 0x19A8>,	/* POST */ /*0x0F70*/
+			<0x30900000 0x1D069C>,	/* NORMAL */
+			<0x30400000 0x2C>,	/* XMIF-A */	/*done*/
+			<0x30800000 0x24>,	/* XMIF-B */	/*NA*/
+			<0x30090800 0x168>;	/* MUX/PLL */	/*done*/
+
+		interrupts 		= <0 5 0>;
+		samsung,dp0 		= <0 0x5AC80000 0x3100000>;	/* 49 Mbyte*/ /*done*/
+		samsung,dp1 		= <0 0x8DE00000 0x1A00000>;	/* 26 Mbyte*/	/*done*/
+		samsung,dp2 		= <0 0x5DD80000 0x1E80000>;	/* 30.5 Mbyte*/  /*done*/
+		samsung,rm_cap_wry 	= <0 0x8DC00000 0x200000>;		/*done*/
+		/*samsung,rm_cap_wrc = <0 rm_cap_wry+0x7f000 ?>;*/	/* not required in Echo-P as it is calculate by code using dp_bg_y */
+		samsung,dp_enc_buf 	= <0 0x59F00000 0x580000>;		/*done*/
+		/*samsung,dp_ttx_out	= <0 0x8FFC0000 0x40000>;*/		/*done*/
+		
+		/*clocks      = <&disp_pclk_nr>,  <&disp_pclk_dcar>,  <&disp_pclk_ipc>,  <&disp_pclk_ucar>,   <&dp_scl_osc_clk>,   <&dp_scl_sub_clk>,   <&dp_scl_pclk>;
+		clock-names = "disp_pclk_nr", "disp_pclk_dcar", "disp_pclk_ipc", "disp_pclk_ucar", "dp_scl_osc_clk", "dp_scl_sub_clk", "dp_scl_pclk";*/
+	};
+	
+	
+	sdp_dp_sub@0x19A11414 {	/*need to change this as AFE in EchoP is connected through I2C*/
+		compatible = "samsung,sdp1304-sdp_dp_sub";
+		reg = <0x19A11414 0x4>;		/* AFE - OUT-PATH */
+	};	
+	
+	sdp_dp_bgp {						/*done*/
+		compatible = "samsung,sdp1304-sdp_dp_bgp";
+		samsung,dp_bg_y	= <0 0x56800000 0xC00000>;	/* size = 0x200000 if used individually from DTSI */
+		/*samsung,dp_bg_c	= <0 ? ?>;*/	/* not required in Echo-P as it is calculate by code using dp_bg_y */
+	};
+	
+	sdp_cvbsout@0x19A11414 {	/*need to change this as AFE in EchoP is connected through I2C*/
+		compatible = "samsung,sdp1304-sdp_cvbsout";
+		reg = <0x19A11414 0x4>;		/* AFE - OUT-PATH */
+	};
+	
+	osdp@30300000 {
+			compatible = "samsung,sdp1304-osdp";
+			reg =   <0x30300000 0x220>;
+			interrupts = <0 48 0>;
+	};	
+	
+	gp@30310000 {
+			compatible = "samsung,sdp1304-gp";
+			reg = <0x30310000 0x1224>;
+	};
+	
+	sgp@30311000 {
+			compatible = "samsung,sdp1304-sgp";
+			reg = <0x30311000 0x903>;
+	};
+	
+	ga@30320000 {
+			compatible = "samsung,sdp1304-ga";
+			reg = <0x30320000 0x80>,	/* GA */
+			<0x30328000 0x10C>;			/* GSCL */
+			interrupts = <0 6 0>;
+	};
+
+	/*** DECODER Entries *****************************************************/
+	sdp_mfc@30680000 {
+			compatible = "samsung,sdp-mfc";
+			reg = <0x30680000 0x3000>;
+			interrupts = <0 18 0>;
+			samsung,dram-base-a = <0x89A00000>;
+			samsung,dram-base-b = <0x57400000>;
+			samsung,dram-size-a = <0x4200000>;
+			samsung,dram-size-b = <0x1600000>;
+	};
+
+
+	/*** Ext-In Entries *****************************************************/
+	extin@30330000 {
+        	        compatible = "samsung,sdp-extin";
+                	reg = <0x30330000 0xFFC>, <0x30090958 0x4>, <0x30090928 0x4>;
+	                reg-names = "avd-reg", "reg-mp0_sw_rst", "reg-mux_sel6";
+        	        interrupts = <0 19 0>;
+        };
+
+	dvb {
+                compatible = "samsung,sdp-dvb";
+        };
+
+        demux@30100000 {
+                compatible = "samsung,sdp1106-tsd";
+                reg = <0x30100000 0x11000>, <0x30028000 0x134>;
+                reg-names = "tsd", "ci";
+                interrupts = <0 0 0>;
+        };
+
+	hdmi@0x30092000 {
+                compatible = "samsung,sdp-hdmi";
+                reg = <0x30092000 0x22800>, <0x30090954 0x04>;
+                reg-names = "hdmi-reg", "hdmi-clk";
+    };
+
+	se@0x303f0000 {
+                comaptible = "samsung,sdp-se";
+                reg = <0x303f0000 0x1000>;
+                reg-names = "se";
+                interrupts = <0 26 0>;
+        };
+	
+
+};

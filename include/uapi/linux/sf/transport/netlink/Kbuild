@@ -1,0 +1,4 @@
+#
+# Netlink header files(transport component) exported to user-space file system
+#
+header-y += SfNetlinkSerialization.h

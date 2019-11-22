@@ -1,0 +1,39 @@
+#
+# MMC subsystem configuration
+#
+
+menuconfig MMC
+	tristate "MMC/SD/SDIO card support"
+	depends on HAS_IOMEM
+	help
+	  This selects MultiMediaCard, Secure Digital and Secure
+	  Digital I/O support.
+
+	  If you want MMC/SD/SDIO support, you should say Y here and
+	  also to your specific host controller driver.
+
+config MMC_DEBUG
+	bool "MMC debugging"
+	depends on MMC != n
+	help
+	  This is an option for use by developers; most people should
+	  say N here.  This enables MMC core and driver debugging.
+
+config HW_DECOMP_BLK_MMC_SUBSYSTEM
+	bool "HW decompression from the MMC layer"
+	depends on MMC != n
+	select SDP_UNZIP
+	help
+		This option enables hardware decompression from MMC layer.
+		Fs layer should be aware of this special call and should
+		use it properly.
+
+if MMC
+
+source "drivers/mmc/core/Kconfig"
+
+source "drivers/mmc/card/Kconfig"
+
+source "drivers/mmc/host/Kconfig"
+
+endif # MMC
